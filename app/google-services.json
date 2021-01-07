@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "47376256827",
+    "firebase_url": "https://bein-6720a.firebaseio.com",
+    "project_id": "bein-6720a",
+    "storage_bucket": "bein-6720a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:47376256827:android:dff7b4092dac113dd7311e",
+        "android_client_info": {
+          "package_name": "com.example.belfastinanutshell"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "47376256827-k6bf7ih4bkou31vmbkr3bnhg0ctc88sg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDly--qqx2YCnJ_Jz32GcX-qoFaCIbD3pQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "47376256827-k6bf7ih4bkou31vmbkr3bnhg0ctc88sg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:47376256827:android:140dad1c841628bfd7311e",
+        "android_client_info": {
+          "package_name": "com.example.myapplicationbein"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "47376256827-k6bf7ih4bkou31vmbkr3bnhg0ctc88sg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDly--qqx2YCnJ_Jz32GcX-qoFaCIbD3pQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "47376256827-k6bf7ih4bkou31vmbkr3bnhg0ctc88sg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
