@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="20dp"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
+    app:cardElevation="15dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/business_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Business Name"
+            android:textAlignment="center"
+            android:textSize="26dp"
+            android:textStyle="bold"
+            android:gravity="center_horizontal" />
+
+        <ImageView
+            android:id="@+id/business_image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@+id/business_name"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="2dp"
+            />
+
+        <TextView
+            android:id="@+id/business_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:textSize="17dp"
+            android:text="Business Description"
+            android:layout_below="@id/business_image"
+            />
+
+        <TextView
+            android:id="@+id/business_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:textSize="17dp"
+            android:layout_marginTop="2dp"
+            android:text="Business Location"
+            android:layout_below="@id/business_description"
+            />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

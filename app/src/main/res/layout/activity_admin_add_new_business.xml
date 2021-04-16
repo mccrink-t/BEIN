@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdminAddNewBusiness">
+
+
+
+    <ImageView
+        android:id="@+id/select_business_image"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
+        android:cropToPadding="false"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_add_business_picture"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        />
+
+    <EditText
+        android:id="@+id/business_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/select_business_image"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="40dp"
+        android:background="#009688"
+        android:hint="Buinsesss Name..."
+        android:inputType="textMultiLine"
+        android:padding="10dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#A4BFBD"
+        android:textSize="17dp"
+        android:textStyle="normal" />
+
+    <EditText
+        android:id="@+id/business_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/business_name"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="40dp"
+        android:background="#009688"
+        android:hint="Buinsesss Description..."
+        android:inputType="textMultiLine"
+        android:padding="10dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#A4BFBD"
+        android:textSize="17dp"
+        android:textStyle="normal" />
+
+    <EditText
+        android:id="@+id/business_opening_hours"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/business_description"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="40dp"
+        android:background="#009688"
+        android:hint="Buinsesss Opening Hours..."
+        android:inputType="textMultiLine"
+        android:padding="10dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#A4BFBD"
+        android:textSize="17dp"
+        android:textStyle="normal" />
+
+    <EditText
+        android:id="@+id/business_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/business_opening_hours"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="40dp"
+        android:background="#009688"
+        android:hint="Buinsesss Location..."
+        android:inputType="textMultiLine"
+        android:padding="10dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#A4BFBD"
+        android:textSize="17dp"
+        android:textStyle="normal" />
+
+    <EditText
+        android:id="@+id/business_contact_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/business_location"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="40dp"
+        android:background="#009688"
+        android:hint="Buinsesss Contact Info..."
+        android:inputType="textMultiLine"
+        android:padding="10dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#A4BFBD"
+        android:textSize="17dp"
+        android:textStyle="normal" />
+
+    <EditText
+        android:id="@+id/business_website"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/business_contact_info"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="40dp"
+        android:background="#009688"
+        android:hint="Buinsesss Website..."
+        android:inputType="textMultiLine"
+        android:padding="10dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#A4BFBD"
+        android:textSize="17dp"
+        android:textStyle="normal" />
+
+    <Button
+        android:id="@+id/add_new_businessbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/business_website"
+        android:text="Add Business"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:backgroundTint="#016868"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="40dp"
+        android:padding="17dp"
+        android:textSize="17dp"
+        />
+
+
+</RelativeLayout>

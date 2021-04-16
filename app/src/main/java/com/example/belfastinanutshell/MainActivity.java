@@ -1,128 +1,131 @@
 package com.example.belfastinanutshell;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.Toast;
 
-import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+import com.example.belfastinanutshell.Model.Users;
+import com.example.belfastinanutshell.Prevalent.Prevalent;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-    FirebaseAuth mAuth;
-    FirebaseUser currentUser;
-    private DrawerLayout drawer;
+import io.paperdb.Paper;
 
-    //Variables required for MainActivity
-//    Button mMapsBtn;
+public class MainActivity extends AppCompatActivity {
+
+    private Button btnDirectRegister;
+    private Button btnDirectLogin;
+    private ProgressDialog loadingBar;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-////        May need to undo this comment
-//        mMapsBtn = findViewById(R.id.mapsBtn);
 
-        //Redirect to Maps page
-//        mMapsBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(getApplicationContext(),MapsActivity.class));
-//            }
-//        });
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        mAuth = FirebaseAuth.getInstance();
-        currentUser = mAuth.getCurrentUser();
+        btnDirectRegister = (Button) findViewById(R.id.BtnDirectRegister);
+        btnDirectLogin = (Button) findViewById(R.id.BtnDirectLogin);
+        loadingBar = new ProgressDialog(this);
 
 
-        drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
-                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+        Paper.init(this);
 
 
-        if (savedInstanceState == null) {
-//        open bars fragment this is started immediately
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new BarsFragment()).commit();
-            navigationView.setCheckedItem(R.id.nav_bars);
-        }
+        btnDirectLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(MainActivity.this, Login.class);
+                startActivity(intent);
+            }
+        });
 
-    updateNavHeader();
-    }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.nav_profile:
-//                startActivity(new Intent(getApplicationContext(), MapsActivity.class));
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new ProfileFragment()).commit();
-                break;
-            case R.id.nav_map:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new MapFragment()).commit();
-                break;
-            case R.id.nav_bars:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new BarsFragment()).commit();
-                break;
-            case R.id.nav_logout:
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(getApplicationContext(), Login.class));
-                finish();
-                break;
-        }
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
+        btnDirectRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(MainActivity.this, Register.class);
+                startActivity(intent);
+            }
+        });
 
-    @Override
-    public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+
+        String UsersPhoneNumber = Paper.book().read(Prevalent.UsersPhoneNumber);
+        String UsersPasswordKey = Paper.book().read(Prevalent.UsersPasswordKey);
+
+        if (UsersPhoneNumber != "" && UsersPasswordKey != "")
+        {
+            if (!TextUtils.isEmpty(UsersPhoneNumber)  &&  !TextUtils.isEmpty(UsersPasswordKey))
+            {
+                AllowAccess(UsersPhoneNumber, UsersPasswordKey);
+
+                loadingBar.setTitle("Already Logged in");
+                loadingBar.setMessage("Please wait.....");
+                loadingBar.setCanceledOnTouchOutside(false);
+                loadingBar.show();
+            }
         }
     }
 
-    public void updateNavHeader(){
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        View headerView = navigationView.getHeaderView(0);
-        TextView navUsername = headerView.findViewById(R.id.nav_username);
-        TextView navUserMail = headerView.findViewById(R.id.nav_user_mail);
 
-        navUserMail.setText(currentUser.getEmail());
-        navUsername.setText(currentUser.getDisplayName());
+    private void AllowAccess(final String phone, final String password)
+    {
+        final DatabaseReference RootRef;
+        RootRef = FirebaseDatabase.getInstance().getReference();
 
+
+        RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                if (dataSnapshot.child("Users").child(phone).exists())
+                {
+                    Users usersData = dataSnapshot.child("Users").child(phone).getValue(Users.class);
+
+                    if (usersData.getPhone().equals(phone))
+                    {
+                        if (usersData.getPassword().equals(password))
+                        {
+                            Toast.makeText(MainActivity.this, "Already Logged in, Redirecting...", Toast.LENGTH_SHORT).show();
+                            loadingBar.dismiss();
+
+                            Intent intent = new Intent(MainActivity.this, Home.class);
+                            //pass the user data across
+                            //keep user who is logged in
+                            Prevalent.CurrentOnlineUser = usersData;
+                            startActivity(intent);
+                        }
+                        else
+                        {
+                            loadingBar.dismiss();
+                            Toast.makeText(MainActivity.this, "Password is incorrect.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+                else
+                {
+                    Toast.makeText(MainActivity.this, "Account with Phone Number:  " + phone + " does not exist.", Toast.LENGTH_SHORT).show();
+                    loadingBar.dismiss();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
-
-
-    //Log the user out of their account
-//    public void logout(View view) {
-//        FirebaseAuth.getInstance().signOut();
-//        startActivity(new Intent(getApplicationContext(),Login.class));
-//        finish();
-//
-//    }
 }
