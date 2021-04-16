@@ -1,9 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".BusinessDetails">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/name_business_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Business Name"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:textSize="28dp"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        />
+
+    <ImageView
+        android:id="@+id/image_business_details"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:scaleType="centerCrop"
+        android:layout_below="@+id/name_business_details"
+        />
+
+    <TextView
+        android:id="@+id/description_business_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/image_business_details"
+        android:text="Business Description"
+        android:textColor="@android:color/white"
+        android:textStyle="normal"
+        android:textSize="16dp"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/location_business_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/description_business_details"
+        android:text="Business Location"
+        android:textColor="@android:color/white"
+        android:textStyle="normal"
+        android:textSize="16dp"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/opening_hours_business_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/location_business_details"
+        android:text="Business Opening Hours"
+        android:textColor="@android:color/white"
+        android:textStyle="normal"
+        android:textSize="16dp"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/contact_info_business_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/opening_hours_business_details"
+        android:text="Business Number"
+        android:textColor="@android:color/white"
+        android:textStyle="normal"
+        android:textSize="16dp"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/website_business_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/contact_info_business_details"
+        android:text="Business Website"
+        android:textColor="@android:color/white"
+        android:textStyle="normal"
+        android:textSize="16dp"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        />
+
+</RelativeLayout>
