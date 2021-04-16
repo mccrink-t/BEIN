@@ -51,6 +51,7 @@
             android:gravity="center_horizontal"
             android:textSize="17dp"
             android:layout_marginTop="2dp"
+            android:layout_marginBottom="4dp"
             android:text="Business Location"
             android:layout_below="@id/business_description"
             />

@@ -112,6 +112,16 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                         holder.txtBusinessDescription.setText(model.getDescription());
                         holder.txtBusinessLocation.setText(model.getLocation());
                         Picasso.get().load(model.getImage()).into(holder.imageView);
+
+                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v)
+                            {
+                                Intent intent = new Intent(Home.this, BusinessDetails.class);
+                                intent.putExtra("bID", model.getbID());
+                                startActivity(intent);
+                            }
+                        });
                     }
 
                     @NonNull
