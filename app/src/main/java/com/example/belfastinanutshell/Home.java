@@ -188,7 +188,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         if (id == R.id.nav_home) {
 
         } else if (id == R.id.nav_profile) {
-
+            Intent intent = new Intent(Home.this, Profile.class);
+            startActivity(intent);
         } else if (id == R.id.nav_bars) {
 
         } else if (id == R.id.nav_restaurants) {

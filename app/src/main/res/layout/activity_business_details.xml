@@ -91,5 +91,13 @@
         android:gravity="center"
         android:layout_marginTop="10dp"
         />
+    <RatingBar
+        android:id="@+id/businessRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:stepSize="1"
+        android:layout_below="@+id/website_business_details">
+    </RatingBar>
 
 </RelativeLayout>
