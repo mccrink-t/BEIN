@@ -5,21 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:showIn="@layout/app_bar_main">
+    tools:showIn="@layout/app_bar_businesses">
 
+<!--Layout for all businesses stored in the database-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical"
-        >
-
+        android:scrollbars="vertical">
     </androidx.recyclerview.widget.RecyclerView>
 
-    <!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/recycler_menu"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:scrollbars="vertical">-->
-<!--    </androidx.recyclerview.widget.RecyclerView>-->
 </RelativeLayout>

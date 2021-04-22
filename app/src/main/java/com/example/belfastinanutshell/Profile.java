@@ -24,6 +24,7 @@ public class Profile extends AppCompatActivity {
     private TextView profileName, profilePhone, profileEmail, profileInstitution, profileDegree, profileYOS;
     private CircleImageView profilePicView;
     private Button updateProfileBtn;
+    private TextView homeProfileBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class Profile extends AppCompatActivity {
         profileYOS = (TextView) findViewById(R.id.profile_year_of_study_TextView);
         profilePicView = (CircleImageView) findViewById(R.id.profile_profile_image);
         updateProfileBtn = (Button) findViewById(R.id.redirect_updateProfile_Btn);
+        homeProfileBtn = (TextView) findViewById(R.id.home_profile_btn);
 
         //Call to display all of the users current data on their profile
         userInfoDisplay(profilePicView, profileName, profilePhone, profileEmail, profileInstitution, profileDegree, profileYOS);
@@ -47,6 +49,15 @@ public class Profile extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Profile.this, Settings.class);
                 startActivity(intent);
+            }
+        });
+
+        //        Button to close the activity
+        homeProfileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                finish();
             }
         });
 

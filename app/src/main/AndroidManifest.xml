@@ -14,7 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BelfastInANutshell.NoActionBar">
-        <activity android:name=".Profile"></activity>
+        <activity android:name=".All_Businesses"
+            android:label="All Businesses"
+            ></activity>
+        <activity android:name=".Profile" />
         <activity android:name=".TestActivity" />
         <activity android:name=".BusinessDetails" />
         <activity android:name=".Settings" />

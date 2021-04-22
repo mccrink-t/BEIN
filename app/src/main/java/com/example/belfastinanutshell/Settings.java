@@ -73,7 +73,8 @@ public class Settings extends AppCompatActivity {
 //        Button to close the activity
         closeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 finish();
             }
         });
