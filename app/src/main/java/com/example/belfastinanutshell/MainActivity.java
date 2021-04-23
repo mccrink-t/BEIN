@@ -5,11 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.example.belfastinanutshell.Model.Users;
 import com.example.belfastinanutshell.Prevalent.Prevalent;
@@ -23,8 +23,7 @@ import io.paperdb.Paper;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnDirectRegister;
-    private Button btnDirectLogin;
+    private CardView cardDirectRegister, cardDirectLogin;
     private ProgressDialog loadingBar;
 
     @Override
@@ -34,15 +33,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        btnDirectRegister = (Button) findViewById(R.id.BtnDirectRegister);
-        btnDirectLogin = (Button) findViewById(R.id.BtnDirectLogin);
+        cardDirectRegister = (CardView) findViewById(R.id.card_directRegister);
+        cardDirectLogin = (CardView) findViewById(R.id.card_directLogin);
         loadingBar = new ProgressDialog(this);
 
 
         Paper.init(this);
 
 
-        btnDirectLogin.setOnClickListener(new View.OnClickListener() {
+        cardDirectLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
@@ -52,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        btnDirectRegister.setOnClickListener(new View.OnClickListener() {
+        cardDirectRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
