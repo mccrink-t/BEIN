@@ -45,7 +45,7 @@ public class All_Businesses extends AppCompatActivity implements NavigationView.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all__businesses);
+        setContentView(R.layout.activity_all_businesses);
 
         //Toolbar (at top of each page)
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -175,11 +175,12 @@ public class All_Businesses extends AppCompatActivity implements NavigationView.
         } else if (id == R.id.nav_profile) {
             Intent intent = new Intent(All_Businesses.this, Profile.class);
             startActivity(intent);
-        } else if (id == R.id.nav_all_businesses) {
-            Intent intent = new Intent(All_Businesses.this, All_Businesses.class);
+        } else if (id == R.id.nav_search) {
+            Intent intent = new Intent(All_Businesses.this, SearchActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_bars) {
-
+            Intent intent = new Intent(All_Businesses.this, All_Bars.class);
+            startActivity(intent);
         } else if (id == R.id.nav_restaurants) {
 
         } else if (id == R.id.nav_entertainment) {

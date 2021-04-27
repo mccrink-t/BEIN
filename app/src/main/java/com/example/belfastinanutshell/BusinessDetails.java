@@ -1,8 +1,9 @@
 package com.example.belfastinanutshell;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,8 +22,10 @@ public class BusinessDetails extends AppCompatActivity {
     private TextView bNameDetails, descriptionDetails, locationDetails, openingHrsDetails, contactInfoDetails, websiteDetails;
     private ImageView imageDetails;
     private String businessID = "";
-    private RatingBar businessRating;
+    private Button addReviewBtn;
+//    private RatingBar businessRating;
     private DatabaseReference businessDetailsRef;
+    private String bNameReview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +40,9 @@ public class BusinessDetails extends AppCompatActivity {
         contactInfoDetails = (TextView) findViewById(R.id.contact_info_business_details);
         websiteDetails = (TextView) findViewById(R.id.website_business_details);
         imageDetails = (ImageView) findViewById(R.id.image_business_details);
-        businessRating = (RatingBar) findViewById(R.id.businessRating);
+        addReviewBtn = (Button) findViewById(R.id.business_review_btn);
+//        businessRating = (RatingBar) findViewById(R.id.businessRating);
+
 
 
         //call information from business database firebase
@@ -62,7 +67,9 @@ public class BusinessDetails extends AppCompatActivity {
                     websiteDetails.setText(businesses.getWebsite());
                     Picasso.get().load(businesses.getImage()).into(imageDetails);
 
-                    displayCustomerReviews();
+                    bNameReview = businesses.getbName();
+
+//                    displayCustomerReviews();
 //                    businessRating.setRating(Integer.valueOf(businessDetailsRef.child("rating").getValue(rating);
 //                            getRating.toString()));
                 }
@@ -73,16 +80,73 @@ public class BusinessDetails extends AppCompatActivity {
 
             }
         });
-    }
 
-    private void displayCustomerReviews()
-    {
-        businessRating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+        addReviewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser)
-            {
-                businessDetailsRef.child("rating").setValue(rating);
+            public void onClick(View v) {
+//                DatabaseReference bReviewRef = FirebaseDatabase.getInstance()
+//                        .getReference().child("Businesses").child("bID");
+//                EditText businessReview = new EditText(v.getContext());
+//
+//                AlertDialog businessReviewDialog = new AlertDialog.Builder(
+//                        BusinessDetails.this).create();
+//
+//                // Setting Dialog Title
+//                businessReviewDialog.setTitle(bNameReview);
+//
+//                // Setting Dialog Message
+//                businessReviewDialog.setMessage("\nPlease write your Review");
+//
+//                // Setting Icon to Dialog
+//                businessReviewDialog.setIcon(R.drawable.ic_profile_icon);
+//
+//                businessReviewDialog.setView(businessReview);
+//
+//                // Setting OK Button
+//                businessReviewDialog.setButton("OK", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        // Write your code here to execute after dialog
+//                        // closed
+//
+//                        HashMap<String, Object> bReviewMap = new HashMap<>();
+//                        bReviewMap.put("review", businessReview);
+//
+//                        bReviewRef.child("Reviews").updateChildren(bReviewMap)
+//                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<Void> task) {
+//                                if (task.isSuccessful())
+//                                {
+//                                    Toast.makeText(BusinessDetails.this, "Review Submitted Successfully", Toast.LENGTH_SHORT).show();
+//                                }
+//                            }
+//                        });
+//
+//                    }
+//                });
+//
+//                //show dialog
+//                businessReviewDialog.show();
             }
         });
     }
+
+    private void openReviewDialog()
+    {
+
+
+
+    }
+
+//    private void displayCustomerReviews()
+//    {
+//        businessRating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+//            @Override
+//            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser)
+//            {
+//                businessDetailsRef.child("rating").setValue(rating);
+//            }
+//        });
+//    }
 }

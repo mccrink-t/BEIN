@@ -91,13 +91,26 @@
         android:gravity="center"
         android:layout_marginTop="10dp"
         />
-    <RatingBar
-        android:id="@+id/businessRating"
-        android:layout_width="wrap_content"
+<!--    <RatingBar-->
+<!--        android:id="@+id/businessRating"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:numStars="5"-->
+<!--        android:stepSize="1"-->
+<!--        android:layout_below="@+id/website_business_details">-->
+<!--    </RatingBar>-->
+
+    <Button
+        android:id="@+id/business_review_btn"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:numStars="5"
-        android:stepSize="1"
-        android:layout_below="@+id/website_business_details">
-    </RatingBar>
+        android:layout_below="@id/website_business_details"
+        android:layout_marginHorizontal="100dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="Write a Review"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:backgroundTint="#016868"></Button>
 
 </RelativeLayout>
