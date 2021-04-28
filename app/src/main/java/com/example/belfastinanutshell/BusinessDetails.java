@@ -1,5 +1,6 @@
 package com.example.belfastinanutshell;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,7 +26,8 @@ public class BusinessDetails extends AppCompatActivity {
     private Button addReviewBtn;
 //    private RatingBar businessRating;
     private DatabaseReference businessDetailsRef;
-    private String bNameReview;
+    private String bNameReviewTitle;
+    private String Post_Key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,8 @@ public class BusinessDetails extends AppCompatActivity {
                 if(snapshot.exists()){
                     Businesses businesses = snapshot.getValue(Businesses.class);
 
+                    Post_Key = businesses.getbID();
+
                     bNameDetails.setText(businesses.getbName());
                     descriptionDetails.setText(businesses.getDescription());
                     locationDetails.setText(businesses.getLocation());
@@ -67,7 +71,7 @@ public class BusinessDetails extends AppCompatActivity {
                     websiteDetails.setText(businesses.getWebsite());
                     Picasso.get().load(businesses.getImage()).into(imageDetails);
 
-                    bNameReview = businesses.getbName();
+                    bNameReviewTitle = businesses.getbName();
 
 //                    displayCustomerReviews();
 //                    businessRating.setRating(Integer.valueOf(businessDetailsRef.child("rating").getValue(rating);
@@ -84,6 +88,10 @@ public class BusinessDetails extends AppCompatActivity {
         addReviewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent businessReviewIntent = new Intent(BusinessDetails.this, BusinessReviewsActivity.class);
+                businessReviewIntent.putExtra("bID", Post_Key);
+                startActivity(businessReviewIntent);
+
 //                DatabaseReference bReviewRef = FirebaseDatabase.getInstance()
 //                        .getReference().child("Businesses").child("bID");
 //                EditText businessReview = new EditText(v.getContext());
@@ -92,7 +100,7 @@ public class BusinessDetails extends AppCompatActivity {
 //                        BusinessDetails.this).create();
 //
 //                // Setting Dialog Title
-//                businessReviewDialog.setTitle(bNameReview);
+//                businessReviewDialog.setTitle(bNameReviewTitle);
 //
 //                // Setting Dialog Message
 //                businessReviewDialog.setMessage("\nPlease write your Review");
@@ -103,31 +111,13 @@ public class BusinessDetails extends AppCompatActivity {
 //                businessReviewDialog.setView(businessReview);
 //
 //                // Setting OK Button
-//                businessReviewDialog.setButton("OK", new DialogInterface.OnClickListener() {
+//                businessReviewDialog.setButton(Dialog.BUTTON_POSITIVE,"OK",new DialogInterface.OnClickListener(){
+//
 //                    @Override
 //                    public void onClick(DialogInterface dialog, int which) {
-//                        // Write your code here to execute after dialog
-//                        // closed
-//
-//                        HashMap<String, Object> bReviewMap = new HashMap<>();
-//                        bReviewMap.put("review", businessReview);
-//
-//                        bReviewRef.child("Reviews").updateChildren(bReviewMap)
-//                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<Void> task) {
-//                                if (task.isSuccessful())
-//                                {
-//                                    Toast.makeText(BusinessDetails.this, "Review Submitted Successfully", Toast.LENGTH_SHORT).show();
-//                                }
-//                            }
-//                        });
-//
+//                        finish();
 //                    }
 //                });
-//
-//                //show dialog
-//                businessReviewDialog.show();
             }
         });
     }

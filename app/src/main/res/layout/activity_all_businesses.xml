@@ -9,6 +9,7 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
+<!--This is to include the top toolbar and the content aka all businesses recycler view-->
     <include
         layout="@layout/app_bar_businesses"
         android:layout_width="match_parent"
