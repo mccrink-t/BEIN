@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -45,6 +46,7 @@ public class AdminAddNewBusiness extends AppCompatActivity {
     private String downloadImageUrl;
     private DatabaseReference businessRef;
     private ProgressDialog loadingBar;
+    private TextView closeBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,7 @@ public class AdminAddNewBusiness extends AppCompatActivity {
         inputBusinessContactInfo = (EditText) findViewById(R.id.business_contact_info);
         inputBusinessWebsite = (EditText) findViewById(R.id.business_website);
         loadingBar = new ProgressDialog(this);
+        closeBtn = (TextView) findViewById(R.id.close_add_new_business_btn);
 
         inputBusinessPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +80,13 @@ public class AdminAddNewBusiness extends AppCompatActivity {
             public void onClick(View v)
             {
                 validateBusinessData();
+            }
+        });
+
+        closeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

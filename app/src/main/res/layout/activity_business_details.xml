@@ -1,117 +1,232 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="vertical">
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/single_business_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".BusinessDetails"
-    android:id="@+id/single_business_layout">
+    android:background="@color/black"
+    android:overScrollMode="ifContentScrolls"
+    android:scrollbarStyle="insideOverlay"
+    android:scrollbars="vertical">
 
-    <TextView
-        android:id="@+id/name_business_details"
+    <RelativeLayout
+        android:id="@+id/businessDetailsRL1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Business Name"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"
-        android:textSize="28dp"
-        android:gravity="center"
-        android:layout_marginTop="10dp"
-        />
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/image_business_details"
-        android:layout_width="match_parent"
-        android:layout_height="260dp"
-        android:scaleType="centerCrop"
-        android:layout_below="@+id/name_business_details"
-        />
+        <TextView
+            android:id="@+id/name_business_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="Business Name"
+            android:textColor="@android:color/white"
+            android:textSize="28dp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/description_business_details"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/image_business_details"
-        android:text="Business Description"
-        android:textColor="@android:color/white"
-        android:textStyle="normal"
-        android:textSize="16dp"
-        android:gravity="center"
-        android:layout_marginTop="10dp"
-        />
+        <ImageView
+            android:id="@+id/image_business_details"
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:layout_below="@+id/name_business_details"
+            android:scaleType="centerCrop" />
 
-    <TextView
-        android:id="@+id/location_business_details"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/description_business_details"
-        android:text="Business Location"
-        android:textColor="@android:color/white"
-        android:textStyle="normal"
-        android:textSize="16dp"
-        android:gravity="center"
-        android:layout_marginTop="10dp"
-        />
+    </RelativeLayout>
 
-    <TextView
-        android:id="@+id/opening_hours_business_details"
+    <RelativeLayout
+        android:id="@+id/businessDetailsRL2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/location_business_details"
-        android:text="Business Opening Hours"
-        android:textColor="@android:color/white"
-        android:textStyle="normal"
-        android:textSize="16dp"
-        android:gravity="center"
-        android:layout_marginTop="10dp"
-        />
+        android:layout_height="match_parent"
+        android:layout_below="@+id/businessDetailsRL1"
+        android:layout_marginHorizontal="15dp">
 
-    <TextView
-        android:id="@+id/contact_info_business_details"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/opening_hours_business_details"
-        android:text="Business Number"
-        android:textColor="@android:color/white"
-        android:textStyle="normal"
-        android:textSize="16dp"
-        android:gravity="center"
-        android:layout_marginTop="10dp"
-        />
+        <TextView
+            android:id="@+id/text_description_business_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="About: "
+            android:textColor="@android:color/white"
+            android:textSize="16dp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/website_business_details"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/contact_info_business_details"
-        android:text="Business Website"
-        android:textColor="@android:color/white"
-        android:textStyle="normal"
-        android:textSize="16dp"
-        android:gravity="center"
-        android:layout_marginTop="10dp"
-        />
-<!--    <RatingBar-->
-<!--        android:id="@+id/businessRating"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:numStars="5"-->
-<!--        android:stepSize="1"-->
-<!--        android:layout_below="@+id/website_business_details">-->
-<!--    </RatingBar>-->
+        <View
+            android:id="@+id/separator1"
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:layout_below="@+id/text_description_business_details"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="5dp"
+            android:background="#808080"
+            />
 
-    <Button
-        android:id="@+id/business_review_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/website_business_details"
-        android:layout_marginHorizontal="100dp"
-        android:layout_marginTop="15dp"
-        android:gravity="center"
-        android:text="Write a Review"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        app:backgroundTint="#016868"></Button>
+        <TextView
+            android:id="@+id/description_business_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/separator1"
+            android:text="Business Description"
+            android:textColor="@android:color/white"
+            android:textSize="15dp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/text_location_business_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/description_business_details"
+            android:layout_marginTop="15dp"
+            android:text="Location: "
+            android:textColor="@android:color/white"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <View
+            android:id="@+id/separator2"
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:layout_below="@+id/text_location_business_details"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="5dp"
+            android:background="#808080"
+            />
+
+        <TextView
+            android:id="@+id/location_business_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/separator2"
+            android:text="Business Location"
+            android:textColor="@android:color/white"
+            android:textSize="15dp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/text_opening_hours_business_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/location_business_details"
+            android:layout_marginTop="15dp"
+            android:text="Business Opening Hours: "
+            android:textColor="@android:color/white"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <View
+            android:id="@+id/separator3"
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:layout_below="@+id/text_opening_hours_business_details"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="5dp"
+            android:background="#808080"
+            />
+
+        <TextView
+            android:id="@+id/opening_hours_business_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/separator3"
+            android:text="Business Opening Hours"
+            android:textColor="@android:color/white"
+            android:textSize="15dp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/text_contact_info_business_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/opening_hours_business_details"
+            android:layout_marginTop="15dp"
+            android:text="Business Number: "
+            android:textColor="@android:color/white"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <View
+            android:id="@+id/separator4"
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:layout_below="@+id/text_contact_info_business_details"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="5dp"
+            android:background="#808080"
+            />
+
+        <TextView
+            android:id="@+id/contact_info_business_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/separator4"
+            android:text="Business Number"
+            android:textColor="@android:color/white"
+            android:textSize="15dp"
+            android:textStyle="normal"/>
+
+        <TextView
+            android:id="@+id/text_website_business_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/contact_info_business_details"
+            android:layout_marginTop="15dp"
+            android:text="Website: "
+            android:textColor="@android:color/white"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+        <View
+            android:id="@+id/separator5"
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:layout_below="@+id/text_website_business_details"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="5dp"
+            android:background="#808080"
+            />
+
+        <TextView
+            android:id="@+id/website_business_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/separator5"
+            android:text="Business Website"
+            android:textColor="@android:color/white"
+            android:textSize="15dp"
+            android:textStyle="normal" />
+
+        <!--    <RatingBar-->
+        <!--        android:id="@+id/businessRating"-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:numStars="5"-->
+        <!--        android:stepSize="1"-->
+        <!--        android:layout_below="@+id/website_business_details">-->
+        <!--    </RatingBar>-->
+
+        <Button
+            android:id="@+id/business_review_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/website_business_details"
+            android:layout_marginHorizontal="100dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:gravity="center"
+            android:text="Write a Review"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            app:backgroundTint="#016868"></Button>
+
+    </RelativeLayout>
+
 
 </RelativeLayout>
+</ScrollView>

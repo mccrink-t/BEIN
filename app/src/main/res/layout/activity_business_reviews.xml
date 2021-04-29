@@ -4,59 +4,171 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".BusinessReviewsActivity">
 
-    <TextView
-        android:id="@+id/reviewIntroTextView"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_single_business_reviews"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/nav_bar_header_theme">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_single_business_reviews"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/close_single_business_reviews_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:text="Close"
+                    android:textColor="@android:color/white"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:id="@+id/topRL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Reviews"
-        android:layout_margin="5dp"
-        android:textSize="24dp"
-        android:textStyle="bold"
-        android:textColor="@color/purple_200"
-        />
+        android:layout_below="@+id/app_bar_single_business_reviews"
+        android:layout_above="@+id/RL_middle">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/businessReviewList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="5dp"
-        android:layout_below="@+id/reviewIntroTextView"
-        />
+        <TextView
+            android:id="@+id/review_Business_Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-    <EditText
-        android:id="@+id/businessReviewInput"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginVertical="5dp"
+            android:text="Business_Name"
+            android:textColor="@color/purple_200"
+            android:textSize="24dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/reviewIntroTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:layout_toRightOf="@+id/review_Business_Name"
+            android:text="Reviews"
+            android:textColor="@color/purple_200"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/reviewIntroTextView">
+            <include layout="@layout/content_business_reviews"
+                />
+        </RelativeLayout>
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/businessReviewList"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:scrollbars="vertical"-->
+<!--            android:layout_margin="5dp"-->
+<!--            android:layout_below="@+id/reviewIntroTextView"/>-->
+
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="55dp"
-        android:background="@color/purple_200"
-        android:padding="15dp"
-        android:hint="Write a Review Here..."
-        android:inputType="textMultiLine"
-        />
+        android:id="@+id/RL_middle"
+        android:layout_above="@+id/RL_bottom"
+        android:background="@color/purple_200">
 
-<!--    <ImageViewButton-->
-<!--        android:id="@+id/postBusinessReviewBtn"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_alignBottom="@+id/businessReviewInput"-->
-<!--        android:layout_alignParentEnd="true"-->
-<!--        android:layout_alignParentRight="true"-->
-<!--        android:src="@drawable/send_ic;"-->
-<!--            />-->
+        <TextView
+            android:id="@+id/leaveRatingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:text="Leave a Rating and Review: "
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
-    <ImageView
-        android:id="@+id/postBusinessReviewBtn"
+        <RatingBar
+            android:id="@+id/singleUserBusinessRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:numStars="5"
+            android:scaleX="0.9"
+            android:scaleY="0.9"
+            android:layout_marginLeft="-10dp"
+            android:layout_marginBottom="-10dp"
+            android:progressBackgroundTint="@color/light_grey"
+            android:progressTint="@color/yellow"
+            android:layout_below="@+id/leaveRatingText"
+            android:stepSize="1"
+            />
+
+        <TextView
+            android:id="@+id/singleUserBusinessRatingText"
+            android:layout_toRightOf="@id/singleUserBusinessRating"
+            android:layout_below="@+id/leaveRatingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible">
+
+        </TextView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/RL_bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/submit_review"
-        android:layout_alignBottom="@+id/businessReviewInput"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:padding="11dp"
-        />
+        android:layout_alignParentBottom="true">
 
+        <EditText
+            android:id="@+id/businessReviewInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="55dp"
+            android:background="@color/purple_200"
+            android:hint="Write a Review Here..."
+            android:inputType="textMultiLine"
+            android:padding="15dp" />
+
+        <!--    <ImageViewButton-->
+        <!--        android:id="@+id/postBusinessReviewBtn"-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:layout_alignBottom="@+id/businessReviewInput"-->
+        <!--        android:layout_alignParentEnd="true"-->
+        <!--        android:layout_alignParentRight="true"-->
+        <!--        android:src="@drawable/send_ic;"-->
+        <!--            />-->
+
+        <ImageView
+            android:id="@+id/postBusinessReviewBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/businessReviewInput"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:padding="11dp"
+            android:src="@drawable/submit_review" />
+
+    </RelativeLayout>
 </RelativeLayout>

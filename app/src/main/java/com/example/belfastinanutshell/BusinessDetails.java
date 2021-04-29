@@ -28,6 +28,7 @@ public class BusinessDetails extends AppCompatActivity {
     private DatabaseReference businessDetailsRef;
     private String bNameReviewTitle;
     private String Post_Key;
+    private String Post_Name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,7 @@ public class BusinessDetails extends AppCompatActivity {
                     Businesses businesses = snapshot.getValue(Businesses.class);
 
                     Post_Key = businesses.getbID();
+                    Post_Name = businesses.getbName();
 
                     bNameDetails.setText(businesses.getbName());
                     descriptionDetails.setText(businesses.getDescription());
@@ -90,6 +92,7 @@ public class BusinessDetails extends AppCompatActivity {
             public void onClick(View v) {
                 Intent businessReviewIntent = new Intent(BusinessDetails.this, BusinessReviewsActivity.class);
                 businessReviewIntent.putExtra("bID", Post_Key);
+                businessReviewIntent.putExtra("bName", Post_Name);
                 startActivity(businessReviewIntent);
 
 //                DatabaseReference bReviewRef = FirebaseDatabase.getInstance()
@@ -122,12 +125,12 @@ public class BusinessDetails extends AppCompatActivity {
         });
     }
 
-    private void openReviewDialog()
-    {
-
-
-
-    }
+//    private void openReviewDialog()
+//    {
+//
+//
+//
+//    }
 
 //    private void displayCustomerReviews()
 //    {
