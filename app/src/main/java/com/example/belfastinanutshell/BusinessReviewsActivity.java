@@ -1,5 +1,6 @@
 package com.example.belfastinanutshell;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -43,10 +44,14 @@ public class BusinessReviewsActivity extends AppCompatActivity {
     private RatingBar singleUserBusinessRating;
     private TextView singleUserBusinessRatingTextView;
 
-    private DatabaseReference usersRef, businessRef;
+    private DatabaseReference usersRef, businessRef, businessRatingRef;
 
     private String Post_Key;
     private String Post_Name;
+
+    float ratingNumber;
+    int numberOfStars;
+    TextView delete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +64,7 @@ public class BusinessReviewsActivity extends AppCompatActivity {
         usersRef = FirebaseDatabase.getInstance().getReference().child("Users").child(Prevalent.CurrentOnlineUser.getPhone());
 
         businessRef = FirebaseDatabase.getInstance().getReference().child("Businesses").child(Post_Key).child("Reviews");
+        businessRatingRef = FirebaseDatabase.getInstance().getReference().child("Businesses").child(Post_Key);
 
         businessReviewList = (RecyclerView) findViewById(R.id.businessReviewList);
         businessReviewList.setHasFixedSize(true);
@@ -71,18 +77,22 @@ public class BusinessReviewsActivity extends AppCompatActivity {
         postBusinessReviewBtn = (ImageView) findViewById(R.id.postBusinessReviewBtn);
         closeBtn = (TextView) findViewById(R.id.close_single_business_reviews_btn);
         businessReviewName = (TextView) findViewById(R.id.review_Business_Name);
-        singleUserBusinessRating =(RatingBar) findViewById(R.id.singleUserBusinessRating);
+        singleUserBusinessRating = (RatingBar) findViewById(R.id.singleUserBusinessRating);
         singleUserBusinessRatingTextView = (TextView) findViewById(R.id.singleUserBusinessRatingText);
+
+        delete = (TextView) findViewById(R.id.holderReview);
 
         businessReviewName.setText(Post_Name);
 
         singleUserBusinessRating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                singleUserBusinessRatingTextView.setText(String.format("%2.1f", rating));
+                ratingNumber = singleUserBusinessRating.getRating();
+                numberOfStars = singleUserBusinessRating.getNumStars();
 
             }
         });
+
 
         closeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,84 +161,29 @@ public class BusinessReviewsActivity extends AppCompatActivity {
 
     }
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//
-//        FirebaseRecyclerAdapter<BusinessReviewsModel, BusinessReviewsViewHolder> firebaseRecyclerAdapter
-//                = new FirebaseRecyclerAdapter<BusinessReviewsModel, BusinessReviewsViewHolder>
-//                    (
-//                            BusinessReviewsModel.class,
-//                            R.layout.all_single_business_reviews_layout,
-//                            BusinessReviewsViewHolder.class,
-//                            businessRef
-//                    )
-//        {
-//            @Override
-//            protected void onBindViewHolder(@NonNull BusinessReviewsViewHolder businessReviewsViewHolder, int i, @NonNull BusinessReviewsModel businessReviewsModel)
-//            {
-//
-//            }
-//
-//            @NonNull
-//            @Override
-//            public BusinessReviewsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//                return null;
-//            }
-//        };
-//    }
-
-    //static class to hold view holder of reviews
-//    public static class BusinessReviewsViewHolder extends RecyclerView.ViewHolder
-//    {
-//        View mView;
-//
-//        public BusinessReviewsViewHolder(View itemView) {
-//            super(itemView);
-//
-//            mView = itemView;
-//        }
-//
-//        public void setFullName(String fullName)
-//        {
-//            TextView usersName = (TextView) mView.findViewById(R.id.business_Review_User_Name);
-//            usersName.setText(fullName + "   ");
-//        }
-//
-//        public void setReview(String review)
-//        {
-//            TextView usersReview = (TextView) mView.findViewById(R.id.business_review_Text);
-//            usersReview.setText(review);
-//        }
-//
-//        public void setDate(String date)
-//        {
-//            TextView usersReviewDate = (TextView) mView.findViewById(R.id.business_review_date);
-//            usersReviewDate.setText("  Date: " + date);
-//        }
-//
-//        public void setTime(String time)
-//        {
-//            TextView usersReviewTime = (TextView) mView.findViewById(R.id.business_review_time);
-//            usersReviewTime.setText("  Time: " + time);
-//        }
-//    }
-
     private void ValidateBusinessReview(String fullName, String userID) {
         String businessReviewText = businessReviewInputText.getText().toString();
         String saveCurrentDate, saveCurrentTime;
+
 //        String randomIdGeneration;
         String uniqueBusinessReviewID = null;
-        String rating = singleUserBusinessRatingTextView.getText().toString();;
+        int ratingToInt = 0;
+        //convert to int and round value to 0 decimal places
+//        int ratingInt = Math.round(Integer.valueOf(singleUserBusinessRatingTextView.getText().toString()));
+//        convert back to string
 
 
-
-        if(singleUserBusinessRatingTextView.getText().toString().isEmpty()){
+        if (singleUserBusinessRatingTextView.getText().toString().isEmpty()) {
             Toast.makeText(this, "Review Unsuccessful : Please Leave a Star Rating", Toast.LENGTH_SHORT).show();
-        }else if (TextUtils.isEmpty(businessReviewText)) {
+        } else if (TextUtils.isEmpty(businessReviewText)) {
             Toast.makeText(this, "Review Unsuccessful : Please Write Your Review to submit", Toast.LENGTH_SHORT).show();
-        }
-        else {
+        } else {
+
+            //converted the rating to an integer (Removing decimals)
+            ratingToInt = Math.round(ratingNumber);
+            //converted integer to string
+            String rating = String.valueOf(ratingToInt);
+
             Calendar calendar = Calendar.getInstance();
             //method to grab the current date
             SimpleDateFormat currentDate = new SimpleDateFormat("dd MMM, yyyy");
@@ -243,28 +198,83 @@ public class BusinessReviewsActivity extends AppCompatActivity {
             uniqueBusinessReviewID = UUID.randomUUID().toString();
 
             HashMap businessReviewsMap = new HashMap();
-                //mapping the values inside the variables to go into the fields on the business review table
-                businessReviewsMap.put("userID", userID);
-                businessReviewsMap.put("review", businessReviewText);
-                businessReviewsMap.put("date", saveCurrentDate);
-                businessReviewsMap.put("time", saveCurrentTime);
-                businessReviewsMap.put("fullName", fullName);
-                businessReviewsMap.put("rating", rating);
+            //mapping the values inside the variables to go into the fields on the business review table
+            businessReviewsMap.put("userID", userID);
+            businessReviewsMap.put("review", businessReviewText);
+            businessReviewsMap.put("date", saveCurrentDate);
+            businessReviewsMap.put("time", saveCurrentTime);
+            businessReviewsMap.put("fullName", fullName);
+            businessReviewsMap.put("rating", rating);
 
-                //update the database table businesses, and the selected business, to add the new data into it via the hashmap
+//            method to take the user input rating and take the business' current rating and divide by 2, to get the businesses overall rating
+//            number outcome is a whole number
+//            businessRatingRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//
+//                    Businesses businesses = snapshot.getValue(Businesses.class);
+//
+//                    float ratingSum;
+//                    float ratingsAverage;
+//                    float ratingTotal = 0;
+//
+//
+//                    //covert ratings into a float to carry out calculation
+//                    float singleRating = Float.parseFloat(rating); //convert the single rating from string to int
+//                    //grabs the current rating of the business
+//                    float businessRatingTotal = Integer.parseInt(businesses.getRating()); //total rating of business
+//                    ratingTotal++;
+//
+//                    if (ratingTotal != 0) {
+//                        // add the new user input rating to the current business rating
+//                        ratingSum = businessRatingTotal + singleRating;
+//                        //divide numbers by 2 to get the average
+//                        ratingsAverage = ratingSum / 2;
+//
+////                    int totalInt = Math.round(ratingsAverage);
+////                    String totalBusinessRating =  String.valueOf(totalInt);
+//                        String totalBusinessRating = String.valueOf(ratingsAverage);
+//
+//                        HashMap<String, Object> businessMap = new HashMap<>();
+//                        businessMap.put("rating", totalBusinessRating);
+//                        businessRatingRef.updateChildren(businessMap)
+//                                .addOnCompleteListener(new OnCompleteListener() {
+//                                    @Override
+//                                    public void onComplete(@NonNull Task task) {
+//                                        //if the review was submitted successfully
+//                                        if (task.isSuccessful()) {
+//                                            Toast.makeText(BusinessReviewsActivity.this, "Rating updated!", Toast.LENGTH_SHORT).show();
+//                                        }
+//                                        //else if an error occured
+//                                        else {
+//                                            Toast.makeText(BusinessReviewsActivity.this, "Error Occurred, Please Try Again", Toast.LENGTH_SHORT).show();
+//                                        }
+//                                    }
+//                                });
+//
+//                    }
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError error) {
+//
+//                }
+//            });
+
+
+            //update the database table businesses, and the selected business, to add the new data into it via the hashmap
             businessRef.child(uniqueBusinessReviewID).updateChildren(businessReviewsMap)
                     .addOnCompleteListener(new OnCompleteListener() {
                         @Override
-                        public void onComplete(@NonNull Task task)
-                        {
+                        public void onComplete(@NonNull Task task) {
                             //if the review was submitted successfully
-                            if(task.isSuccessful())
-                            {
-                                Toast.makeText(BusinessReviewsActivity.this, "Review Added Successfully!", Toast.LENGTH_SHORT).show();
+                            if (task.isSuccessful()) {
+                                Intent intent = new Intent(BusinessReviewsActivity.this, All_Bars.class);
+                                startActivity(intent);
+                                Toast.makeText(BusinessReviewsActivity.this, "Review was added to " + Post_Name + " successfully", Toast.LENGTH_SHORT).show();
                             }
                             //else if an error occured
-                            else
-                            {
+                            else {
                                 Toast.makeText(BusinessReviewsActivity.this, "Error Occurred, Please Try Again", Toast.LENGTH_SHORT).show();
                             }
                         }

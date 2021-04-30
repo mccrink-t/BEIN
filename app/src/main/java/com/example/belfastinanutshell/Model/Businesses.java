@@ -2,13 +2,13 @@ package com.example.belfastinanutshell.Model;
 
 public class Businesses
 {
-    private String bName, description, location, image, openingHrs, bID, category, contactInfo, date, time, website;
+    private String bName, description, location, image, openingHrs, bID, category, contactInfo, date, time, website, rating;
 
     public Businesses(){
         
     }
 
-    public Businesses(String bName, String description, String location, String image, String openingHrs, String bID, String category, String contactInfo, String date, String time, String website) {
+    public Businesses(String bName, String description, String location, String image, String openingHrs, String bID, String category, String contactInfo, String date, String time, String website, String rating) {
         this.bName = bName;
         this.description = description;
         this.location = location;
@@ -108,5 +108,13 @@ public class Businesses
 
     public void setWebsite(String website) {
         this.website = website;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
     }
 }

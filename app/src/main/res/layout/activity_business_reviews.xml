@@ -128,9 +128,18 @@
             android:layout_below="@+id/leaveRatingText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="invisible">
+            android:text="yooooo"
+            >
 
         </TextView>
+    <TextView
+        android:id="@+id/holderReview"
+        android:layout_toRightOf="@id/singleUserBusinessRating"
+        android:layout_below="@+id/leaveRatingText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        />
 
     </RelativeLayout>
 

@@ -130,6 +130,7 @@ public class Settings extends AppCompatActivity {
                         fNameSettings.setText(fullName);
                         emailSettings.setText(email);
                         degreeSettings.setText(degreeOfStudy);
+                        //may need to fix this
                         yosSettings.setText(yearOfStudy);
 
                     }

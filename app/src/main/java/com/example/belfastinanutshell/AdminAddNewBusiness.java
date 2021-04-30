@@ -220,6 +220,9 @@ public class AdminAddNewBusiness extends AppCompatActivity {
 
     private void saveBusinessInfoToDatabase()
     {
+        int number = 0;
+        String rating = String.valueOf(number);
+
         HashMap<String, Object> businessMap = new HashMap<>();
         businessMap.put("bID", businessRandomKey);
         businessMap.put("date", saveCurrentDate);
@@ -232,6 +235,7 @@ public class AdminAddNewBusiness extends AppCompatActivity {
         businessMap.put("contactInfo", contactInfo);
         businessMap.put("location", location);
         businessMap.put("website", website);
+        businessMap.put("rating", rating);
 
         businessRef.child(businessRandomKey).updateChildren(businessMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
