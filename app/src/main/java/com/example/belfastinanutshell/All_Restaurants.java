@@ -2,9 +2,11 @@ package com.example.belfastinanutshell;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,34 +14,29 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.belfastinanutshell.Model.Businesses;
 import com.example.belfastinanutshell.Prevalent.Prevalent;
-import com.example.belfastinanutshell.ViewHolder.AdapterClass;
+import com.example.belfastinanutshell.ViewHolder.BusinessViewHolder;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.paperdb.Paper;
 
-public class SearchActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
-    DatabaseReference ref;
-    ArrayList<Businesses> list;
-    RecyclerView recyclerView;
-    androidx.appcompat.widget.SearchView searchView;
+public class All_Restaurants extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private DatabaseReference BusinessesRef;
+    private RecyclerView recyclerView;
+    RecyclerView.LayoutManager layoutManager;
     private Toolbar toolBar;
     private View rootView;
     private DrawerLayout drawerLayout;
@@ -47,26 +44,23 @@ public class SearchActivity extends AppCompatActivity implements NavigationView.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.activity_all_businesses);
 
-        ref = FirebaseDatabase.getInstance().getReference().child("Businesses");
-        recyclerView = findViewById(R.id.rv);
-        searchView = findViewById(R.id.searchView);
-        searchView.onActionViewExpanded();
-        searchView.setIconified(true);
-
-        //Nav menu
+        //Toolbar (at top of each page)
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final ActionBar actionbar = getSupportActionBar();
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
         actionbar.setDisplayHomeAsUpEnabled(true);
+        BusinessesRef = FirebaseDatabase.getInstance().getReference().child("Businesses");
+        Paper.init(this);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawerLayout, toolBar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -79,87 +73,52 @@ public class SearchActivity extends AppCompatActivity implements NavigationView.
         Picasso.get().load(Prevalent.CurrentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
 
 
-
-
+        recyclerView = findViewById(R.id.recycler_menu);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
     }
-
     @Override
     protected void onStart() {
         super.onStart();
-        if(ref !=null)
-        {
-            ref.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if(snapshot.exists())
-                    {
-                        list = new ArrayList<>();
-                        for(DataSnapshot ds : snapshot.getChildren())
-                        {
-                            list.add(ds.getValue(Businesses.class));
-                        }
-                        AdapterClass adapterClass = new AdapterClass(list);
-                        recyclerView.setAdapter(adapterClass);
+
+        FirebaseRecyclerOptions<Businesses> options =
+                new FirebaseRecyclerOptions.Builder<Businesses>()
+                        .setQuery(BusinessesRef.orderByChild("category").equalTo("Restaurants"), Businesses.class)
+                        .build();
+
+
+        FirebaseRecyclerAdapter<Businesses, BusinessViewHolder> adapter =
+                new FirebaseRecyclerAdapter<Businesses, BusinessViewHolder>(options) {
+                    @Override
+                    protected void onBindViewHolder(@NonNull BusinessViewHolder holder, int position, @NonNull Businesses model) {
+                        holder.txtBusinessName.setText(model.getbName());
+                        holder.txtBusinessDescription.setText(model.getDescription());
+                        holder.txtBusinessLocation.setText(model.getLocation());
+                        Picasso.get().load(model.getImage()).into(holder.imageView);
+
+                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v)
+                            {
+                                Intent intent = new Intent(All_Restaurants.this, BusinessDetails.class);
+                                intent.putExtra("bID", model.getbID());
+                                startActivity(intent);
+                            }
+                        });
                     }
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(SearchActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
-                }
-            });
+                    @NonNull
+                    @Override
+                    public BusinessViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.business_items_layout, parent, false);
+                        BusinessViewHolder holder = new BusinessViewHolder(view);
+                        return holder;
+                    }
+                };
 
-        }
-        if(searchView != null)
-        {
-//            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//                @Override
-//                public boolean onQueryTextSubmit(String s) {
-//                    return false;
-//                }
-//
-//                @Override
-//                public boolean onQueryTextChange(String s) {
-//                    search(s);
-//                    return true;
-//                }
-//            });
-
-            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String s) {
-                    return false;
-                }
-
-                @Override
-                public boolean onQueryTextChange(String s) {
-                    search(s);
-                    return true;
-                }
-            });
-        }
-    }
-
-    private void search(String str)
-    {
-        ArrayList<Businesses> myList = new ArrayList<>();
-        for(Businesses object : list)
-        {
-            if(object.getbName().toLowerCase().contains(str.toLowerCase()))
-            {
-                myList.add(object);
-            }
-            AdapterClass adapter = new AdapterClass(myList);
-//            adapter.setOnCallBack(new AdapterClass.OnCallBack() {
-//                @Override
-//                public void onDetail(Businesses businesses) {
-//                    Intent intent = new Intent(SearchActivity.this, BusinessViewHolder.class);
-//                    intent.putExtra("bID", businesses.getbID());
-//                    startActivity(intent);
-//                }
-//            });
-            recyclerView.setAdapter(adapter);
-        }
+        recyclerView.setAdapter(adapter);
+        adapter.startListening();
     }
 
     @Override
@@ -198,19 +157,19 @@ public class SearchActivity extends AppCompatActivity implements NavigationView.
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            Intent intent = new Intent(SearchActivity.this, Home.class);
+            Intent intent = new Intent(All_Restaurants.this, Home.class);
             startActivity(intent);
         } else if (id == R.id.nav_profile) {
-            Intent intent = new Intent(SearchActivity.this, Profile.class);
+            Intent intent = new Intent(All_Restaurants.this, Profile.class);
             startActivity(intent);
         } else if (id == R.id.nav_search) {
-            Intent refresh = new Intent(this, All_Bars.class);
+            Intent intent = new Intent(All_Restaurants.this, SearchBusinessActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_bars) {
+            Intent refresh = new Intent(this, All_Restaurants.class);
             //Start the same Activity
             startActivity(refresh);
             finish();
-        } else if (id == R.id.nav_bars) {
-            Intent intent = new Intent(SearchActivity.this, All_Bars.class);
-            startActivity(intent);
         } else if (id == R.id.nav_restaurants) {
 
         } else if (id == R.id.nav_entertainment) {
@@ -218,7 +177,7 @@ public class SearchActivity extends AppCompatActivity implements NavigationView.
         } else if (id == R.id.nav_logout) {
             Toast.makeText(this, "Logging out...", Toast.LENGTH_SHORT).show();
             Paper.book().destroy();
-            Intent intent = new Intent(SearchActivity.this, MainActivity.class);
+            Intent intent = new Intent(All_Restaurants.this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();

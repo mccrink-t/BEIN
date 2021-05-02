@@ -176,7 +176,7 @@ public class All_Businesses extends AppCompatActivity implements NavigationView.
             Intent intent = new Intent(All_Businesses.this, Profile.class);
             startActivity(intent);
         } else if (id == R.id.nav_search) {
-            Intent intent = new Intent(All_Businesses.this, SearchActivity.class);
+            Intent intent = new Intent(All_Businesses.this, SearchBusinessActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_bars) {
             Intent intent = new Intent(All_Businesses.this, All_Bars.class);

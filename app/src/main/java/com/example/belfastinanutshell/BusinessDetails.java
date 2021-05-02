@@ -23,14 +23,12 @@ import java.util.Map;
 
 public class BusinessDetails extends AppCompatActivity {
 
-    private TextView bNameDetails, descriptionDetails, locationDetails, openingHrsDetails, contactInfoDetails, websiteDetails, totalBusinessRating;
+    private TextView bNameDetails, descriptionDetails, locationDetails, openingHrsDetails, contactInfoDetails, websiteDetails, totalBusinessRating, totalBusinessReviews;
     private ImageView imageDetails;
     private TextView closeBtn;
     private String businessID = "";
     private Button addReviewBtn;
-//    private RatingBar businessRating;
     private DatabaseReference businessDetailsRef, businessRatingRef;
-    private String bNameReviewTitle;
     private String Post_Key;
     private String Post_Name;
 
@@ -39,7 +37,9 @@ public class BusinessDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_business_details);
 
+        //grab business ID from previous activity
         businessID = getIntent().getStringExtra("bID");
+
         bNameDetails = (TextView) findViewById(R.id.name_business_details);
         descriptionDetails = (TextView) findViewById(R.id.description_business_details);
         locationDetails = (TextView) findViewById(R.id.location_business_details);
@@ -48,11 +48,9 @@ public class BusinessDetails extends AppCompatActivity {
         websiteDetails = (TextView) findViewById(R.id.website_business_details);
         imageDetails = (ImageView) findViewById(R.id.image_business_details);
         addReviewBtn = (Button) findViewById(R.id.business_review_btn);
-        totalBusinessRating =(TextView) findViewById(R.id.textTotalBusinessRating);
+        totalBusinessRating = (TextView) findViewById(R.id.textTotalBusinessRating);
+        totalBusinessReviews = (TextView) findViewById(R.id.textTotalBusinessReviewsText);
         closeBtn = (TextView) findViewById(R.id.close_single_business_details_btn);
-//        businessRating = (RatingBar) findViewById(R.id.businessRating);
-
-
 
         //call information from business database firebase
         businessDetailsRef = FirebaseDatabase.getInstance().getReference().child("Businesses").child(businessID);
@@ -61,13 +59,11 @@ public class BusinessDetails extends AppCompatActivity {
         getBusinessDetails();
     }
 
-    private void getBusinessDetails()
-    {
+    private void getBusinessDetails() {
         businessDetailsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot snapshot)
-            {
-                if(snapshot.exists()){
+            public void onDataChange(DataSnapshot snapshot) {
+                if (snapshot.exists()) {
                     Businesses businesses = snapshot.getValue(Businesses.class);
 
                     Post_Key = businesses.getbID();
@@ -80,29 +76,16 @@ public class BusinessDetails extends AppCompatActivity {
                     contactInfoDetails.setText(businesses.getContactInfo());
                     websiteDetails.setText(businesses.getWebsite());
                     Picasso.get().load(businesses.getImage()).into(imageDetails);
-//                    totalBusinessRating.setText(businesses.getRating());
-
-                    bNameReviewTitle = businesses.getbName();
 
                     businessRatingRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot)
-                        {
-                            int ratingSum =0;
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            int ratingSum = 0;
                             float numberOfRatings = 0;
                             float ratingsAverage = 0;
-                            int ratingAverageTotal = 0;
-
-//                            for(DataSnapshot ds : snapshot.getChildren()){
-//                                Map<String, Object> map = (Map<String, Object>)ds.getValue();
-//                                Object rating = map.get("rating");
-//                                int individualRating = Integer.parseInt(String.valueOf(rating));
-//                                sum+=individualRating;
-//
-//                                totalBusinessRating.setText(String.valueOf(sum));
 
 //                            for loop to run through children of reviews table to grab all ratings value
-                            for(DataSnapshot ds : snapshot.getChildren()) {
+                            for (DataSnapshot ds : snapshot.getChildren()) {
                                 Map<String, Object> map = (Map<String, Object>) ds.getValue();
 //                                map ratings value to an object
                                 Object rating = map.get("rating");
@@ -112,11 +95,13 @@ public class BusinessDetails extends AppCompatActivity {
                                 //increment ratings by 1 through each loop, to count the number of reviews posted
                                 numberOfRatings++;
                             }
-                            if(numberOfRatings != 0) {
-                                ratingsAverage = ratingSum/numberOfRatings;
-                                //convert to an integer
-//                                ratingAverageTotal = Math.round(ratingsAverage);
-//                                convert to a string and set text to new value
+                            //if rating reviews have been submitted
+                            if (numberOfRatings != 0) {
+                                //works out the average rating of the business
+                                ratingsAverage = ratingSum / numberOfRatings;
+
+                                totalBusinessReviews.setText(String.format("%2.0f", numberOfRatings));
+//                              convert to a string and set text to new value of 1 decimal place
                                 totalBusinessRating.setText(String.format("%2.1f", ratingsAverage));
 
                                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users");
@@ -126,26 +111,9 @@ public class BusinessDetails extends AppCompatActivity {
                                 businessMap.put("rating", totalBusinessRating.getText().toString());
                                 businessDetailsRef.updateChildren(businessMap);
 
-                            }else{
+                            } else {
                                 totalBusinessRating.setText("Not Yet Rated");
                             }
-
-
-
-
-//                            int ratingSum = 0;
-//                            float ratingsTotal = 0;
-//                            for(DataSnapshot child : snapshot.child("uniqueBusinessReviewID").child("rating").getChildren()){
-//                                ratingSum = ratingSum + Integer.valueOf(child.getValue().toString());
-//                                ratingsTotal++;
-//                            }
-//
-//                            float ratingAverage = ratingSum/ratingsTotal;
-//                            totalBusinessRating.setText(String.valueOf(ratingAverage));
-//
-//                            HashMap<String, Object> businessMap = new HashMap<>();
-//                            businessMap.put("rating", totalBusinessRating);
-//                            businessRatingRef.updateChildren(businessMap);
                         }
 
                         @Override
@@ -153,15 +121,6 @@ public class BusinessDetails extends AppCompatActivity {
 
                         }
                     });
-
-
-
-
-
-
-//                    displayCustomerReviews();
-//                    businessRating.setRating(Integer.valueOf(businessDetailsRef.child("rating").getValue(rating);
-//                            getRating.toString()));
                 }
             }
 
@@ -189,22 +148,4 @@ public class BusinessDetails extends AppCompatActivity {
             }
         });
     }
-
-//    private void openReviewDialog()
-//    {
-//
-//
-//
-//    }
-
-//    private void displayCustomerReviews()
-//    {
-//        businessRating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-//            @Override
-//            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser)
-//            {
-//                businessDetailsRef.child("rating").setValue(rating);
-//            }
-//        });
-//    }
 }

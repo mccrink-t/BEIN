@@ -88,11 +88,11 @@ public class MainActivity extends AppCompatActivity {
 
         RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            public void onDataChange(@NonNull DataSnapshot snapshot)
             {
-                if (dataSnapshot.child("Users").child(phone).exists())
+                if (snapshot.child("Users").child(phone).exists())
                 {
-                    Users usersData = dataSnapshot.child("Users").child(phone).getValue(Users.class);
+                    Users usersData = snapshot.child("Users").child(phone).getValue(Users.class);
 
                     if (usersData.getPhone().equals(phone))
                     {

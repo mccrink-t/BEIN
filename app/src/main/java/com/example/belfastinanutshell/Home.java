@@ -30,8 +30,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     private DrawerLayout drawerLayout;
     private TextView username;
     private CircleImageView profilePic;
-    private CardView searchBusinessesHome, barsHome;
-
+    private CardView searchBusinessesHome, barsHome, profileHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +62,18 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         profilePic = (CircleImageView) findViewById(R.id.user_profile_image_home);
         searchBusinessesHome = (CardView) findViewById(R.id.search_home_card);
         barsHome = (CardView) findViewById(R.id.bars_home_card);
+        profileHome = (CardView) findViewById(R.id.profile_home_card);
+
+
+//        String UsersPhoneNumber = Paper.book().read(Prevalent.UsersPhoneNumber);
+//
+//        if (UsersPhoneNumber != "")
+//        {
+//            if (!TextUtils.isEmpty(UsersPhoneNumber))
+//            {
+//                adminCheck(UsersPhoneNumber);
+//            }
+//        }
 
         //set username and profile picture for nav bar
         userNameTextView.setText(Prevalent.CurrentOnlineUser.getFullName());
@@ -76,7 +87,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         searchBusinessesHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Home.this, SearchActivity.class);
+                Intent intent = new Intent(Home.this, SearchBusinessActivity.class);
                 startActivity(intent);
             }
         });
@@ -85,6 +96,14 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Home.this, All_Bars.class);
+                startActivity(intent);
+            }
+        });
+
+        profileHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home.this, Profile.class);
                 startActivity(intent);
             }
         });
@@ -98,10 +117,41 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         });
     }
 
+
     @Override
     protected void onStart() {
         super.onStart();
     }
+
+//    private void adminCheck(final String phone)
+//    {
+//        final DatabaseReference RootRef;
+//        RootRef = FirebaseDatabase.getInstance().getReference();
+//
+//
+//        RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot)
+//            {
+//                if (snapshot.child("Admin").child(phone).exists())
+//                {
+//                    Users usersData = snapshot.child("Users").child(phone).getValue(Users.class);
+//
+//                    if (usersData.getPhone().equals(phone))
+//                    {
+//                        View adminPanel;
+//                        adminPanel = findViewById(R.id.adminNavGroup);
+//                        adminPanel.setVisibility(View.VISIBLE);
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//    }
 
     @Override
     public void onBackPressed() {
@@ -142,14 +192,17 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         } else if (id == R.id.nav_profile) {
             Intent intent = new Intent(Home.this, Profile.class);
             startActivity(intent);
-        } else if (id == R.id.nav_search) {
-            Intent intent = new Intent(Home.this, SearchActivity.class);
+        } else if (id == R.id.nav_add_business) {
+            Intent intent = new Intent(Home.this, AdminAddNewBusiness.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_search) {
+            Intent intent = new Intent(Home.this, SearchBusinessActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_bars) {
             Intent intent = new Intent(Home.this, All_Bars.class);
             startActivity(intent);
         } else if (id == R.id.nav_restaurants) {
-            Intent intent = new Intent(Home.this, All_Businesses.class);
+            Intent intent = new Intent(Home.this, All_Restaurants.class);
             startActivity(intent);
         } else if (id == R.id.nav_entertainment) {
 

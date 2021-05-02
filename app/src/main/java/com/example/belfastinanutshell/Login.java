@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.belfastinanutshell.Model.Admins;
 import com.example.belfastinanutshell.Model.Users;
 import com.example.belfastinanutshell.Prevalent.Prevalent;
 import com.google.firebase.auth.FirebaseAuth;
@@ -77,6 +78,7 @@ public class Login extends AppCompatActivity {
                 loginBtn.setText("Login as Admin");
                 titleTxtView.setText("BEIN Admin Login");
                 subHeadingTxtView.setText("Please Log in using Admin Credentials");
+                rememberMeBox.setVisibility(View.INVISIBLE);
                 adminLink.setVisibility(View.INVISIBLE);
                 notAdminLink.setVisibility(View.VISIBLE);
                 redirectRegister.setVisibility(View.INVISIBLE);
@@ -147,6 +149,7 @@ public class Login extends AppCompatActivity {
         if (rememberMeBox.isChecked()) {
             Paper.book().write(Prevalent.UsersPhoneNumber, phone);
             Paper.book().write(Prevalent.UsersPasswordKey, password);
+            Paper.book().write(Prevalent.AdminsPhoneNumber, phone);
         }
 
         final DatabaseReference rootRef;
@@ -158,6 +161,7 @@ public class Login extends AppCompatActivity {
                 if (dataSnapshot.child(parentDbName).child(phone).exists())
                 {
                     Users usersData = dataSnapshot.child(parentDbName).child(phone).getValue(Users.class);
+                    Admins adminData = dataSnapshot.child(parentDbName).child(phone).getValue(Admins.class);
 
                     if (usersData.getPhone().equals(phone))
                     {
@@ -169,6 +173,7 @@ public class Login extends AppCompatActivity {
                                 loadingBar.dismiss();
 
                                 Intent intent = new Intent(Login.this, AdminCategory.class);
+                                Prevalent.CurrentOnlineAdmins = adminData;
                                 startActivity(intent);
                             }
                             else if (parentDbName.equals("Users"))

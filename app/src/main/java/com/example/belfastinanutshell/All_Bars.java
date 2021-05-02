@@ -163,7 +163,7 @@ public class All_Bars extends AppCompatActivity implements NavigationView.OnNavi
             Intent intent = new Intent(All_Bars.this, Profile.class);
             startActivity(intent);
         } else if (id == R.id.nav_search) {
-            Intent intent = new Intent(All_Bars.this, SearchActivity.class);
+            Intent intent = new Intent(All_Bars.this, SearchBusinessActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_bars) {
             Intent refresh = new Intent(this, All_Bars.class);

@@ -68,7 +68,7 @@
             <ImageView
                 android:id="@+id/image_business_details"
                 android:layout_width="match_parent"
-                android:layout_height="260dp"
+                android:layout_height="240dp"
                 android:layout_below="@+id/name_business_details"
                 android:scaleType="centerCrop" />
 
@@ -81,8 +81,60 @@
             android:layout_below="@+id/businessDetailsRL1"
             android:layout_marginHorizontal="15dp">
 
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/rlBDetails">
             <TextView
+                android:id="@+id/textTotalBusinessReviewsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Reviews: "
+                android:textColor="@android:color/white"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textTotalBusinessReviewsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/textTotalBusinessReviewsTextView"
+                android:layout_marginTop="10dp"
+                android:text="(0)"
+                android:textColor="@android:color/white"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textTotalBusinessRatingTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/textTotalBusinessReviewsText"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:text="Rating: "
+                android:textColor="@android:color/white"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textTotalBusinessRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/textTotalBusinessRatingTextView"
+                android:layout_marginTop="10dp"
+                android:text="0"
+                android:textColor="@android:color/white"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+            </RelativeLayout>
+            <TextView
+
                 android:id="@+id/text_description_business_details"
+                android:layout_below="@+id/rlBDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -110,12 +162,14 @@
                 android:textSize="15dp"
                 android:textStyle="normal" />
 
+
+
             <TextView
                 android:id="@+id/text_location_business_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/description_business_details"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:text="Location: "
                 android:textColor="@android:color/white"
                 android:textSize="16dp"
@@ -145,7 +199,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/location_business_details"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:text="Business Opening Hours: "
                 android:textColor="@android:color/white"
                 android:textSize="16dp"
@@ -175,7 +229,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/opening_hours_business_details"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:text="Business Number: "
                 android:textColor="@android:color/white"
                 android:textSize="16dp"
@@ -205,7 +259,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/contact_info_business_details"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:text="Website: "
                 android:textColor="@android:color/white"
                 android:textSize="16dp"
@@ -230,16 +284,16 @@
                 android:textSize="15dp"
                 android:textStyle="normal" />
 
-            <TextView
-                android:id="@+id/textTotalBusinessRating"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/website_business_details"
-                android:layout_marginTop="10dp"
-                android:text="Rating: "
-                android:textColor="@android:color/white"
-                android:textSize="16dp"
-                android:textStyle="bold" />
+<!--            <View-->
+<!--                android:id="@+id/separator6"-->
+<!--                android:layout_width="fill_parent"-->
+<!--                android:layout_height="1dip"-->
+<!--                android:layout_below="@+id/website_business_details"-->
+<!--                android:layout_marginTop="2dp"-->
+<!--                android:layout_marginBottom="5dp"-->
+<!--                android:background="#808080" />-->
+
+
 
             <!--    <RatingBar-->
             <!--        android:id="@+id/businessRating"-->
@@ -254,7 +308,7 @@
                 android:id="@+id/business_review_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textTotalBusinessRating"
+                android:layout_below="@id/website_business_details"
                 android:layout_marginHorizontal="100dp"
 
                 android:layout_marginBottom="15dp"

@@ -14,16 +14,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BelfastInANutshell.NoActionBar">
-        <activity android:name=".BusinessReviewsActivity"></activity>
+        <activity android:name=".AdminEditBusiness"></activity>
+        <activity android:name=".SearchBusinessActivity" />
+        <activity android:name=".BusinessReviewsActivity" />
+        <activity android:name=".All_Restaurants" />
         <activity
-            android:name=".SearchActivity"
-            android:label="Search For a Business"></activity>
-        <activity android:name=".All_Bars" />
+            android:name=".All_Bars"
+            android:label="Belfast Bars" />
         <activity
             android:name=".All_Businesses"
             android:label="All Businesses" />
         <activity android:name=".Profile" />
-        <activity android:name=".TestActivity" />
         <activity android:name=".BusinessDetails" />
         <activity android:name=".Settings" />
         <activity
@@ -32,6 +33,7 @@
             android:theme="@style/Theme.BelfastInANutshell.NoActionBar" />
         <activity
             android:name=".AdminCategory"
+            android:label="Add a Business"
             android:theme="@style/Theme.BelfastInANutshell.NoActionBar" />
         <activity
             android:name=".AdminAddNewBusiness"

@@ -29,6 +29,20 @@
     </group>
 
     <group android:checkableBehavior="single"
+        android:id="@+id/adminNavGroup"
+        android:visible="false"
+        >
+
+        <item
+            android:id="@+id/nav_add_business"
+            android:icon="@drawable/ic_add_business"
+            android:title="Add a New Business"
+            android:iconTint="@android:color/white"/>
+
+
+    </group>
+
+    <group android:checkableBehavior="single"
         android:id="@+id/group2">
         <item
             android:id="@+id/nav_search"

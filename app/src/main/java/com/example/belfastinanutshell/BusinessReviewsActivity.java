@@ -49,7 +49,7 @@ public class BusinessReviewsActivity extends AppCompatActivity {
     private String Post_Key;
     private String Post_Name;
 
-    float ratingNumber;
+    float ratingNumber = 0;
     int numberOfStars;
     TextView delete;
 
@@ -89,7 +89,7 @@ public class BusinessReviewsActivity extends AppCompatActivity {
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 ratingNumber = singleUserBusinessRating.getRating();
                 numberOfStars = singleUserBusinessRating.getNumStars();
-
+                singleUserBusinessRatingTextView.setText(String.format("%2.1f",ratingNumber));
             }
         });
 
@@ -206,62 +206,6 @@ public class BusinessReviewsActivity extends AppCompatActivity {
             businessReviewsMap.put("fullName", fullName);
             businessReviewsMap.put("rating", rating);
 
-//            method to take the user input rating and take the business' current rating and divide by 2, to get the businesses overall rating
-//            number outcome is a whole number
-//            businessRatingRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot snapshot) {
-//
-//                    Businesses businesses = snapshot.getValue(Businesses.class);
-//
-//                    float ratingSum;
-//                    float ratingsAverage;
-//                    float ratingTotal = 0;
-//
-//
-//                    //covert ratings into a float to carry out calculation
-//                    float singleRating = Float.parseFloat(rating); //convert the single rating from string to int
-//                    //grabs the current rating of the business
-//                    float businessRatingTotal = Integer.parseInt(businesses.getRating()); //total rating of business
-//                    ratingTotal++;
-//
-//                    if (ratingTotal != 0) {
-//                        // add the new user input rating to the current business rating
-//                        ratingSum = businessRatingTotal + singleRating;
-//                        //divide numbers by 2 to get the average
-//                        ratingsAverage = ratingSum / 2;
-//
-////                    int totalInt = Math.round(ratingsAverage);
-////                    String totalBusinessRating =  String.valueOf(totalInt);
-//                        String totalBusinessRating = String.valueOf(ratingsAverage);
-//
-//                        HashMap<String, Object> businessMap = new HashMap<>();
-//                        businessMap.put("rating", totalBusinessRating);
-//                        businessRatingRef.updateChildren(businessMap)
-//                                .addOnCompleteListener(new OnCompleteListener() {
-//                                    @Override
-//                                    public void onComplete(@NonNull Task task) {
-//                                        //if the review was submitted successfully
-//                                        if (task.isSuccessful()) {
-//                                            Toast.makeText(BusinessReviewsActivity.this, "Rating updated!", Toast.LENGTH_SHORT).show();
-//                                        }
-//                                        //else if an error occured
-//                                        else {
-//                                            Toast.makeText(BusinessReviewsActivity.this, "Error Occurred, Please Try Again", Toast.LENGTH_SHORT).show();
-//                                        }
-//                                    }
-//                                });
-//
-//                    }
-//                }
-//
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError error) {
-//
-//                }
-//            });
-
-
             //update the database table businesses, and the selected business, to add the new data into it via the hashmap
             businessRef.child(uniqueBusinessReviewID).updateChildren(businessReviewsMap)
                     .addOnCompleteListener(new OnCompleteListener() {
@@ -269,9 +213,9 @@ public class BusinessReviewsActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task task) {
                             //if the review was submitted successfully
                             if (task.isSuccessful()) {
-                                Intent intent = new Intent(BusinessReviewsActivity.this, All_Bars.class);
+                                Intent intent = new Intent(BusinessReviewsActivity.this, Home.class);
                                 startActivity(intent);
-                                Toast.makeText(BusinessReviewsActivity.this, "Review was added to " + Post_Name + " successfully", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(BusinessReviewsActivity.this, "Review was added to " + Post_Name + " successfully!", Toast.LENGTH_SHORT).show();
                             }
                             //else if an error occured
                             else {

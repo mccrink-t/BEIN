@@ -4,8 +4,8 @@ public class Businesses
 {
     private String bName, description, location, image, openingHrs, bID, category, contactInfo, date, time, website, rating;
 
-    public Businesses(){
-        
+
+    public Businesses() {
     }
 
     public Businesses(String bName, String description, String location, String image, String openingHrs, String bID, String category, String contactInfo, String date, String time, String website, String rating) {
@@ -20,6 +20,7 @@ public class Businesses
         this.date = date;
         this.time = time;
         this.website = website;
+        this.rating = rating;
     }
 
     public String getbName() {
