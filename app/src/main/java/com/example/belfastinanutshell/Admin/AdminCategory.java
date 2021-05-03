@@ -1,4 +1,4 @@
-package com.example.belfastinanutshell;
+package com.example.belfastinanutshell.Admin;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.example.belfastinanutshell.MainActivity;
+import com.example.belfastinanutshell.R;
+import com.example.belfastinanutshell.SearchBusinessActivity;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 

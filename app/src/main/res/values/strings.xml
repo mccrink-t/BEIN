@@ -23,4 +23,5 @@
         <item>Year 6</item>
         <item>Year 7</item>
     </string-array>
+    <string name="title_activity_google_maps">Map</string>
 </resources>

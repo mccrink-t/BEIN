@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.belfastinanutshell.Admin.AdminCategory;
 import com.example.belfastinanutshell.Model.Admins;
 import com.example.belfastinanutshell.Model.Users;
 import com.example.belfastinanutshell.Prevalent.Prevalent;
@@ -39,7 +40,7 @@ public class Login extends AppCompatActivity {
     private String parentDbName = "Users";
     private TextView adminLink, notAdminLink;
     private TextView titleTxtView, subHeadingTxtView;
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

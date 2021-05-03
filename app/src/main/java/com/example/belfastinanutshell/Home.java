@@ -16,6 +16,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.belfastinanutshell.Admin.AdminAddNewBusiness;
 import com.example.belfastinanutshell.Prevalent.Prevalent;
 import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.Picasso;
@@ -205,7 +206,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             Intent intent = new Intent(Home.this, All_Restaurants.class);
             startActivity(intent);
         } else if (id == R.id.nav_entertainment) {
-
+            Intent intent = new Intent(Home.this, GoogleMapsActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_logout) {
             Toast.makeText(this, "Logging out...", Toast.LENGTH_SHORT).show();
             Paper.book().destroy();

@@ -1,5 +1,6 @@
-package com.example.belfastinanutshell;
+package com.example.belfastinanutshell.Admin;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,8 +11,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.belfastinanutshell.R;
+import com.example.belfastinanutshell.SearchBusinessActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -75,7 +79,23 @@ public class AdminEditBusiness extends AppCompatActivity {
         deleteBusinessBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deleteBusiness();
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                deleteBusiness();
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(AdminEditBusiness.this);
+                builder.setMessage("Are you sure you want to delete this business?").setPositiveButton("Yes", dialogClickListener)
+                        .setNegativeButton("No", dialogClickListener).show();
             }
         });
     }
@@ -85,6 +105,7 @@ public class AdminEditBusiness extends AppCompatActivity {
         businessDetailsRef.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
+
                 Intent intent = new Intent(AdminEditBusiness.this, SearchBusinessActivity.class);
                 startActivity(intent);
                 finish();
