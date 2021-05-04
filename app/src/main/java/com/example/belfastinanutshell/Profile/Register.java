@@ -1,4 +1,4 @@
-package com.example.belfastinanutshell;
+package com.example.belfastinanutshell.Profile;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.belfastinanutshell.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -44,7 +45,7 @@ public class Register extends AppCompatActivity {
         inputPhone = (EditText) findViewById(R.id.register_phone);
         inputPassword = (EditText) findViewById(R.id.register_password);
         inputConfirmPassword = (EditText) findViewById(R.id.register_confirmPassword);
-        loadingBar = new ProgressDialog(this);
+        loadingBar = new ProgressDialog(this, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
         redirectLogin = (TextView) findViewById(R.id.loginTxt);
 
 //        inputProgressBar = (ProgressBar) findViewById(R.id.register_progressBar);
@@ -70,7 +71,7 @@ public class Register extends AppCompatActivity {
         redirectLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),Login.class));
+                startActivity(new Intent(getApplicationContext(), Login.class));
 
             }
         });

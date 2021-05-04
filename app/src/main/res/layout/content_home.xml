@@ -50,7 +50,8 @@
                     android:textSize="22dp"
                     android:textStyle="bold"></TextView>
 
-                <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/user_profile_image_home"
                     android:layout_width="75dp"
                     android:layout_height="75dp"
@@ -163,6 +164,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/restaurants_home_card"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_rowWeight="1"
@@ -200,6 +202,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/entertainment_home_card"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_rowWeight="1"
@@ -237,6 +240,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/blogs_home_card"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_rowWeight="1"
@@ -255,7 +259,7 @@
                         <ImageView
                             android:layout_width="80dp"
                             android:layout_height="80dp"
-                            android:src="@drawable/profile" />
+                            android:src="@drawable/ic_blog" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -264,14 +268,16 @@
                             android:gravity="center_horizontal"
                             android:text="Blogs"
                             android:textAlignment="center"
-                            android:textColor="#D7D7D7"
-                            android:textSize="18dp" />
+                            android:textColor="#FFFFFF"
+                            android:textSize="18dp"
+                            android:textStyle="bold"  />
 
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/post_blog_home_card"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_rowWeight="1"
@@ -290,23 +296,25 @@
                         <ImageView
                             android:layout_width="80dp"
                             android:layout_height="80dp"
-                            android:src="@drawable/profile" />
+                            android:src="@drawable/ic_add_blog" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
                             android:gravity="center_horizontal"
-                            android:text="Visit Belfast"
+                            android:text="Post a Blog"
                             android:textAlignment="center"
-                            android:textColor="#D7D7D7"
-                            android:textSize="18dp" />
+                            android:textColor="#FFFFFF"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/help_home_card"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_rowWeight="1"
@@ -325,7 +333,7 @@
                         <ImageView
                             android:layout_width="80dp"
                             android:layout_height="80dp"
-                            android:src="@drawable/profile" />
+                            android:src="@drawable/ic_help" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -334,8 +342,9 @@
                             android:gravity="center_horizontal"
                             android:text="Help Pages"
                             android:textAlignment="center"
-                            android:textColor="#D7D7D7"
-                            android:textSize="18dp" />
+                            android:textColor="#FFFFFF"
+                            android:textSize="18dp"
+                            android:textStyle="bold"/>
 
                     </LinearLayout>
 

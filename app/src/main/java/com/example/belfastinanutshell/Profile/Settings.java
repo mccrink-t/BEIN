@@ -1,4 +1,4 @@
-package com.example.belfastinanutshell;
+package com.example.belfastinanutshell.Profile;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -14,7 +14,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.belfastinanutshell.MainActivity;
 import com.example.belfastinanutshell.Prevalent.Prevalent;
+import com.example.belfastinanutshell.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

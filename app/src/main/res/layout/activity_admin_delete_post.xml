@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="vertical">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/admin_single_post_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        android:overScrollMode="ifContentScrolls"
+        android:scrollbarStyle="insideOverlay"
+        android:scrollbars="vertical"
+        tools:context=".AdminDeletePost">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/admin_app_bar_view_post"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/nav_bar_header_theme">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_single_post_reviews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/admin_close_post_view_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:text="Close"
+                        android:textColor="@android:color/white"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <RelativeLayout
+            android:id="@+id/admin_r1PostReviews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/admin_app_bar_view_post"
+            android:layout_centerHorizontal="true"
+            android:layout_marginVertical="5dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/admin_textTotalPostReviewsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reviews: "
+                android:textColor="@android:color/white"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/admin_textTotalPostReviews"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/admin_textTotalPostReviewsTextView"
+                android:text="(0)"
+                android:textColor="@android:color/white"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/admin_textTotalPostRatingTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@+id/admin_textTotalPostReviews"
+                android:text="Rating: "
+                android:textColor="@android:color/white"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/admin_textTotalPostRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/admin_textTotalPostRatingTextView"
+                android:text="0"
+                android:textColor="@android:color/white"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/admin_postDetailsRL1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/admin_r1PostReviews"
+            android:layout_marginTop="2dp">
+
+            <ImageView
+                android:id="@+id/admin_image_post_view"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/admin_postTitle_Post_View"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/admin_image_post_view"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="Post Title"
+                android:textColor="@android:color/white"
+                android:textSize="24dp"
+                android:textStyle="bold" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/admin_postDetailsRL2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/admin_postDetailsRL1"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="2dp">
+
+            <TextView
+                android:id="@+id/admin_text_description_Post_View"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Posted By: "
+                android:textColor="@android:color/darker_gray"
+                android:textSize="15dp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/admin_users_Name_Post_View"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/admin_text_description_Post_View"
+                android:text="User's Name"
+                android:textColor="@android:color/white"
+                android:textSize="15dp"
+                android:textStyle="normal" />
+
+            <View
+                android:id="@+id/admin_separator2"
+                android:layout_width="fill_parent"
+                android:layout_height="1dip"
+                android:layout_below="@+id/admin_users_Name_Post_View"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="5dp"
+                android:background="#808080" />
+
+            <TextView
+                android:id="@+id/admin_text_Post_View"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/admin_separator2"
+                android:text="Post Text"
+                android:textColor="@android:color/white"
+                android:textSize="15dp"
+                android:textStyle="normal" />
+
+            <View
+                android:id="@+id/admin_separator3"
+                android:layout_width="fill_parent"
+                android:layout_height="1dip"
+                android:layout_below="@+id/admin_text_Post_View"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="5dp"
+                android:background="#808080" />
+
+            <TextView
+                android:id="@+id/admin_Posted_On_Date_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/admin_separator3"
+                android:text="Posted On: "
+                android:textColor="@android:color/darker_gray"
+                android:textSize="15dp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/admin_date_Post_View"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/admin_separator3"
+                android:layout_toRightOf="@+id/admin_Posted_On_Date_textview"
+                android:text="Dec 1st 1999"
+                android:textColor="@color/light_grey"
+                android:textSize="15dp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/admin_Posted_On_Time_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/admin_separator3"
+                android:layout_marginLeft="3dp"
+                android:layout_toRightOf="@+id/admin_date_Post_View"
+                android:text="at:  "
+                android:textColor="@android:color/darker_gray"
+                android:textSize="15dp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/admin_time_Post_View"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/admin_separator3"
+                android:layout_toRightOf="@+id/admin_Posted_On_Time_textview"
+                android:text="9:15pm"
+                android:textColor="@color/light_grey"
+                android:textSize="15dp"
+                android:textStyle="normal" />
+
+            <Button
+                android:id="@+id/admin_post_comment_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/admin_time_Post_View"
+                android:layout_centerHorizontal="true"
+                android:layout_marginHorizontal="2dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="15dp"
+                android:gravity="center"
+                android:text="Delete Post"
+                android:textColor="#FFFFFF"
+                android:textSize="11.5dp"
+                android:textStyle="bold"
+                app:backgroundTint="#016868"></Button>
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+</ScrollView>

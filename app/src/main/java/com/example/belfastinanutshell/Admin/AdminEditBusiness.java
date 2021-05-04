@@ -1,5 +1,6 @@
-package com.example.belfastinanutshell;
+package com.example.belfastinanutshell.Admin;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,8 +11,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.belfastinanutshell.Businesses.BusinessReviewsActivity;
+import com.example.belfastinanutshell.Businesses.SearchBusinessActivity;
+import com.example.belfastinanutshell.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -27,9 +32,11 @@ public class AdminEditBusiness extends AppCompatActivity {
 
     private EditText businessName, businessDescription, businessOpeningHrs, businessLocation,
             businessContactInfo, businessWebsite;
-    private Button updateBusinessBtn, deleteBusinessBtn;
+    private Button updateBusinessBtn, deleteBusinessBtn, adminReviewBusiness;
     private ImageView businessImageView;
     private TextView closeBtn;
+    private String Business_Key;
+    private String Business_Name;
 
     //variable to grab business ID
     private String businessID = "";
@@ -50,10 +57,13 @@ public class AdminEditBusiness extends AppCompatActivity {
         deleteBusinessBtn = (Button) findViewById(R.id.delete_business_btn);
         closeBtn = (TextView) findViewById(R.id.close_edit_business_btn);
         businessImageView = (ImageView) findViewById(R.id.business_image);
+        adminReviewBusiness = (Button) findViewById(R.id.business_admin_reviews_btn);
 
         //grab business ID from previous activity
         businessID = getIntent().getStringExtra("bID");
         businessDetailsRef = FirebaseDatabase.getInstance().getReference().child("Businesses").child(businessID);
+        Business_Key = businessID;
+        Business_Name = getIntent().getStringExtra("bName");
 
         //run method to retrieve current business data and store in the Edit Text Fields
         getBusinessDetails();
@@ -75,7 +85,35 @@ public class AdminEditBusiness extends AppCompatActivity {
         deleteBusinessBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deleteBusiness();
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                deleteBusiness();
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(AdminEditBusiness.this);
+                builder.setMessage("Are you sure you want to delete this business?").setPositiveButton("Yes", dialogClickListener)
+                        .setNegativeButton("No", dialogClickListener).show();
+            }
+        });
+
+        adminReviewBusiness.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent businessReviewIntent = new Intent(AdminEditBusiness.this, BusinessReviewsActivity.class);
+                businessReviewIntent.putExtra("bID", Business_Key);
+                businessReviewIntent.putExtra("bName", Business_Name);
+                businessReviewIntent.putExtra("Admin", "Admin");
+                startActivity(businessReviewIntent);
+
             }
         });
     }
@@ -85,6 +123,7 @@ public class AdminEditBusiness extends AppCompatActivity {
         businessDetailsRef.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
+
                 Intent intent = new Intent(AdminEditBusiness.this, SearchBusinessActivity.class);
                 startActivity(intent);
                 finish();
@@ -143,7 +182,7 @@ public class AdminEditBusiness extends AppCompatActivity {
                 {
                     if(task.isSuccessful())
                     {
-                        Intent intent = new Intent(AdminEditBusiness.this, SearchBusinessActivity.class);
+                        Intent intent = new Intent(AdminEditBusiness.this, AdminHome.class);
                         startActivity(intent);
                         finish();
 

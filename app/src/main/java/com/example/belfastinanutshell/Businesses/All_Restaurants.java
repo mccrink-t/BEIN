@@ -1,4 +1,4 @@
-package com.example.belfastinanutshell;
+package com.example.belfastinanutshell.Businesses;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,8 +20,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.belfastinanutshell.Home;
+import com.example.belfastinanutshell.MainActivity;
 import com.example.belfastinanutshell.Model.Businesses;
 import com.example.belfastinanutshell.Prevalent.Prevalent;
+import com.example.belfastinanutshell.Profile.Profile;
+import com.example.belfastinanutshell.R;
 import com.example.belfastinanutshell.ViewHolder.BusinessViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -33,7 +37,7 @@ import com.squareup.picasso.Picasso;
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.paperdb.Paper;
 
-public class All_Bars extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class All_Restaurants extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DatabaseReference BusinessesRef;
     private RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
@@ -44,7 +48,7 @@ public class All_Bars extends AppCompatActivity implements NavigationView.OnNavi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all_businesses);
+        setContentView(R.layout.activity_all_restaurants);
 
         //Toolbar (at top of each page)
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -84,7 +88,7 @@ public class All_Bars extends AppCompatActivity implements NavigationView.OnNavi
 
         FirebaseRecyclerOptions<Businesses> options =
                 new FirebaseRecyclerOptions.Builder<Businesses>()
-                        .setQuery(BusinessesRef.orderByChild("category").equalTo("Bars"), Businesses.class)
+                        .setQuery(BusinessesRef.orderByChild("category").equalTo("Restaurants"), Businesses.class)
                         .build();
 
 
@@ -101,7 +105,7 @@ public class All_Bars extends AppCompatActivity implements NavigationView.OnNavi
                             @Override
                             public void onClick(View v)
                             {
-                                Intent intent = new Intent(All_Bars.this, BusinessDetails.class);
+                                Intent intent = new Intent(All_Restaurants.this, BusinessDetails.class);
                                 intent.putExtra("bID", model.getbID());
                                 startActivity(intent);
                             }
@@ -157,16 +161,16 @@ public class All_Bars extends AppCompatActivity implements NavigationView.OnNavi
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            Intent intent = new Intent(All_Bars.this, Home.class);
+            Intent intent = new Intent(All_Restaurants.this, Home.class);
             startActivity(intent);
         } else if (id == R.id.nav_profile) {
-            Intent intent = new Intent(All_Bars.this, Profile.class);
+            Intent intent = new Intent(All_Restaurants.this, Profile.class);
             startActivity(intent);
         } else if (id == R.id.nav_search) {
-            Intent intent = new Intent(All_Bars.this, SearchBusinessActivity.class);
+            Intent intent = new Intent(All_Restaurants.this, SearchBusinessActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_bars) {
-            Intent refresh = new Intent(this, All_Bars.class);
+            Intent refresh = new Intent(this, All_Restaurants.class);
             //Start the same Activity
             startActivity(refresh);
             finish();
@@ -177,7 +181,7 @@ public class All_Bars extends AppCompatActivity implements NavigationView.OnNavi
         } else if (id == R.id.nav_logout) {
             Toast.makeText(this, "Logging out...", Toast.LENGTH_SHORT).show();
             Paper.book().destroy();
-            Intent intent = new Intent(All_Bars.this, MainActivity.class);
+            Intent intent = new Intent(All_Restaurants.this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();

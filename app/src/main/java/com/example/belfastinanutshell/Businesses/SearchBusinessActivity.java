@@ -1,4 +1,4 @@
-package com.example.belfastinanutshell;
+package com.example.belfastinanutshell.Businesses;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,8 +22,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.belfastinanutshell.Admin.AdminEditBusiness;
+import com.example.belfastinanutshell.Home;
+import com.example.belfastinanutshell.MainActivity;
 import com.example.belfastinanutshell.Model.Businesses;
 import com.example.belfastinanutshell.Prevalent.Prevalent;
+import com.example.belfastinanutshell.Profile.Profile;
+import com.example.belfastinanutshell.R;
 import com.example.belfastinanutshell.ViewHolder.BusinessViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -35,7 +40,7 @@ import com.squareup.picasso.Picasso;
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.paperdb.Paper;
 
-public class SearchBusinessActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class SearchBusinessActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private EditText searchBarBusiness;
     private ImageView searchBusinessBtn;
@@ -97,22 +102,19 @@ public class SearchBusinessActivity extends AppCompatActivity implements Navigat
         //otherwise it does not look for the admin info, thus allowing end user to log in
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        if(bundle!= null)
-        {
+        if (bundle != null) {
             //grabs Admin info intent on category page
             //usertype stores admin value
             userType = getIntent().getExtras().get("Admin").toString();
         }
 
         //if the end user opens the search activity display their username and profile image in the nav bar menu
-        if(!userType.equals("Admin"))
-        {
+        if (!userType.equals("Admin")) {
             userNameTextView.setText(Prevalent.CurrentOnlineUser.getFullName());
             Picasso.get().load(Prevalent.CurrentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
         }
         //else if its an admin change the name to admin account
-        else
-        {
+        else {
             userNameTextView.setText("Admin");
         }
 
@@ -131,29 +133,27 @@ public class SearchBusinessActivity extends AppCompatActivity implements Navigat
         FirebaseRecyclerAdapter<Businesses, BusinessViewHolder>
                 adapter = new FirebaseRecyclerAdapter<Businesses, BusinessViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull BusinessViewHolder holder, int i, @NonNull Businesses model)
-            {
+            protected void onBindViewHolder(@NonNull BusinessViewHolder holder, int i, @NonNull Businesses model) {
                 holder.txtBusinessName.setText(model.getbName());
                 holder.txtBusinessDescription.setText(model.getDescription());
                 holder.txtBusinessLocation.setText(model.getLocation());
+                holder.txtBusinessRating.setText(model.getRating());
                 Picasso.get().load(model.getImage()).into(holder.imageView);
 
                 //when a user clicks on a business view holder
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v)
-                    {
+                    public void onClick(View v) {
                         //if statement to check if the user is an Admin
-                        if(userType.equals("Admin"))
-                        {
+                        if (userType.equals("Admin")) {
 //                          send admin to edit business activity
                             Intent intent = new Intent(SearchBusinessActivity.this, AdminEditBusiness.class);
                             intent.putExtra("bID", model.getbID());
+                            intent.putExtra("bName", model.getbName());
                             startActivity(intent);
                         }
                         //else if the user is not an Admin
-                        else
-                        {
+                        else {
                             //send user to business details activity
                             Intent intent = new Intent(SearchBusinessActivity.this, BusinessDetails.class);
                             intent.putExtra("bID", model.getbID());
@@ -165,8 +165,7 @@ public class SearchBusinessActivity extends AppCompatActivity implements Navigat
 
             @NonNull
             @Override
-            public BusinessViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
-            {
+            public BusinessViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.business_items_layout, parent, false);
                 BusinessViewHolder holder = new BusinessViewHolder(view);
                 return holder;
@@ -216,20 +215,17 @@ public class SearchBusinessActivity extends AppCompatActivity implements Navigat
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            if(!userType.equals("Admin"))
-            {
+            if (!userType.equals("Admin")) {
                 Intent intent = new Intent(SearchBusinessActivity.this, Home.class);
                 startActivity(intent);
             }
         } else if (id == R.id.nav_profile) {
-            if(!userType.equals("Admin"))
-            {
+            if (!userType.equals("Admin")) {
                 Intent intent = new Intent(SearchBusinessActivity.this, Profile.class);
                 startActivity(intent);
             }
         } else if (id == R.id.nav_search) {
-            if(!userType.equals("Admin"))
-            {
+            if (!userType.equals("Admin")) {
                 Intent refresh = new Intent(this, SearchBusinessActivity.class);
                 //Start the same Activity
                 startActivity(refresh);
@@ -237,20 +233,17 @@ public class SearchBusinessActivity extends AppCompatActivity implements Navigat
             }
 
         } else if (id == R.id.nav_bars) {
-            if(!userType.equals("Admin"))
-            {
+            if (!userType.equals("Admin")) {
                 Intent intent = new Intent(SearchBusinessActivity.this, All_Bars.class);
                 startActivity(intent);
             }
         } else if (id == R.id.nav_restaurants) {
-            if(!userType.equals("Admin"))
-            {
+            if (!userType.equals("Admin")) {
                 Intent intent = new Intent(SearchBusinessActivity.this, All_Restaurants.class);
                 startActivity(intent);
             }
         } else if (id == R.id.nav_entertainment) {
-            if(!userType.equals("Admin"))
-            {
+            if (!userType.equals("Admin")) {
 
             }
 

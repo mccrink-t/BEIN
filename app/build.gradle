@@ -57,6 +57,9 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
     implementation 'androidx.recyclerview:recyclerview:1.2.0'
     testImplementation 'junit:junit:4.+'
+    implementation 'com.google.android.gms:play-services-maps:16.0.0'
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
+
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 //    implementation 'com.android.support:appcompat-v7:+'
@@ -67,6 +70,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage:19.2.2'
 //    implementation 'com.androidx.support:support-v4:22.0.0'
     implementation 'com.amazonaws:aws-android-sdk-core:2.11.+'
+    implementation 'com.firebase:firebase-client-android:2.5.0'
 
     implementation 'androidx.multidex:multidex:2.0.1'
 

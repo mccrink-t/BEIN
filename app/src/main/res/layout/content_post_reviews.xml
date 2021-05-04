@@ -7,13 +7,16 @@
     android:layout_height="match_parent"
     tools:showIn="@layout/app_bar_businesses">
 
-<!--Layout for all businesses stored in the database-->
+    <!--Layout for all businesses stored in the database-->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_menu"
+        android:id="@+id/postReviewList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
-        android:layout_marginBottom="15dp">
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="-2dp"
+        android:layout_marginBottom="15dp"
+        >
     </androidx.recyclerview.widget.RecyclerView>
 
 </RelativeLayout>

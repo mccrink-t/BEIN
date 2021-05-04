@@ -1,6 +1,8 @@
-package com.example.belfastinanutshell;
+package com.example.belfastinanutshell.Profile;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,9 +16,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.belfastinanutshell.Admin.AdminHome;
+import com.example.belfastinanutshell.Home;
 import com.example.belfastinanutshell.Model.Admins;
 import com.example.belfastinanutshell.Model.Users;
 import com.example.belfastinanutshell.Prevalent.Prevalent;
+import com.example.belfastinanutshell.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,6 +47,7 @@ public class Login extends AppCompatActivity {
     private TextView adminLink, notAdminLink;
     private TextView titleTxtView, subHeadingTxtView;
 
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +56,7 @@ public class Login extends AppCompatActivity {
         loginBtn = (Button) findViewById(R.id.loginBtn);
         enteredPhone = (EditText) findViewById(R.id.phone_input);
         enteredPassword = (EditText) findViewById(R.id.password_input);
-        loadingBar = new ProgressDialog(this);
+        loadingBar = new ProgressDialog(this, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
         redirectRegister = (TextView) findViewById(R.id.registerTxt);
         forgetPassword = (TextView) findViewById(R.id.forgetPasswordTxt);
         rememberMeBox = (CheckBox) findViewById(R.id.checkBoxLog);
@@ -57,6 +65,8 @@ public class Login extends AppCompatActivity {
         notAdminLink = (TextView) findViewById(R.id.nonAdminLoginPanel_link);
         titleTxtView = (TextView) findViewById(R.id.beinTitleTxt);
         subHeadingTxtView = (TextView) findViewById(R.id.beinSubHeadingTxt);
+        fAuth = FirebaseAuth.getInstance();
+
 
 //        fAuth = FirebaseAuth.getInstance();
 //
@@ -115,6 +125,48 @@ public class Login extends AppCompatActivity {
                 resetPassword();
             }
         });
+
+        forgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText resetMail = new EditText(v.getContext());
+                AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(v.getContext());
+                passwordResetDialog.setTitle("Reset Password?");
+                passwordResetDialog.setMessage("Enter your Email to Receive Reset Password Link");
+                passwordResetDialog.setView(resetMail);
+
+                passwordResetDialog.setPositiveButton(" Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //get email and send reset link
+
+                        String mail = resetMail.getText().toString();
+                        fAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(Login.this, "The Reset link has been sent to your Email.", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(Login.this, "Error! Reset Link is Not Sent." + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
+
+                passwordResetDialog.setNegativeButton("No ", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //Redirect back to login
+                    }
+                });
+
+                passwordResetDialog.create().show();
+            }
+        });
+
+
     }
 
     private void loginUser() {
@@ -172,7 +224,7 @@ public class Login extends AppCompatActivity {
                                 Toast.makeText(Login.this, "Welcome Admin!", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
 
-                                Intent intent = new Intent(Login.this, AdminCategory.class);
+                                Intent intent = new Intent(Login.this, AdminHome.class);
                                 Prevalent.CurrentOnlineAdmins = adminData;
                                 startActivity(intent);
                             }

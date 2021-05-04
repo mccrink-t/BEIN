@@ -16,7 +16,12 @@ import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.belfastinanutshell.Businesses.All_Bars;
+import com.example.belfastinanutshell.Businesses.All_Restaurants;
+import com.example.belfastinanutshell.Businesses.SearchBusinessActivity;
+import com.example.belfastinanutshell.Posts.AddNewPost;
 import com.example.belfastinanutshell.Prevalent.Prevalent;
+import com.example.belfastinanutshell.Profile.Profile;
 import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.Picasso;
 
@@ -30,7 +35,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     private DrawerLayout drawerLayout;
     private TextView username;
     private CircleImageView profilePic;
-    private CardView searchBusinessesHome, barsHome, profileHome;
+    private CardView searchBusinessesHome, barsHome, profileHome, restaurantHome, entertainmentHome, blogsHome, addBlogHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,17 +68,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         searchBusinessesHome = (CardView) findViewById(R.id.search_home_card);
         barsHome = (CardView) findViewById(R.id.bars_home_card);
         profileHome = (CardView) findViewById(R.id.profile_home_card);
-
-
-//        String UsersPhoneNumber = Paper.book().read(Prevalent.UsersPhoneNumber);
-//
-//        if (UsersPhoneNumber != "")
-//        {
-//            if (!TextUtils.isEmpty(UsersPhoneNumber))
-//            {
-//                adminCheck(UsersPhoneNumber);
-//            }
-//        }
+        restaurantHome = (CardView) findViewById(R.id.restaurants_home_card);
+        entertainmentHome = (CardView) findViewById(R.id.entertainment_home_card);
+        blogsHome = (CardView) findViewById(R.id.blogs_home_card);
+        addBlogHome = (CardView) findViewById(R.id.post_blog_home_card);
 
         //set username and profile picture for nav bar
         userNameTextView.setText(Prevalent.CurrentOnlineUser.getFullName());
@@ -112,6 +110,38 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Home.this, Profile.class);
+                startActivity(intent);
+            }
+        });
+
+        restaurantHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home.this, All_Restaurants.class);
+                startActivity(intent);
+            }
+        });
+
+        entertainmentHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home.this, All_Entertainment.class);
+                startActivity(intent);
+            }
+        });
+
+        blogsHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home.this, All_Posts.class);
+                startActivity(intent);
+            }
+        });
+
+        addBlogHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home.this, AddNewPost.class);
                 startActivity(intent);
             }
         });
@@ -181,6 +211,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     }
 
 
+//    boolean method to take users input click selection and to navigate them to the selected activity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -188,25 +219,40 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-
+            //Start the same Activity - aka refreshing
+            Intent refresh = new Intent(this, All_Restaurants.class);
+            startActivity(refresh);
+            finish();
         } else if (id == R.id.nav_profile) {
+            //Intent to start Profile Activity
             Intent intent = new Intent(Home.this, Profile.class);
             startActivity(intent);
-        } else if (id == R.id.nav_add_business) {
-            Intent intent = new Intent(Home.this, AdminAddNewBusiness.class);
-            startActivity(intent);
         }else if (id == R.id.nav_search) {
+            //Intent to start search business Activity
             Intent intent = new Intent(Home.this, SearchBusinessActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_bars) {
+            //Intent to start bars Activity
             Intent intent = new Intent(Home.this, All_Bars.class);
             startActivity(intent);
         } else if (id == R.id.nav_restaurants) {
+            //Intent to start restaurants Activity
             Intent intent = new Intent(Home.this, All_Restaurants.class);
             startActivity(intent);
         } else if (id == R.id.nav_entertainment) {
-
+            //Intent to start all entertainment businesses Activity
+            Intent intent = new Intent(Home.this, All_Entertainment.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_add_blog) {
+            //Intent to start add a blog Activity
+            Intent intent = new Intent(Home.this, AddNewPost.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_all_blogs) {
+            //Intent to start blogs list activity
+            Intent intent = new Intent(Home.this, All_Posts.class);
+            startActivity(intent);
         } else if (id == R.id.nav_logout) {
+            //Intent to logout and destroy book method storing the current logged users details
             Toast.makeText(this, "Logging out...", Toast.LENGTH_SHORT).show();
             Paper.book().destroy();
             Intent intent = new Intent(Home.this, MainActivity.class);

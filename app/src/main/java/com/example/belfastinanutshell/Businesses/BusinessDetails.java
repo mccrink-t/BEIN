@@ -1,4 +1,4 @@
-package com.example.belfastinanutshell;
+package com.example.belfastinanutshell.Businesses;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.belfastinanutshell.MapsActivity;
 import com.example.belfastinanutshell.Model.Businesses;
+import com.example.belfastinanutshell.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,12 +27,14 @@ public class BusinessDetails extends AppCompatActivity {
 
     private TextView bNameDetails, descriptionDetails, locationDetails, openingHrsDetails, contactInfoDetails, websiteDetails, totalBusinessRating, totalBusinessReviews;
     private ImageView imageDetails;
-    private TextView closeBtn;
+    private TextView closeBtn, locateBtn;
     private String businessID = "";
     private Button addReviewBtn;
     private DatabaseReference businessDetailsRef, businessRatingRef;
-    private String Post_Key;
-    private String Post_Name;
+    private String Business_Key;
+    private String Business_Name;
+
+    private String userType = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,7 @@ public class BusinessDetails extends AppCompatActivity {
         websiteDetails = (TextView) findViewById(R.id.website_business_details);
         imageDetails = (ImageView) findViewById(R.id.image_business_details);
         addReviewBtn = (Button) findViewById(R.id.business_review_btn);
+        locateBtn = (Button) findViewById(R.id.locate_business_btn);
         totalBusinessRating = (TextView) findViewById(R.id.textTotalBusinessRating);
         totalBusinessReviews = (TextView) findViewById(R.id.textTotalBusinessReviewsText);
         closeBtn = (TextView) findViewById(R.id.close_single_business_details_btn);
@@ -66,8 +71,8 @@ public class BusinessDetails extends AppCompatActivity {
                 if (snapshot.exists()) {
                     Businesses businesses = snapshot.getValue(Businesses.class);
 
-                    Post_Key = businesses.getbID();
-                    Post_Name = businesses.getbName();
+                    Business_Key = businesses.getbID();
+                    Business_Name = businesses.getbName();
 
                     bNameDetails.setText(businesses.getbName());
                     descriptionDetails.setText(businesses.getDescription());
@@ -142,9 +147,18 @@ public class BusinessDetails extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent businessReviewIntent = new Intent(BusinessDetails.this, BusinessReviewsActivity.class);
-                businessReviewIntent.putExtra("bID", Post_Key);
-                businessReviewIntent.putExtra("bName", Post_Name);
+                businessReviewIntent.putExtra("bID", Business_Key);
+                businessReviewIntent.putExtra("bName", Business_Name);
                 startActivity(businessReviewIntent);
+            }
+        });
+
+        locateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent businessMapIntent = new Intent(BusinessDetails.this, MapsActivity.class);
+                businessMapIntent.putExtra("bName", Business_Name);
+                startActivity(businessMapIntent);
             }
         });
     }

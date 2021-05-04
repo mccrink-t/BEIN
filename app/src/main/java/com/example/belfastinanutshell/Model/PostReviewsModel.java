@@ -1,19 +1,20 @@
 package com.example.belfastinanutshell.Model;
 
-public class BusinessReviewsModel
-{
+public class PostReviewsModel {
+
     public String review, fullName, date, time, rating, reviewID;
 
-    public BusinessReviewsModel() {
+    public PostReviewsModel() {
+
     }
 
-    public BusinessReviewsModel(String review, String fullName, String date, String time, String rating, String reviewID) {
-        this.reviewID = reviewID;
+    public PostReviewsModel(String review, String fullName, String date, String time, String rating, String reviewID) {
         this.review = review;
         this.fullName = fullName;
         this.date = date;
         this.time = time;
         this.rating = rating;
+        this.reviewID = reviewID;
     }
 
     public String getReview() {

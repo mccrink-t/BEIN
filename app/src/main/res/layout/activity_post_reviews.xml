@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".Businesses.BusinessReviewsActivity">
+    tools:context=".PostReviewsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar_single_business_reviews"
+        android:id="@+id/app_bar_single_post_reviews"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/nav_bar_header_theme">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_single_business_reviews"
+            android:id="@+id/toolbar_single_post_reviews"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -22,7 +22,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/close_single_business_reviews_btn"
+                    android:id="@+id/close_single_post_reviews_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
@@ -43,43 +43,43 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/RL_middle"
-        android:layout_below="@+id/app_bar_single_business_reviews"
-        >
+        android:layout_below="@+id/app_bar_single_post_reviews">
 
         <TextView
-            android:id="@+id/review_Business_Name"
+            android:id="@+id/review_Post_Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="Business_Name"
-            android:textColor="#bebebe"
-            android:textSize="18dp"
+
+            android:layout_marginVertical="5dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:text="Post Title"
+            android:textColor="#bebebe"
+            android:textSize="24dp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/reviewIntroTextView"
+            android:id="@+id/postReviewIntroTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_below="@+id/review_Business_Name"
+            android:layout_marginVertical="5dp"
+            android:layout_toRightOf="@+id/review_Post_Title"
             android:text="Reviews:"
             android:textColor="#bebebe"
-            android:textSize="17dp"
-            android:textStyle="bold"
-            android:layout_marginLeft="10dp"/>
+            android:textSize="24dp"
+            android:textStyle="bold" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/reviewIntroTextView">
+            android:layout_below="@+id/postReviewIntroTextView">
 
-            <include layout="@layout/content_business_reviews" />
+            <include layout="@layout/content_post_reviews" />
 
         </RelativeLayout>
 
         <!--        <androidx.recyclerview.widget.RecyclerView-->
-        <!--            android:id="@+id/businessReviewList"-->
+        <!--            android:id="@+id/postReviewList"-->
         <!--            android:layout_width="match_parent"-->
         <!--            android:layout_height="match_parent"-->
         <!--            android:scrollbars="vertical"-->
@@ -100,20 +100,21 @@
             android:id="@+id/leaveRatingText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
             android:text="Leave a Rating and Review: "
             android:textColor="@color/white"
             android:textSize="20dp"
-            android:layout_marginBottom="-10dp"
             android:textStyle="bold" />
 
         <RatingBar
-            android:id="@+id/singleUserBusinessRating"
+            android:id="@+id/singleUserPostRating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/leaveRatingText"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="-10dp"
             android:layout_marginBottom="-5dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
             android:numStars="5"
             android:progressBackgroundTint="#bebebe"
             android:progressTint="@color/yellow"
@@ -122,21 +123,21 @@
             android:stepSize="1" />
 
         <TextView
-            android:id="@+id/singleUserBusinessRatingText"
+            android:id="@+id/singleUserPostRatingText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/leaveRatingText"
-            android:layout_toRightOf="@id/singleUserBusinessRating"
+            android:layout_toRightOf="@id/singleUserPostRating"
             android:visibility="invisible">
 
         </TextView>
 
         <TextView
-            android:id="@+id/temporaryRatingHolder"
+            android:id="@+id/temporaryPostRatingHolder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/leaveRatingText"
-            android:layout_toRightOf="@id/singleUserBusinessRating"
+            android:layout_toRightOf="@id/singleUserPostRating"
             android:visibility="invisible" />
 
     </RelativeLayout>
@@ -150,7 +151,7 @@
         >
 
         <EditText
-            android:id="@+id/businessReviewInput"
+            android:id="@+id/postReviewInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="55dp"
@@ -162,20 +163,20 @@
             android:padding="15dp" />
 
         <!--    <ImageViewButton-->
-        <!--        android:id="@+id/postBusinessReviewBtn"-->
+        <!--        android:id="@+id/postPostReviewBtn"-->
         <!--        android:layout_width="wrap_content"-->
         <!--        android:layout_height="wrap_content"-->
-        <!--        android:layout_alignBottom="@+id/businessReviewInput"-->
+        <!--        android:layout_alignBottom="@+id/postReviewInput"-->
         <!--        android:layout_alignParentEnd="true"-->
         <!--        android:layout_alignParentRight="true"-->
         <!--        android:src="@drawable/send_ic;"-->
         <!--            />-->
 
         <ImageView
-            android:id="@+id/postBusinessReviewBtn"
+            android:id="@+id/submitPostReviewBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/businessReviewInput"
+            android:layout_alignBottom="@+id/postReviewInput"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:padding="12dp"

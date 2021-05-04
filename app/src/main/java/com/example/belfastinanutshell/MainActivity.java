@@ -13,6 +13,8 @@ import androidx.cardview.widget.CardView;
 
 import com.example.belfastinanutshell.Model.Users;
 import com.example.belfastinanutshell.Prevalent.Prevalent;
+import com.example.belfastinanutshell.Profile.Login;
+import com.example.belfastinanutshell.Profile.Register;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
         cardDirectRegister = (CardView) findViewById(R.id.card_directRegister);
         cardDirectLogin = (CardView) findViewById(R.id.card_directLogin);
-        loadingBar = new ProgressDialog(this);
+        loadingBar = new ProgressDialog(this, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
+
 
 
         Paper.init(this);

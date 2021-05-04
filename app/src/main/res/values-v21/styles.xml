@@ -11,6 +11,11 @@
         <item name="colorControlActivated">@color/light_grey</item>
     </style>
 
+    <style name="SearchAutoCompleteTextView" parent="Widget.AppCompat.Light.AutoCompleteTextView">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/light_grey</item>
+        <item name="android:textSize">14dp</item>
+    </style>
 
 
 

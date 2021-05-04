@@ -1,59 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginTop="20dp"
     android:layout_marginStart="15dp"
+    android:layout_marginTop="20dp"
     android:layout_marginEnd="15dp"
     app:cardElevation="15dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/home_theme">
 
         <TextView
             android:id="@+id/business_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:text="Business Name"
             android:textAlignment="center"
             android:textSize="26dp"
             android:textStyle="bold"
-            android:gravity="center_horizontal" />
+            android:textColor="@color/white"
+            />
 
         <ImageView
             android:id="@+id/business_image"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_below="@+id/business_name"
-            android:scaleType="centerCrop"
             android:layout_marginTop="2dp"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:layout_marginTop="2dp"
+            android:id="@+id/textView_userRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/business_image"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="2dp"
+            android:text="User Rating: "
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_marginTop="2dp"
+            android:id="@+id/business_userRating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/business_image"
+            android:layout_toRightOf="@+id/textView_userRating"
+            android:text="User Rating"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:textColor="@color/white"
             />
+
+        <View
+            android:id="@+id/separator1"
+            android:layout_width="200dp"
+            android:layout_height="1dip"
+            android:layout_below="@+id/business_userRating"
+            android:layout_marginHorizontal="6dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:background="#808080" />
+
+        <TextView
+            android:id="@+id/textView_business_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/separator1"
+            android:layout_marginHorizontal="6dp"
+            android:text="Business Description: "
+            android:textSize="16dp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/business_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:gravity="center_horizontal"
-            android:textSize="17dp"
+            android:layout_below="@id/textView_business_description"
+            android:layout_marginHorizontal="6dp"
             android:text="Business Description"
-            android:layout_below="@id/business_image"
+            android:textSize="16dp"
+            android:textColor="@color/white"
             />
+
+        <View
+            android:id="@+id/separator2"
+            android:layout_width="200dp"
+            android:layout_height="1dip"
+            android:layout_below="@+id/business_description"
+            android:layout_marginHorizontal="6dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:background="#808080" />
+
+        <TextView
+            android:id="@+id/TextView_business_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/separator2"
+            android:layout_marginHorizontal="6dp"
+            android:text="Business Location: "
+            android:textSize="16dp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/business_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:gravity="center_horizontal"
-            android:textSize="17dp"
-            android:layout_marginTop="2dp"
+            android:layout_below="@id/TextView_business_location"
+            android:layout_marginHorizontal="6dp"
             android:layout_marginBottom="4dp"
             android:text="Business Location"
-            android:layout_below="@id/business_description"
+            android:textSize="16dp"
+            android:textColor="@color/white"
             />
 
     </RelativeLayout>

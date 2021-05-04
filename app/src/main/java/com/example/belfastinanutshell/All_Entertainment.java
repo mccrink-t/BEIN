@@ -20,8 +20,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.belfastinanutshell.Businesses.All_Bars;
+import com.example.belfastinanutshell.Businesses.All_Restaurants;
+import com.example.belfastinanutshell.Businesses.BusinessDetails;
+import com.example.belfastinanutshell.Businesses.SearchBusinessActivity;
 import com.example.belfastinanutshell.Model.Businesses;
 import com.example.belfastinanutshell.Prevalent.Prevalent;
+import com.example.belfastinanutshell.Profile.Profile;
 import com.example.belfastinanutshell.ViewHolder.BusinessViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -33,7 +38,7 @@ import com.squareup.picasso.Picasso;
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.paperdb.Paper;
 
-public class All_Restaurants extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class All_Entertainment extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DatabaseReference BusinessesRef;
     private RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
@@ -44,7 +49,7 @@ public class All_Restaurants extends AppCompatActivity implements NavigationView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all_businesses);
+        setContentView(R.layout.activity_all_entertainment);
 
         //Toolbar (at top of each page)
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -78,13 +83,14 @@ public class All_Restaurants extends AppCompatActivity implements NavigationView
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
     }
+
     @Override
     protected void onStart() {
         super.onStart();
 
         FirebaseRecyclerOptions<Businesses> options =
                 new FirebaseRecyclerOptions.Builder<Businesses>()
-                        .setQuery(BusinessesRef.orderByChild("category").equalTo("Restaurants"), Businesses.class)
+                        .setQuery(BusinessesRef.orderByChild("category").equalTo("Entertainment"), Businesses.class)
                         .build();
 
 
@@ -95,13 +101,13 @@ public class All_Restaurants extends AppCompatActivity implements NavigationView
                         holder.txtBusinessName.setText(model.getbName());
                         holder.txtBusinessDescription.setText(model.getDescription());
                         holder.txtBusinessLocation.setText(model.getLocation());
+                        holder.txtBusinessRating.setText(model.getRating());
                         Picasso.get().load(model.getImage()).into(holder.imageView);
 
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public void onClick(View v)
-                            {
-                                Intent intent = new Intent(All_Restaurants.this, BusinessDetails.class);
+                            public void onClick(View v) {
+                                Intent intent = new Intent(All_Entertainment.this, BusinessDetails.class);
                                 intent.putExtra("bID", model.getbID());
                                 startActivity(intent);
                             }
@@ -157,27 +163,29 @@ public class All_Restaurants extends AppCompatActivity implements NavigationView
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            Intent intent = new Intent(All_Restaurants.this, Home.class);
+            Intent intent = new Intent(All_Entertainment.this, Home.class);
             startActivity(intent);
         } else if (id == R.id.nav_profile) {
-            Intent intent = new Intent(All_Restaurants.this, Profile.class);
+            Intent intent = new Intent(All_Entertainment.this, Profile.class);
             startActivity(intent);
         } else if (id == R.id.nav_search) {
-            Intent intent = new Intent(All_Restaurants.this, SearchBusinessActivity.class);
+            Intent intent = new Intent(All_Entertainment.this, SearchBusinessActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_bars) {
-            Intent refresh = new Intent(this, All_Restaurants.class);
+            Intent intent = new Intent(All_Entertainment.this, All_Bars.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_restaurants) {
+            Intent intent = new Intent(All_Entertainment.this, All_Restaurants.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_entertainment) {
+            Intent refresh = new Intent(this, All_Entertainment.class);
             //Start the same Activity
             startActivity(refresh);
             finish();
-        } else if (id == R.id.nav_restaurants) {
-
-        } else if (id == R.id.nav_entertainment) {
-
         } else if (id == R.id.nav_logout) {
             Toast.makeText(this, "Logging out...", Toast.LENGTH_SHORT).show();
             Paper.book().destroy();
-            Intent intent = new Intent(All_Restaurants.this, MainActivity.class);
+            Intent intent = new Intent(All_Entertainment.this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();

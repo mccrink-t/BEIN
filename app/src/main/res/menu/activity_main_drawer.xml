@@ -64,6 +64,23 @@
             android:icon="@drawable/ic_entertainment"
             android:title="Entertainment"
             android:iconTint="@android:color/white"/>
+
+    </group>
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/group3">
+
+        <item
+            android:id="@+id/nav_add_blog"
+            android:icon="@drawable/ic_add_blog"
+            android:title="Post Blog"
+            android:iconTint="@android:color/white"/>
+        <item
+            android:id="@+id/nav_all_blogs"
+            android:icon="@drawable/ic_blog"
+            android:title="All Blogs"
+            android:iconTint="@android:color/white"/>
+
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_logout"

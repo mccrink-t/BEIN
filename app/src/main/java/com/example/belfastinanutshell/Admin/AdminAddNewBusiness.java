@@ -1,4 +1,4 @@
-package com.example.belfastinanutshell;
+package com.example.belfastinanutshell.Admin;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.belfastinanutshell.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -65,7 +66,7 @@ public class AdminAddNewBusiness extends AppCompatActivity {
         inputBusinessLocation = (EditText) findViewById(R.id.business_location);
         inputBusinessContactInfo = (EditText) findViewById(R.id.business_contact_info);
         inputBusinessWebsite = (EditText) findViewById(R.id.business_website);
-        loadingBar = new ProgressDialog(this);
+        loadingBar = new ProgressDialog(this, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
         closeBtn = (TextView) findViewById(R.id.close_add_new_business_btn);
 
         inputBusinessPhoto.setOnClickListener(new View.OnClickListener() {
@@ -244,7 +245,7 @@ public class AdminAddNewBusiness extends AppCompatActivity {
                     {
                         if(task.isSuccessful())
                         {
-                            Intent intent = new Intent(AdminAddNewBusiness.this, AdminCategory.class);
+                            Intent intent = new Intent(AdminAddNewBusiness.this, AdminHome.class);
                             startActivity(intent);
 
                             loadingBar.dismiss();

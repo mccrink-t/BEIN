@@ -13,7 +13,7 @@
         tools:context=".Admin.AdminAddNewBusiness">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/app_bar_add_new_business"
+            android:id="@+id/app_bar_add_new_post"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/nav_bar_header_theme">
@@ -28,12 +28,12 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/close_add_new_business_btn"
+                        android:id="@+id/close_add_new_post_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentLeft="true"
-                        android:text="Back to Categories"
+                        android:text="Home"
                         android:textColor="@android:color/white"
                         android:textSize="17sp"
                         android:textStyle="bold" />
@@ -46,12 +46,12 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/app_bar_add_new_business">
+            android:layout_below="@+id/app_bar_add_new_post">
 
 
             <ImageView
-                android:id="@+id/select_business_image"
-                android:layout_width="350dp"
+                android:id="@+id/select_post_image"
+                android:layout_width="400dp"
                 android:layout_height="200dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
@@ -60,15 +60,15 @@
                 android:src="@drawable/ic_add_business_picture" />
 
             <EditText
-                android:id="@+id/business_name"
+                android:id="@+id/post_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/select_business_image"
+                android:layout_below="@+id/select_post_image"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
                 android:background="#009688"
-                android:hint="Buinsess Name..."
+                android:hint="Post Name..."
                 android:inputType="textMultiLine"
                 android:padding="10dp"
                 android:textColor="#FFFFFF"
@@ -77,16 +77,17 @@
                 android:textStyle="normal" />
 
             <EditText
-                android:id="@+id/business_description"
+                android:id="@+id/short_post_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/business_name"
+                android:layout_below="@+id/post_title"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="30dp"
                 android:background="#009688"
-                android:hint="Buinsess Description..."
+                android:hint="Short Post Description...."
                 android:inputType="textMultiLine"
+                android:lines="2"
                 android:padding="10dp"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#A4BFBD"
@@ -94,66 +95,16 @@
                 android:textStyle="normal" />
 
             <EditText
-                android:id="@+id/business_opening_hours"
+                android:id="@+id/post_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/business_description"
+                android:layout_below="@+id/short_post_text"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="30dp"
+                android:lines="9"
                 android:background="#009688"
-                android:hint="Buinsess Opening Hours..."
-                android:inputType="textMultiLine"
-                android:padding="10dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#A4BFBD"
-                android:textSize="17dp"
-                android:textStyle="normal" />
-
-            <EditText
-                android:id="@+id/business_location"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/business_opening_hours"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="30dp"
-                android:background="#009688"
-                android:hint="Buinsess Location..."
-                android:inputType="textMultiLine"
-                android:padding="10dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#A4BFBD"
-                android:textSize="17dp"
-                android:textStyle="normal" />
-
-            <EditText
-                android:id="@+id/business_contact_info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/business_location"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="30dp"
-                android:background="#009688"
-                android:hint="Buinsess Contact Info..."
-                android:inputType="textMultiLine"
-                android:padding="10dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#A4BFBD"
-                android:textSize="17dp"
-                android:textStyle="normal" />
-
-            <EditText
-                android:id="@+id/business_website"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/business_contact_info"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="30dp"
-                android:background="#009688"
-                android:hint="Buinsess Website..."
+                android:hint="Write your post here..."
                 android:inputType="textMultiLine"
                 android:padding="10dp"
                 android:textColor="#FFFFFF"
@@ -162,16 +113,15 @@
                 android:textStyle="normal" />
 
             <Button
-                android:id="@+id/add_new_businessbtn"
+                android:id="@+id/submit_Post_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/business_website"
-                android:layout_marginLeft="40dp"
+                android:layout_below="@+id/post_text"
+                android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="15dp"
-                android:layout_marginRight="40dp"
                 android:layout_marginBottom="15dp"
                 android:padding="17dp"
-                android:text="Add Business"
+                android:text="Submit Post"
                 android:textColor="#FFFFFF"
                 android:textSize="17dp"
                 android:textStyle="bold"

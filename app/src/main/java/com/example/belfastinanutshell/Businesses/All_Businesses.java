@@ -1,4 +1,4 @@
-package com.example.belfastinanutshell;
+package com.example.belfastinanutshell.Businesses;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,8 +20,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.belfastinanutshell.Home;
+import com.example.belfastinanutshell.MainActivity;
 import com.example.belfastinanutshell.Model.Businesses;
 import com.example.belfastinanutshell.Prevalent.Prevalent;
+import com.example.belfastinanutshell.Profile.Profile;
+import com.example.belfastinanutshell.R;
 import com.example.belfastinanutshell.ViewHolder.BusinessViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -79,6 +83,7 @@ public class All_Businesses extends AppCompatActivity implements NavigationView.
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
     }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -95,12 +100,12 @@ public class All_Businesses extends AppCompatActivity implements NavigationView.
                         holder.txtBusinessName.setText(model.getbName());
                         holder.txtBusinessDescription.setText(model.getDescription());
                         holder.txtBusinessLocation.setText(model.getLocation());
+                        holder.txtBusinessRating.setText(model.getRating());
                         Picasso.get().load(model.getImage()).into(holder.imageView);
 
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public void onClick(View v)
-                            {
+                            public void onClick(View v) {
                                 Intent intent = new Intent(All_Businesses.this, BusinessDetails.class);
                                 intent.putExtra("bID", model.getbID());
                                 startActivity(intent);

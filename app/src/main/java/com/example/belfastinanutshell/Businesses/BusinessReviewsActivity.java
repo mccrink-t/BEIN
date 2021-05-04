@@ -1,4 +1,4 @@
-package com.example.belfastinanutshell;
+package com.example.belfastinanutshell.Businesses;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,8 +17,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.belfastinanutshell.Home;
 import com.example.belfastinanutshell.Model.BusinessReviewsModel;
 import com.example.belfastinanutshell.Prevalent.Prevalent;
+import com.example.belfastinanutshell.R;
 import com.example.belfastinanutshell.ViewHolder.BusinessReviewsViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -43,11 +45,15 @@ public class BusinessReviewsActivity extends AppCompatActivity {
     private TextView closeBtn, businessReviewName;
     private RatingBar singleUserBusinessRating;
     private TextView singleUserBusinessRatingTextView;
+    private String uniqueBusinessReviewID = null;
+    private String userType = "";
+
+//    private Button deleteBusinessReview;
 
     private DatabaseReference usersRef, businessRef, businessRatingRef;
 
-    private String Post_Key;
-    private String Post_Name;
+    private String Business_Key;
+    private String Business_Name;
 
     float ratingNumber = 0;
     int numberOfStars;
@@ -57,14 +63,15 @@ public class BusinessReviewsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_business_reviews);
+        uniqueBusinessReviewID = UUID.randomUUID().toString();
 
-        Post_Key = getIntent().getExtras().get("bID").toString();
-        Post_Name = getIntent().getExtras().get("bName").toString();
+        Business_Key = getIntent().getExtras().get("bID").toString();
+        Business_Name = getIntent().getExtras().get("bName").toString();
 
         usersRef = FirebaseDatabase.getInstance().getReference().child("Users").child(Prevalent.CurrentOnlineUser.getPhone());
 
-        businessRef = FirebaseDatabase.getInstance().getReference().child("Businesses").child(Post_Key).child("Reviews");
-        businessRatingRef = FirebaseDatabase.getInstance().getReference().child("Businesses").child(Post_Key);
+        businessRef = FirebaseDatabase.getInstance().getReference().child("Businesses").child(Business_Key).child("Reviews");
+        businessRatingRef = FirebaseDatabase.getInstance().getReference().child("Businesses").child(Business_Key);
 
         businessReviewList = (RecyclerView) findViewById(R.id.businessReviewList);
         businessReviewList.setHasFixedSize(true);
@@ -80,9 +87,11 @@ public class BusinessReviewsActivity extends AppCompatActivity {
         singleUserBusinessRating = (RatingBar) findViewById(R.id.singleUserBusinessRating);
         singleUserBusinessRatingTextView = (TextView) findViewById(R.id.singleUserBusinessRatingText);
 
-        delete = (TextView) findViewById(R.id.holderReview);
+//        deleteBusinessReview = (Button) findViewById(R.id.delete_business_review_btn);
 
-        businessReviewName.setText(Post_Name);
+        delete = (TextView) findViewById(R.id.temporaryRatingHolder);
+
+        businessReviewName.setText(Business_Name);
 
         singleUserBusinessRating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
@@ -123,7 +132,9 @@ public class BusinessReviewsActivity extends AppCompatActivity {
                 });
             }
         });
+
     }
+
 
     @Override
     protected void onStart() {
@@ -149,7 +160,7 @@ public class BusinessReviewsActivity extends AppCompatActivity {
                     @NonNull
                     @Override
                     public BusinessReviewsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.all_single_business_reviews_layout, parent, false);
+                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_business_reviews_layout, parent, false);
                         BusinessReviewsViewHolder holder = new BusinessReviewsViewHolder(view);
                         return holder;
                     }
@@ -161,17 +172,31 @@ public class BusinessReviewsActivity extends AppCompatActivity {
 
     }
 
+    //    private void deleteReview()
+//    {
+//
+//        businessRef.child(reviewID).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+//            @Override
+//            public void onComplete(@NonNull Task<Void> task) {
+//
+//                Intent intent = new Intent(BusinessReviewsActivity.this, AdminEditBusiness.class);
+//                intent.putExtra("bID", Business_Key);
+//                startActivity(intent);
+//                finish();
+//
+//                Toast.makeText(BusinessReviewsActivity.this, "Review Has Been Deleted Successfully", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
+
     private void ValidateBusinessReview(String fullName, String userID) {
         String businessReviewText = businessReviewInputText.getText().toString();
         String saveCurrentDate, saveCurrentTime;
 
-//        String randomIdGeneration;
-        String uniqueBusinessReviewID = null;
         int ratingToInt = 0;
         //convert to int and round value to 0 decimal places
 //        int ratingInt = Math.round(Integer.valueOf(singleUserBusinessRatingTextView.getText().toString()));
 //        convert back to string
-
 
         if (singleUserBusinessRatingTextView.getText().toString().isEmpty()) {
             Toast.makeText(this, "Review Unsuccessful : Please Leave a Star Rating", Toast.LENGTH_SHORT).show();
@@ -195,10 +220,10 @@ public class BusinessReviewsActivity extends AppCompatActivity {
 
 //            randomIdGeneration = saveCurrentDate + saveCurrentTime;
             //code to generate a random Id for each new Business Review
-            uniqueBusinessReviewID = UUID.randomUUID().toString();
 
             HashMap businessReviewsMap = new HashMap();
             //mapping the values inside the variables to go into the fields on the business review table
+            businessReviewsMap.put("reviewID", uniqueBusinessReviewID);
             businessReviewsMap.put("userID", userID);
             businessReviewsMap.put("review", businessReviewText);
             businessReviewsMap.put("date", saveCurrentDate);
@@ -209,13 +234,14 @@ public class BusinessReviewsActivity extends AppCompatActivity {
             //update the database table businesses, and the selected business, to add the new data into it via the hashmap
             businessRef.child(uniqueBusinessReviewID).updateChildren(businessReviewsMap)
                     .addOnCompleteListener(new OnCompleteListener() {
+
                         @Override
                         public void onComplete(@NonNull Task task) {
                             //if the review was submitted successfully
                             if (task.isSuccessful()) {
                                 Intent intent = new Intent(BusinessReviewsActivity.this, Home.class);
                                 startActivity(intent);
-                                Toast.makeText(BusinessReviewsActivity.this, "Review was added to " + Post_Name + " successfully!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(BusinessReviewsActivity.this, "Review was added to " + Business_Name + " successfully!", Toast.LENGTH_SHORT).show();
                             }
                             //else if an error occured
                             else {
