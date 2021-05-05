@@ -100,16 +100,10 @@ public class Profile extends AppCompatActivity {
                         String fullName = snapshot.child("fullName").getValue().toString();
                         String phone = snapshot.child("phone").getValue().toString();
                         String email = snapshot.child("email").getValue().toString();
-                        String institution = snapshot.child("institution").getValue().toString();
-                        String degreeOfStudy = snapshot.child("degreeOfStudy").getValue().toString();
-                        String yearOfStudy = snapshot.child("yearOfStudy").getValue().toString();
 
                         profileName.setText(fullName);
                         profilePhone.setText(phone);
                         profileEmail.setText(email);
-                        profileInstitution.setText(institution);
-                        profileDegree.setText(degreeOfStudy);
-                        profileYOS.setText(yearOfStudy);
                     }
                 }
             }

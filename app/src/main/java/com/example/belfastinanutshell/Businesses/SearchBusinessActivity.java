@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -51,6 +52,8 @@ public class SearchBusinessActivity extends AppCompatActivity implements Navigat
     private View rootView;
     private DrawerLayout drawerLayout;
 
+    private Button orderByName, orderByRating;
+
     //text to be shown if admins logged in
     private TextView closeBtn, logoutAdminBtn;
 
@@ -64,7 +67,9 @@ public class SearchBusinessActivity extends AppCompatActivity implements Navigat
         searchBarBusiness = (EditText) findViewById(R.id.searchBarBusinessEditText);
         searchBusinessBtn = (ImageView) findViewById(R.id.searchBusinessBtn);
         searchBusinessRV = (RecyclerView) findViewById(R.id.searchBusinessRV);
-        searchBusinessRV.setLayoutManager(new LinearLayoutManager(SearchBusinessActivity.this));
+
+        orderByName = (Button) findViewById(R.id.orderByNameBtn);
+        orderByRating = (Button) findViewById(R.id.orderByRatingBtn);
 
         closeBtn = (TextView) findViewById(R.id.searchBusinessAdminCloseBtn);
         logoutAdminBtn = (TextView) findViewById(R.id.searchBusinessAdminLogoutBtn);
@@ -118,6 +123,141 @@ public class SearchBusinessActivity extends AppCompatActivity implements Navigat
             userNameTextView.setText("Admin");
         }
 
+        orderByName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                OrderByBusinessName();
+            }
+        });
+
+        orderByRating.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                orderByBusinessRating();
+            }
+        });
+
+    }
+
+    //method to order all the businesses by highest name
+    private void OrderByBusinessName()
+    {
+        businessesRef = FirebaseDatabase.getInstance().getReference().child("Businesses");
+
+        FirebaseRecyclerOptions<Businesses> options =
+                new FirebaseRecyclerOptions.Builder<Businesses>().setQuery(businessesRef.orderByChild("bName").startAt(searchBusinessInput),
+                        Businesses.class).build();
+
+        FirebaseRecyclerAdapter<Businesses, BusinessViewHolder>
+                adapter = new FirebaseRecyclerAdapter<Businesses, BusinessViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull BusinessViewHolder holder, int i, @NonNull Businesses model) {
+                holder.txtBusinessName.setText(model.getbName());
+                holder.txtBusinessDescription.setText(model.getDescription());
+                holder.txtBusinessLocation.setText(model.getLocation());
+                holder.txtBusinessRating.setText(model.getRating());
+                Picasso.get().load(model.getImage()).into(holder.imageView);
+
+                //when a user clicks on a business view holder
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //if statement to check if the user is an Admin
+                        if (userType.equals("Admin")) {
+//                          send admin to edit business activity
+                            Intent intent = new Intent(SearchBusinessActivity.this, AdminEditBusiness.class);
+                            intent.putExtra("bID", model.getbID());
+                            intent.putExtra("bName", model.getbName());
+                            startActivity(intent);
+                        }
+                        //else if the user is not an Admin
+                        else {
+                            //send user to business details activity
+                            Intent intent = new Intent(SearchBusinessActivity.this, BusinessDetails.class);
+                            intent.putExtra("bID", model.getbID());
+                            startActivity(intent);
+                        }
+                    }
+                });
+            }
+
+            @NonNull
+            @Override
+            public BusinessViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.business_items_layout, parent, false);
+                BusinessViewHolder holder = new BusinessViewHolder(view);
+                return holder;
+            }
+        };
+
+        searchBusinessRV.setLayoutManager(new LinearLayoutManager(SearchBusinessActivity.this));
+        searchBusinessRV.setAdapter(adapter);
+        adapter.startListening();
+    }
+
+    //method to order all the businesses by highest rated to lowest
+    private void orderByBusinessRating()
+    {
+        businessesRef = FirebaseDatabase.getInstance().getReference().child("Businesses");
+
+        FirebaseRecyclerOptions<Businesses> options =
+                new FirebaseRecyclerOptions.Builder<Businesses>()
+                        .setQuery(businessesRef.orderByChild("rating").startAt(searchBusinessInput),
+                        Businesses.class).build();
+
+        FirebaseRecyclerAdapter<Businesses, BusinessViewHolder>
+                adapter = new FirebaseRecyclerAdapter<Businesses, BusinessViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull BusinessViewHolder holder, int i, @NonNull Businesses model) {
+                holder.txtBusinessName.setText(model.getbName());
+                holder.txtBusinessDescription.setText(model.getDescription());
+                holder.txtBusinessLocation.setText(model.getLocation());
+                holder.txtBusinessRating.setText(model.getRating());
+                Picasso.get().load(model.getImage()).into(holder.imageView);
+
+                //when a user clicks on a business view holder
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //if statement to check if the user is an Admin
+                        if (userType.equals("Admin")) {
+//                          send admin to edit business activity
+                            Intent intent = new Intent(SearchBusinessActivity.this, AdminEditBusiness.class);
+                            intent.putExtra("bID", model.getbID());
+                            intent.putExtra("bName", model.getbName());
+                            startActivity(intent);
+                        }
+                        //else if the user is not an Admin
+                        else {
+                            //send user to business details activity
+                            Intent intent = new Intent(SearchBusinessActivity.this, BusinessDetails.class);
+                            intent.putExtra("bID", model.getbID());
+                            startActivity(intent);
+                        }
+                    }
+                });
+            }
+
+            @NonNull
+            @Override
+            public BusinessViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.business_items_layout, parent, false);
+                BusinessViewHolder holder = new BusinessViewHolder(view);
+                return holder;
+            }
+        };
+
+        //reverse the order of the recyclerview, due to it laying it out by lowest rating to highest
+        //through doing this, the highest rated business will be at the top of the list
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        searchBusinessRV.setLayoutManager(linearLayoutManager);
+
+        searchBusinessRV.setAdapter(adapter);
+        adapter.startListening();
     }
 
     @Override
@@ -172,6 +312,7 @@ public class SearchBusinessActivity extends AppCompatActivity implements Navigat
             }
         };
 
+        searchBusinessRV.setLayoutManager(new LinearLayoutManager(SearchBusinessActivity.this));
         searchBusinessRV.setAdapter(adapter);
         adapter.startListening();
     }

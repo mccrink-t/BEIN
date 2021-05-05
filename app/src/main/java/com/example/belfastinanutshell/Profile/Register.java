@@ -23,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
+import java.util.regex.Pattern;
 
 public class Register extends AppCompatActivity {
 
@@ -34,6 +35,30 @@ public class Register extends AppCompatActivity {
     private Button createAccountButton;
     private ProgressDialog loadingBar;
 
+
+    //String to store email pattern
+    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
+    //password pattern gained from https://www.geeksforgeeks.org/how-to-validate-a-password-using-regular-expressions-in-android/
+//    private static final Pattern PASSWORD_PATTERN
+//            Pattern.c("^" +
+//            "(?=.*[0-9])" + //a digit must occur at least once
+//            "(?=.*[a-z])" + //lower case letter must occur at least once
+//            "(?=.*[A-Z])" + //an upper case letter must occur at least once
+//            "(?=.*[@#$%^&+=!])" + //a special character must occur at least once you can replace with your special characters
+//            "(?=\\S+$)" + // no whitespace allowed in the entire string
+//            ".{4,}" + //anything, at least six places though
+//            "$");
+
+    private static final Pattern PASSWORD_PATTERN =
+            Pattern.compile("^" +
+                    "(?=.*[0-9])" +
+                    "(?=.*[a-z])" +
+                    "(?=.*[A-Z])" +
+                    "(?=.*[@#$%^&+=!])" +     // at least 1 special character
+                    "(?=\\S+$)" +            // no white spaces
+                    ".{4,}" +                // at least 4 characters
+                    "$");
 
 
     @Override
@@ -86,9 +111,6 @@ public class Register extends AppCompatActivity {
         String password = inputPassword.getText().toString().trim();
         String confirmPassword = inputConfirmPassword.getText().toString().trim();
 
-        //String to store email pattern
-        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-
 
 //      Series of validation carried out on email and password fields
 //      if email field is empty, display error text
@@ -100,7 +122,7 @@ public class Register extends AppCompatActivity {
         //if the entered email address does not match the email pattern
         else if (!email.matches(emailPattern))
         {
-            Toast.makeText(getApplicationContext(),"Invalid email Address Layout",Toast.LENGTH_SHORT).show();
+            inputEmail.setError("Invalid email Address Layout");
         }
 
         else if (TextUtils.isEmpty(phone)) {
@@ -122,6 +144,15 @@ public class Register extends AppCompatActivity {
         else if (TextUtils.isEmpty(password)) {
             inputPassword.setError("Please enter a Password");
             return;
+        }
+        else if (!PASSWORD_PATTERN.matcher(password).matches()) {
+            inputPassword.setError("Password is too weak! \nPassword Must contain: " +
+                    "\nAt least 6 characters, " +
+                    "\nAt least 1 Special Character, " +
+                    "\nAt least 1 Upper Case Letter," +
+                    "\nAt least 1 Lower Case Letter," +
+                    "\nAt least 1 Number," +
+                    "\nAnd not include spaces");
         }
 
         //if confirm password field is empty, display error text

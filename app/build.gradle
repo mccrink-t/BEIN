@@ -72,6 +72,8 @@ dependencies {
     implementation 'com.amazonaws:aws-android-sdk-core:2.11.+'
     implementation 'com.firebase:firebase-client-android:2.5.0'
 
+
+
     implementation 'androidx.multidex:multidex:2.0.1'
 
     //Extra external libraries
