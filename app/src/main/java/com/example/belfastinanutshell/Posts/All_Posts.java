@@ -1,4 +1,4 @@
-package com.example.belfastinanutshell;
+package com.example.belfastinanutshell.Posts;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,13 +22,16 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.belfastinanutshell.Admin.AdminDeletePost;
 import com.example.belfastinanutshell.Businesses.All_Bars;
 import com.example.belfastinanutshell.Businesses.All_Restaurants;
 import com.example.belfastinanutshell.Businesses.SearchBusinessActivity;
+import com.example.belfastinanutshell.Home;
+import com.example.belfastinanutshell.MainActivity;
 import com.example.belfastinanutshell.Model.Posts;
-import com.example.belfastinanutshell.Posts.AddNewPost;
 import com.example.belfastinanutshell.Prevalent.Prevalent;
 import com.example.belfastinanutshell.Profile.Profile;
+import com.example.belfastinanutshell.R;
 import com.example.belfastinanutshell.ViewHolder.PostViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;

@@ -58,6 +58,7 @@ public class BusinessReviewsActivity extends AppCompatActivity {
     float ratingNumber = 0;
     int numberOfStars;
     TextView delete;
+    String currentUsersID = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,6 +156,10 @@ public class BusinessReviewsActivity extends AppCompatActivity {
                         holder.usersReviewTime.setText(model.getTime());
                         holder.usersBusinessRating.setText(model.getRating());
 
+                        if (model.getUserID() != null) {
+                            currentUsersID = model.getUserID();
+                        }
+
                     }
 
                     @NonNull
@@ -198,7 +203,10 @@ public class BusinessReviewsActivity extends AppCompatActivity {
 //        int ratingInt = Math.round(Integer.valueOf(singleUserBusinessRatingTextView.getText().toString()));
 //        convert back to string
 
-        if (singleUserBusinessRatingTextView.getText().toString().isEmpty()) {
+        if(currentUsersID != null && currentUsersID.equals(userID)){
+            Toast.makeText(this, "Post Unsuccessful, You have already Reviewed this Post.", Toast.LENGTH_SHORT).show();
+        }
+        else if (singleUserBusinessRatingTextView.getText().toString().isEmpty()) {
             Toast.makeText(this, "Review Unsuccessful : Please Leave a Star Rating", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(businessReviewText)) {
             Toast.makeText(this, "Review Unsuccessful : Please Write Your Review to submit", Toast.LENGTH_SHORT).show();

@@ -34,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/black"
-                tools:context=".All_Posts">
+                tools:context=".Posts.All_Posts">
 
                 <RelativeLayout
                     android:id="@+id/PostRL1"

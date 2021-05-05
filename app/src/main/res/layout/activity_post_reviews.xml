@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".PostReviewsActivity">
+    tools:context=".Posts.PostReviewsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_single_post_reviews"
@@ -49,25 +49,25 @@
             android:id="@+id/review_Post_Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:layout_marginVertical="5dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="5dp"
             android:text="Post Title"
             android:textColor="#bebebe"
-            android:textSize="24dp"
+            android:textSize="18dp"
+            android:layout_marginLeft="10dp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/postReviewIntroTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="5dp"
-            android:layout_toRightOf="@+id/review_Post_Title"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@+id/review_Post_Title"
             android:text="Reviews:"
             android:textColor="#bebebe"
-            android:textSize="24dp"
-            android:textStyle="bold" />
+            android:textSize="17dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -104,7 +104,9 @@
             android:text="Leave a Rating and Review: "
             android:textColor="@color/white"
             android:textSize="20dp"
-            android:textStyle="bold" />
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="-5dp"
+            android:textStyle="bold"/>
 
         <RatingBar
             android:id="@+id/singleUserPostRating"
@@ -112,9 +114,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/leaveRatingText"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="-10dp"
             android:layout_marginBottom="-5dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginLeft="-5dp"
             android:numStars="5"
             android:progressBackgroundTint="#bebebe"
             android:progressTint="@color/yellow"

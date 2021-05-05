@@ -17,14 +17,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BelfastInANutshell.NoActionBar">
-        <activity android:name=".AdminDeletePost"></activity>
-        <activity android:name=".PostReviewsActivity" />
-        <activity android:name=".View_Post" />
+        <activity android:name=".Admin.AdminDeletePost"></activity>
+        <activity android:name=".Posts.PostReviewsActivity" />
+        <activity android:name=".Posts.View_Post" />
         <activity
-            android:name=".All_Entertainment"
+            android:name=".Businesses.All_Entertainment"
             android:label="Entertainment Businesses" />
         <activity
-            android:name=".All_Posts"
+            android:name=".Posts.All_Posts"
             android:label="User Posts" />
         <activity android:name=".Posts.AddNewPost" />
 

@@ -1,4 +1,4 @@
-package com.example.belfastinanutshell;
+package com.example.belfastinanutshell.Businesses;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,13 +20,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.belfastinanutshell.Businesses.All_Bars;
-import com.example.belfastinanutshell.Businesses.All_Restaurants;
-import com.example.belfastinanutshell.Businesses.BusinessDetails;
-import com.example.belfastinanutshell.Businesses.SearchBusinessActivity;
+import com.example.belfastinanutshell.Home;
+import com.example.belfastinanutshell.MainActivity;
 import com.example.belfastinanutshell.Model.Businesses;
 import com.example.belfastinanutshell.Prevalent.Prevalent;
 import com.example.belfastinanutshell.Profile.Profile;
+import com.example.belfastinanutshell.R;
 import com.example.belfastinanutshell.ViewHolder.BusinessViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;

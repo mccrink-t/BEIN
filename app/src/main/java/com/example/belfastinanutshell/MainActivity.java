@@ -29,25 +29,19 @@ public class MainActivity extends AppCompatActivity {
     private ProgressDialog loadingBar;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         cardDirectRegister = (CardView) findViewById(R.id.card_directRegister);
         cardDirectLogin = (CardView) findViewById(R.id.card_directLogin);
         loadingBar = new ProgressDialog(this, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
 
-
-
         Paper.init(this);
-
 
         cardDirectLogin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, Login.class);
                 startActivity(intent);
             }
@@ -56,21 +50,17 @@ public class MainActivity extends AppCompatActivity {
 
         cardDirectRegister.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, Register.class);
                 startActivity(intent);
             }
         });
 
-
         String UsersPhoneNumber = Paper.book().read(Prevalent.UsersPhoneNumber);
         String UsersPasswordKey = Paper.book().read(Prevalent.UsersPasswordKey);
 
-        if (UsersPhoneNumber != "" && UsersPasswordKey != "")
-        {
-            if (!TextUtils.isEmpty(UsersPhoneNumber)  &&  !TextUtils.isEmpty(UsersPasswordKey))
-            {
+        if (UsersPhoneNumber != "" && UsersPasswordKey != "") {
+            if (!TextUtils.isEmpty(UsersPhoneNumber) && !TextUtils.isEmpty(UsersPasswordKey)) {
                 AllowAccess(UsersPhoneNumber, UsersPasswordKey);
 
                 loadingBar.setTitle("Already Logged in");
@@ -81,26 +71,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-
-    private void AllowAccess(final String phone, final String password)
-    {
+    private void AllowAccess(final String phone, final String password) {
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
 
 
         RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot)
-            {
-                if (snapshot.child("Users").child(phone).exists())
-                {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.child("Users").child(phone).exists()) {
                     Users usersData = snapshot.child("Users").child(phone).getValue(Users.class);
 
-                    if (usersData.getPhone().equals(phone))
-                    {
-                        if (usersData.getPassword().equals(password))
-                        {
+                    if (usersData.getPhone().equals(phone)) {
+                        if (usersData.getPassword().equals(password)) {
                             Toast.makeText(MainActivity.this, "Already Logged in, Redirecting...", Toast.LENGTH_SHORT).show();
                             loadingBar.dismiss();
 
@@ -109,16 +92,12 @@ public class MainActivity extends AppCompatActivity {
                             //keep user who is logged in
                             Prevalent.CurrentOnlineUser = usersData;
                             startActivity(intent);
-                        }
-                        else
-                        {
+                        } else {
                             loadingBar.dismiss();
                             Toast.makeText(MainActivity.this, "Password is incorrect.", Toast.LENGTH_SHORT).show();
                         }
                     }
-                }
-                else
-                {
+                } else {
                     Toast.makeText(MainActivity.this, "Account with Phone Number:  " + phone + " does not exist.", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
                 }

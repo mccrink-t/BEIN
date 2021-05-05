@@ -11,7 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.example.belfastinanutshell.All_Posts;
+import com.example.belfastinanutshell.Posts.All_Posts;
 import com.example.belfastinanutshell.Businesses.SearchBusinessActivity;
 import com.example.belfastinanutshell.MainActivity;
 import com.example.belfastinanutshell.R;

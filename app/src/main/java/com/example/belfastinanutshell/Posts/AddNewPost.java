@@ -16,7 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.belfastinanutshell.All_Posts;
 import com.example.belfastinanutshell.Home;
 import com.example.belfastinanutshell.Prevalent.Prevalent;
 import com.example.belfastinanutshell.R;
@@ -65,7 +64,7 @@ public class AddNewPost extends AppCompatActivity {
 
         inputPostImage = (ImageView) findViewById(R.id.select_post_image);
         inputPostTitle = (EditText) findViewById(R.id.post_title);
-        inputPostDescription = (EditText) findViewById(R.id.post_text);
+        inputPostDescription = (EditText) findViewById(R.id.description_post_text);
         inputPostText = (EditText) findViewById(R.id.post_text);
         submitPostBtn = (Button) findViewById(R.id.submit_Post_btn);
         loadingBar = new ProgressDialog(this, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);

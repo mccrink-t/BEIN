@@ -34,6 +34,8 @@ public class Register extends AppCompatActivity {
     private Button createAccountButton;
     private ProgressDialog loadingBar;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,13 +86,21 @@ public class Register extends AppCompatActivity {
         String password = inputPassword.getText().toString().trim();
         String confirmPassword = inputConfirmPassword.getText().toString().trim();
 
+        //String to store email pattern
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
-//              Series of validation carried out on email and password fields
-        //if email field is empty, display error text
-//              Calls utils class to use isempty method
+
+//      Series of validation carried out on email and password fields
+//      if email field is empty, display error text
+//      Calls utils class to use isempty method
         if (TextUtils.isEmpty(email)) {
             inputEmail.setError("Please Enter Your Email");
             return;
+        }
+        //if the entered email address does not match the email pattern
+        else if (!email.matches(emailPattern))
+        {
+            Toast.makeText(getApplicationContext(),"Invalid email Address Layout",Toast.LENGTH_SHORT).show();
         }
 
         else if (TextUtils.isEmpty(phone)) {

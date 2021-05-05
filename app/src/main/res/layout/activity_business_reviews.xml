@@ -103,7 +103,8 @@
             android:text="Leave a Rating and Review: "
             android:textColor="@color/white"
             android:textSize="20dp"
-            android:layout_marginBottom="-10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="-5dp"
             android:textStyle="bold" />
 
         <RatingBar
@@ -113,7 +114,7 @@
             android:layout_below="@+id/leaveRatingText"
             android:layout_centerVertical="true"
             android:layout_marginBottom="-5dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="-5dp"
             android:numStars="5"
             android:progressBackgroundTint="#bebebe"
             android:progressTint="@color/yellow"

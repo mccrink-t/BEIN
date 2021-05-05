@@ -1,4 +1,4 @@
-package com.example.belfastinanutshell;
+package com.example.belfastinanutshell.Posts;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,8 +17,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.belfastinanutshell.Home;
 import com.example.belfastinanutshell.Model.PostReviewsModel;
 import com.example.belfastinanutshell.Prevalent.Prevalent;
+import com.example.belfastinanutshell.R;
 import com.example.belfastinanutshell.ViewHolder.PostReviewsViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -54,6 +56,7 @@ public class PostReviewsActivity extends AppCompatActivity {
     float ratingNumber = 0;
     int numberOfStars;
     TextView delete;
+    String currentUsersID = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +97,7 @@ public class PostReviewsActivity extends AppCompatActivity {
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 ratingNumber = singleUserPostRating.getRating();
                 numberOfStars = singleUserPostRating.getNumStars();
-                singleUserPostRatingTextView.setText(String.format("%2.1f",ratingNumber));
+                singleUserPostRatingTextView.setText(String.format("%2.1f", ratingNumber));
             }
         });
 
@@ -151,6 +154,9 @@ public class PostReviewsActivity extends AppCompatActivity {
                         holder.usersPostReviewTime.setText(model.getTime());
                         holder.usersPostRating.setText(model.getRating());
 
+                        if (model.getUserID() != null) {
+                            currentUsersID = model.getUserID();
+                        }
                     }
 
                     @NonNull
@@ -164,8 +170,6 @@ public class PostReviewsActivity extends AppCompatActivity {
 
         postReviewList.setAdapter(adapter);
         adapter.startListening();
-
-
     }
 
     //    private void deleteReview()
@@ -194,11 +198,19 @@ public class PostReviewsActivity extends AppCompatActivity {
 //        int ratingInt = Math.round(Integer.valueOf(singleUserPostRatingTextView.getText().toString()));
 //        convert back to string
 
-        if (singleUserPostRatingTextView.getText().toString().isEmpty()) {
+        if(currentUsersID != null && currentUsersID.equals(userID)){
+            Toast.makeText(this, "Post Unsuccessful, You have already Reviewed this Post.", Toast.LENGTH_SHORT).show();
+        }
+        else if (singleUserPostRatingTextView.getText().toString().isEmpty()) {
             Toast.makeText(this, "Review Unsuccessful : Please Leave a Star Rating", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(postReviewText)) {
             Toast.makeText(this, "Review Unsuccessful : Please Write Your Review to submit", Toast.LENGTH_SHORT).show();
-        } else {
+        }
+
+//        else if (userReviewCheck.equals(userID)) {
+//            Toast.makeText(this, "Post Unsuccessful, You have already Reviewed this Post.", Toast.LENGTH_SHORT).show();
+//        }
+        else {
 
             //converted the rating to an integer (Removing decimals)
             ratingToInt = Math.round(ratingNumber);
@@ -245,6 +257,7 @@ public class PostReviewsActivity extends AppCompatActivity {
                             }
                         }
                     });
+
         }
     }
 }

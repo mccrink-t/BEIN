@@ -1,4 +1,4 @@
-package com.example.belfastinanutshell;
+package com.example.belfastinanutshell.Posts;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.belfastinanutshell.Model.Posts;
+import com.example.belfastinanutshell.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,7 +24,7 @@ import java.util.Map;
 
 public class View_Post extends AppCompatActivity {
 
-    private TextView pTitleView, pTextView, pUserNameTextView, totalPostRating, totalPostReviews;
+    private TextView pTitleView, pTextView, pUserNameTextView, totalPostRating, totalPostReviews, postDateView, postTimeView;
     private ImageView imagePost;
     private TextView closeBtn;
     private String postID = "";
@@ -48,6 +49,8 @@ public class View_Post extends AppCompatActivity {
         totalPostReviews = (TextView) findViewById(R.id.textTotalPostReviews);
         closeBtn = (TextView) findViewById(R.id.close_post_view_btn);
         imagePost = (ImageView) findViewById(R.id.image_post_view);
+        postDateView = (TextView) findViewById(R.id.date_Post_View);
+        postTimeView = (TextView) findViewById(R.id.time_Post_View);
 
         //call information from post database firebase
         postDetailsRef = FirebaseDatabase.getInstance().getReference().child("Posts").child("UserPosts").child(postID);
@@ -69,6 +72,8 @@ public class View_Post extends AppCompatActivity {
                     pTitleView.setText(posts.getPostTitle());
                     pTextView.setText(posts.getPostText());
                     pUserNameTextView.setText(posts.getUsersFullName());
+                    postDateView.setText(posts.getDate());
+                    postTimeView.setText(posts.getTime());
                     Picasso.get().load(posts.getImage()).into(imagePost);
 
                     postRatingRef.addListenerForSingleValueEvent(new ValueEventListener() {

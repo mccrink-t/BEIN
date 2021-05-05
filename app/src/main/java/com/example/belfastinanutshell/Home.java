@@ -17,9 +17,11 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.belfastinanutshell.Businesses.All_Bars;
+import com.example.belfastinanutshell.Businesses.All_Entertainment;
 import com.example.belfastinanutshell.Businesses.All_Restaurants;
 import com.example.belfastinanutshell.Businesses.SearchBusinessActivity;
 import com.example.belfastinanutshell.Posts.AddNewPost;
+import com.example.belfastinanutshell.Posts.All_Posts;
 import com.example.belfastinanutshell.Prevalent.Prevalent;
 import com.example.belfastinanutshell.Profile.Profile;
 import com.google.android.material.navigation.NavigationView;
@@ -42,6 +44,16 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        username = (TextView) findViewById(R.id.fullname_home_page);
+        profilePic = (CircleImageView) findViewById(R.id.user_profile_image_home);
+        searchBusinessesHome = (CardView) findViewById(R.id.search_home_card);
+        barsHome = (CardView) findViewById(R.id.bars_home_card);
+        profileHome = (CardView) findViewById(R.id.profile_home_card);
+        restaurantHome = (CardView) findViewById(R.id.restaurants_home_card);
+        entertainmentHome = (CardView) findViewById(R.id.entertainment_home_card);
+        blogsHome = (CardView) findViewById(R.id.blogs_home_card);
+        addBlogHome = (CardView) findViewById(R.id.post_blog_home_card);
+
         //Toolbar (at top of each page)
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -62,16 +74,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         View headerView = navigationView.getHeaderView(0);
         TextView userNameTextView = headerView.findViewById(R.id.user_profile_name);
         CircleImageView profileImageView = headerView.findViewById(R.id.user_profile_image);
-
-        username = (TextView) findViewById(R.id.fullname_home_page);
-        profilePic = (CircleImageView) findViewById(R.id.user_profile_image_home);
-        searchBusinessesHome = (CardView) findViewById(R.id.search_home_card);
-        barsHome = (CardView) findViewById(R.id.bars_home_card);
-        profileHome = (CardView) findViewById(R.id.profile_home_card);
-        restaurantHome = (CardView) findViewById(R.id.restaurants_home_card);
-        entertainmentHome = (CardView) findViewById(R.id.entertainment_home_card);
-        blogsHome = (CardView) findViewById(R.id.blogs_home_card);
-        addBlogHome = (CardView) findViewById(R.id.post_blog_home_card);
 
         //set username and profile picture for nav bar
         userNameTextView.setText(Prevalent.CurrentOnlineUser.getFullName());
@@ -220,7 +222,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         if (id == R.id.nav_home) {
             //Start the same Activity - aka refreshing
-            Intent refresh = new Intent(this, All_Restaurants.class);
+            Intent refresh = new Intent(this, Home.class);
             startActivity(refresh);
             finish();
         } else if (id == R.id.nav_profile) {
