@@ -7,8 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.belfastinanutshell.R;
 
-public class PostReviewsViewHolder extends RecyclerView.ViewHolder
-{
+public class PostReviewsViewHolder extends RecyclerView.ViewHolder {
     public TextView usersPostReviewName, usersPostReviewText, usersPostReviewDate, usersPostReviewTime, usersPostRating;
 
     public PostReviewsViewHolder(View itemView) {
@@ -19,8 +18,5 @@ public class PostReviewsViewHolder extends RecyclerView.ViewHolder
         usersPostReviewDate = (TextView) itemView.findViewById(R.id.post_review_date);
         usersPostReviewTime = (TextView) itemView.findViewById(R.id.post_review_time);
         usersPostRating = (TextView) itemView.findViewById(R.id.SinglePostRatingNumber);
-
-
-
     }
 }

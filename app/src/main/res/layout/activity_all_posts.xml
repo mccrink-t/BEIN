@@ -74,37 +74,38 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
                     android:layout_alignParentBottom="true"
                     android:layout_gravity="bottom|end"
                     android:layout_margin="@dimen/fab_margin"
-                    android:src="@drawable/ic_add_blog"
-                    android:layout_alignParentRight="true"
                     android:backgroundTint="#009688"
+                    android:src="@drawable/ic_add_blog"
                     app:backgroundTint="@color/white"
                     app:borderWidth="2dp"
                     app:elevation="6dp"
-                    app:tint="@color/white"/>
+                    app:tint="@color/white" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/searchPostRV"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@+id/PostRL1"
-                    android:layout_marginBottom="15dp"/>
+                    android:layout_marginBottom="15dp" />
 
 
             </RelativeLayout>
         </RelativeLayout>
     </LinearLayout>
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/nav_view"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:fitsSystemWindows="true"
-            app:headerLayout="@layout/nav_header_main"
-            app:menu="@menu/activity_main_drawer">
 
-        </com.google.android.material.navigation.NavigationView>
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/activity_main_drawer">
+
+    </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>

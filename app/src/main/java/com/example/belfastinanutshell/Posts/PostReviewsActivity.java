@@ -172,36 +172,18 @@ public class PostReviewsActivity extends AppCompatActivity {
         adapter.startListening();
     }
 
-    //    private void deleteReview()
-//    {
-//
-//        postRef.child(reviewID).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-//            @Override
-//            public void onComplete(@NonNull Task<Void> task) {
-//
-//                Intent intent = new Intent(PostReviewsActivity.this, AdminEditPost.class);
-//                intent.putExtra("bID", Post_Key);
-//                startActivity(intent);
-//                finish();
-//
-//                Toast.makeText(PostReviewsActivity.this, "Review Has Been Deleted Successfully", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
-
     private void ValidatePostReview(String fullName, String userID) {
         String postReviewText = postReviewInputText.getText().toString();
         String saveCurrentDate, saveCurrentTime;
 
         int ratingToInt = 0;
-        //convert to int and round value to 0 decimal places
-//        int ratingInt = Math.round(Integer.valueOf(singleUserPostRatingTextView.getText().toString()));
-//        convert back to string
 
-        if(currentUsersID != null && currentUsersID.equals(userID)){
+//        if statement to check if the current users ID is equal to null
+//        if it is, then a check to see if the current logged in users ID is the same as the stored user ID in one of the reviews.
+//        Thus limiting each user to one review per post
+        if (currentUsersID != null && currentUsersID.equals(userID)) {
             Toast.makeText(this, "Post Unsuccessful, You have already Reviewed this Post.", Toast.LENGTH_SHORT).show();
-        }
-        else if (singleUserPostRatingTextView.getText().toString().isEmpty()) {
+        } else if (singleUserPostRatingTextView.getText().toString().isEmpty()) {
             Toast.makeText(this, "Review Unsuccessful : Please Leave a Star Rating", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(postReviewText)) {
             Toast.makeText(this, "Review Unsuccessful : Please Write Your Review to submit", Toast.LENGTH_SHORT).show();

@@ -27,6 +27,8 @@ import com.example.belfastinanutshell.Admin.AdminEditBusiness;
 import com.example.belfastinanutshell.Home;
 import com.example.belfastinanutshell.MainActivity;
 import com.example.belfastinanutshell.Model.Businesses;
+import com.example.belfastinanutshell.Posts.AddNewPost;
+import com.example.belfastinanutshell.Posts.All_Posts;
 import com.example.belfastinanutshell.Prevalent.Prevalent;
 import com.example.belfastinanutshell.Profile.Profile;
 import com.example.belfastinanutshell.R;
@@ -125,16 +127,14 @@ public class SearchBusinessActivity extends AppCompatActivity implements Navigat
 
         orderByName.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 OrderByBusinessName();
             }
         });
 
         orderByRating.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 orderByBusinessRating();
             }
         });
@@ -142,8 +142,7 @@ public class SearchBusinessActivity extends AppCompatActivity implements Navigat
     }
 
     //method to order all the businesses by highest name
-    private void OrderByBusinessName()
-    {
+    private void OrderByBusinessName() {
         businessesRef = FirebaseDatabase.getInstance().getReference().child("Businesses");
 
         FirebaseRecyclerOptions<Businesses> options =
@@ -198,14 +197,13 @@ public class SearchBusinessActivity extends AppCompatActivity implements Navigat
     }
 
     //method to order all the businesses by highest rated to lowest
-    private void orderByBusinessRating()
-    {
+    private void orderByBusinessRating() {
         businessesRef = FirebaseDatabase.getInstance().getReference().child("Businesses");
 
         FirebaseRecyclerOptions<Businesses> options =
                 new FirebaseRecyclerOptions.Builder<Businesses>()
                         .setQuery(businessesRef.orderByChild("rating").startAt(searchBusinessInput),
-                        Businesses.class).build();
+                                Businesses.class).build();
 
         FirebaseRecyclerAdapter<Businesses, BusinessViewHolder>
                 adapter = new FirebaseRecyclerAdapter<Businesses, BusinessViewHolder>(options) {
@@ -356,15 +354,18 @@ public class SearchBusinessActivity extends AppCompatActivity implements Navigat
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
+            //If statement to check that the current user is not an admin, For Users an Intent to start the Home Activity
             if (!userType.equals("Admin")) {
                 Intent intent = new Intent(SearchBusinessActivity.this, Home.class);
                 startActivity(intent);
             }
+            //If statement to check that the current user is not an admin, For Users an Intent to start the Profile Activity
         } else if (id == R.id.nav_profile) {
             if (!userType.equals("Admin")) {
                 Intent intent = new Intent(SearchBusinessActivity.this, Profile.class);
                 startActivity(intent);
             }
+            //If statement to check that the current user is not an admin, For Users an Intent to refresh the activity
         } else if (id == R.id.nav_search) {
             if (!userType.equals("Admin")) {
                 Intent refresh = new Intent(this, SearchBusinessActivity.class);
@@ -372,22 +373,37 @@ public class SearchBusinessActivity extends AppCompatActivity implements Navigat
                 startActivity(refresh);
                 finish();
             }
-
+            //If statement to check that the current user is not an admin, For Users an Intent to start the Bars Activity
         } else if (id == R.id.nav_bars) {
             if (!userType.equals("Admin")) {
                 Intent intent = new Intent(SearchBusinessActivity.this, All_Bars.class);
                 startActivity(intent);
             }
+            //If statement to check that the current user is not an admin, For Users an Intent to start the Restaurants Activity
         } else if (id == R.id.nav_restaurants) {
             if (!userType.equals("Admin")) {
                 Intent intent = new Intent(SearchBusinessActivity.this, All_Restaurants.class);
                 startActivity(intent);
             }
+            //If statement to check that the current user is not an admin, For Users an Intent to start the All Entertainment Businesses Activity
         } else if (id == R.id.nav_entertainment) {
             if (!userType.equals("Admin")) {
-
+                Intent intent = new Intent(SearchBusinessActivity.this, All_Entertainment.class);
+                startActivity(intent);
             }
-
+            //If statement to check that the current user is not an admin, For Users an Intent to start the Add Blog Activity
+        } else if (id == R.id.nav_add_blog) {
+            if (!userType.equals("Admin")) {
+                Intent intent = new Intent(SearchBusinessActivity.this, AddNewPost.class);
+                startActivity(intent);
+            }
+            //If statement to check that the current user is not an admin, For Users an Intent to start the All Blogs Activity
+        } else if (id == R.id.nav_all_blogs) {
+            if (!userType.equals("Admin")) {
+                Intent intent = new Intent(SearchBusinessActivity.this, All_Posts.class);
+                startActivity(intent);
+            }
+            //Intent to logout and destroy book method storing the current logged users details
         } else if (id == R.id.nav_logout) {
             Toast.makeText(this, "Logging out...", Toast.LENGTH_SHORT).show();
             Paper.book().destroy();

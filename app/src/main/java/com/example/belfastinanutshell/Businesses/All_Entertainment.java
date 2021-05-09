@@ -23,6 +23,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.belfastinanutshell.Home;
 import com.example.belfastinanutshell.MainActivity;
 import com.example.belfastinanutshell.Model.Businesses;
+import com.example.belfastinanutshell.Posts.AddNewPost;
+import com.example.belfastinanutshell.Posts.All_Posts;
 import com.example.belfastinanutshell.Prevalent.Prevalent;
 import com.example.belfastinanutshell.Profile.Profile;
 import com.example.belfastinanutshell.R;
@@ -162,26 +164,40 @@ public class All_Entertainment extends AppCompatActivity implements NavigationVi
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
+            //Intent to start Home Activity
             Intent intent = new Intent(All_Entertainment.this, Home.class);
             startActivity(intent);
         } else if (id == R.id.nav_profile) {
+            //Intent to start Profile Activity
             Intent intent = new Intent(All_Entertainment.this, Profile.class);
             startActivity(intent);
-        } else if (id == R.id.nav_search) {
+        }else if (id == R.id.nav_search) {
+            //Intent to start search business Activity
             Intent intent = new Intent(All_Entertainment.this, SearchBusinessActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_bars) {
+            //Intent to start bars Activity
             Intent intent = new Intent(All_Entertainment.this, All_Bars.class);
             startActivity(intent);
         } else if (id == R.id.nav_restaurants) {
+            //Intent to start Restaurants Activity
             Intent intent = new Intent(All_Entertainment.this, All_Restaurants.class);
             startActivity(intent);
         } else if (id == R.id.nav_entertainment) {
+            //Start the same Activity - aka refreshing
             Intent refresh = new Intent(this, All_Entertainment.class);
-            //Start the same Activity
             startActivity(refresh);
             finish();
+        } else if (id == R.id.nav_add_blog) {
+            //Intent to start add a blog Activity
+            Intent intent = new Intent(All_Entertainment.this, AddNewPost.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_all_blogs) {
+            //Intent to start blogs list activity
+            Intent intent = new Intent(All_Entertainment.this, All_Posts.class);
+            startActivity(intent);
         } else if (id == R.id.nav_logout) {
+            //Intent to logout and destroy book method storing the current logged users details
             Toast.makeText(this, "Logging out...", Toast.LENGTH_SHORT).show();
             Paper.book().destroy();
             Intent intent = new Intent(All_Entertainment.this, MainActivity.class);

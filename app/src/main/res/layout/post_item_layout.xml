@@ -27,9 +27,9 @@
 
         <RelativeLayout
             android:id="@+id/postItemR2"
-            android:layout_below="@+id/postItemR1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/postItemR1"
             android:layout_marginHorizontal="5dp"
             android:layout_marginTop="2dp">
 
@@ -39,10 +39,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
                 android:text="Post Title: "
-                android:textSize="15dp"
-                android:textStyle="bold"
                 android:textColor="@color/white"
-                />
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/post_title"
@@ -51,10 +50,9 @@
                 android:layout_marginLeft="8dp"
                 android:layout_toRightOf="@+id/textView_post_title"
                 android:text="Post Name"
-                android:textStyle="bold"
-                android:textSize="18dp"
                 android:textColor="@color/white"
-                />
+                android:textSize="18dp"
+                android:textStyle="bold" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -71,10 +69,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:text="Post Blurb:"
-                android:textSize="15dp"
-                android:textStyle="bold"
                 android:textColor="@color/white"
-                />
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/post_description"
@@ -85,17 +82,16 @@
                 android:layout_marginBottom="4dp"
                 android:layout_toRightOf="@id/textView_post_description"
                 android:text="Post Description"
-                android:textSize="16dp"
                 android:textColor="@color/white"
-                />
+                android:textSize="16dp" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_marginHorizontal="5dp"
             android:id="@+id/postItemR4"
-            android:layout_below="@+id/postItemR3"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/postItemR3"
+            android:layout_marginHorizontal="5dp">
 
             <RelativeLayout
                 android:id="@+id/postItemR4Sub1"
@@ -103,56 +99,58 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true">
-            <TextView
-                android:id="@+id/textView_posted_by"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="Posted By:"
-                android:textSize="12dp"
-                android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/post_user_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="4dp"
-                android:layout_toRightOf="@id/textView_posted_by"
-                android:text="User's Name"
-                android:textStyle="bold"
-                android:textSize="12dp" />
+                <TextView
+                    android:id="@+id/textView_posted_by"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Posted By:"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/post_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_toRightOf="@id/textView_posted_by"
+                    android:text="User's Name"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
 
             </RelativeLayout>
-        <RelativeLayout
-            android:id="@+id/postItemR4Sub2"
-            android:layout_alignParentEnd="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true">
 
-            <TextView
-                android:id="@+id/textView_posted_date"
+            <RelativeLayout
+                android:id="@+id/postItemR4Sub2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="Posted on:"
-                android:textSize="12dp"
-                android:textStyle="bold" />
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true">
 
-            <TextView
-                android:id="@+id/post_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="4dp"
-                android:layout_toRightOf="@id/textView_posted_date"
-                android:text="Date"
-                android:textStyle="bold"
-                android:textSize="12dp" />
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/textView_posted_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Posted on:"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/post_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_toRightOf="@id/textView_posted_date"
+                    android:text="Date"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
 
         </RelativeLayout>
     </RelativeLayout>

@@ -49,25 +49,26 @@
             android:id="@+id/review_Post_Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="5dp"
             android:text="Post Title"
             android:textColor="#bebebe"
             android:textSize="18dp"
-            android:layout_marginLeft="10dp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/postReviewIntroTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
             android:layout_below="@+id/review_Post_Title"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="5dp"
             android:text="Reviews:"
             android:textColor="#bebebe"
             android:textSize="17dp"
-            android:textStyle="bold"
-            android:layout_marginLeft="10dp"/>
+            android:textStyle="bold" />
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -77,14 +78,6 @@
             <include layout="@layout/content_post_reviews" />
 
         </RelativeLayout>
-
-        <!--        <androidx.recyclerview.widget.RecyclerView-->
-        <!--            android:id="@+id/postReviewList"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="match_parent"-->
-        <!--            android:scrollbars="vertical"-->
-        <!--            android:layout_margin="5dp"-->
-        <!--            android:layout_below="@+id/reviewIntroTextView"/>-->
 
     </RelativeLayout>
 
@@ -101,12 +94,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="-5dp"
             android:text="Leave a Rating and Review: "
             android:textColor="@color/white"
             android:textSize="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="-5dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <RatingBar
             android:id="@+id/singleUserPostRating"
@@ -114,8 +107,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/leaveRatingText"
             android:layout_centerVertical="true"
-            android:layout_marginBottom="-5dp"
             android:layout_marginLeft="-5dp"
+            android:layout_marginBottom="-5dp"
             android:numStars="5"
             android:progressBackgroundTint="#bebebe"
             android:progressTint="@color/yellow"
@@ -148,8 +141,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/nav_bar_header_theme"
-        >
+        android:background="@drawable/nav_bar_header_theme">
 
         <EditText
             android:id="@+id/postReviewInput"
@@ -157,21 +149,11 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="55dp"
             android:background="@color/white"
-            android:textColor="@color/black"
             android:hint="Write a Review Here..."
-            android:textColorHint="#bebebe"
             android:inputType="textMultiLine"
-            android:padding="15dp" />
-
-        <!--    <ImageViewButton-->
-        <!--        android:id="@+id/postPostReviewBtn"-->
-        <!--        android:layout_width="wrap_content"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:layout_alignBottom="@+id/postReviewInput"-->
-        <!--        android:layout_alignParentEnd="true"-->
-        <!--        android:layout_alignParentRight="true"-->
-        <!--        android:src="@drawable/send_ic;"-->
-        <!--            />-->
+            android:padding="15dp"
+            android:textColor="@color/black"
+            android:textColorHint="#bebebe" />
 
         <ImageView
             android:id="@+id/submitPostReviewBtn"
@@ -180,9 +162,9 @@
             android:layout_alignBottom="@+id/postReviewInput"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
+            android:background="@color/white"
             android:padding="12dp"
-            android:src="@drawable/submit_icon"
-            android:background="@color/white"/>
+            android:src="@drawable/submit_icon" />
 
     </RelativeLayout>
 </RelativeLayout>

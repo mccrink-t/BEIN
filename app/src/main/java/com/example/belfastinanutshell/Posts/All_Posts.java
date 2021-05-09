@@ -103,22 +103,19 @@ public class All_Posts extends AppCompatActivity implements NavigationView.OnNav
         //otherwise it does not look for the admin info, thus allowing end user to log in
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        if(bundle!= null)
-        {
+        if (bundle != null) {
             //grabs Admin info intent on category page
             //usertype stores admin value
             userType = getIntent().getExtras().get("Admin").toString();
         }
 
         //if the end user opens the search activity display their username and profile image in the nav bar menu
-        if(!userType.equals("Admin"))
-        {
+        if (!userType.equals("Admin")) {
             userNameTextView.setText(Prevalent.CurrentOnlineUser.getFullName());
             Picasso.get().load(Prevalent.CurrentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
         }
         //else if its an admin change the name to admin account
-        else
-        {
+        else {
             userNameTextView.setText("Admin");
         }
 
@@ -156,11 +153,9 @@ public class All_Posts extends AppCompatActivity implements NavigationView.OnNav
                 //when a user clicks on a business view holder
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v)
-                    {
+                    public void onClick(View v) {
                         //if statement to check if the user is an Admin
-                        if(userType.equals("Admin"))
-                        {
+                        if (userType.equals("Admin")) {
 //                          send admin to delete Post activity
                             Intent intent = new Intent(All_Posts.this, AdminDeletePost.class);
                             intent.putExtra("postID", model.getPostID());
@@ -168,8 +163,7 @@ public class All_Posts extends AppCompatActivity implements NavigationView.OnNav
                             startActivity(intent);
                         }
                         //else if the user is not an Admin
-                        else
-                        {
+                        else {
                             //send user to business details activity
                             Intent intent = new Intent(All_Posts.this, View_Post.class);
                             intent.putExtra("postID", model.getPostID());
@@ -181,8 +175,7 @@ public class All_Posts extends AppCompatActivity implements NavigationView.OnNav
 
             @NonNull
             @Override
-            public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
-            {
+            public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.post_item_layout, parent, false);
                 PostViewHolder holder = new PostViewHolder(view);
                 return holder;
@@ -230,27 +223,27 @@ public class All_Posts extends AppCompatActivity implements NavigationView.OnNav
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-                Intent intent = new Intent(All_Posts.this, Home.class);
-                startActivity(intent);
+            Intent intent = new Intent(All_Posts.this, Home.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_profile) {
-                Intent intent = new Intent(All_Posts.this, Profile.class);
-                startActivity(intent);
+            Intent intent = new Intent(All_Posts.this, Profile.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_search) {
-                Intent refresh = new Intent(All_Posts.this, SearchBusinessActivity.class);
-                //Start the same Activity
-                startActivity(refresh);
-                finish();
+            Intent refresh = new Intent(All_Posts.this, SearchBusinessActivity.class);
+            //Start the same Activity
+            startActivity(refresh);
+            finish();
 
 
         } else if (id == R.id.nav_bars) {
-                Intent intent = new Intent(All_Posts.this, All_Bars.class);
-                startActivity(intent);
+            Intent intent = new Intent(All_Posts.this, All_Bars.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_restaurants) {
-                Intent intent = new Intent(All_Posts.this, All_Restaurants.class);
-                startActivity(intent);
+            Intent intent = new Intent(All_Posts.this, All_Restaurants.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_entertainment) {
 

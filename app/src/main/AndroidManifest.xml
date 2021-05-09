@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.belfastinanutshell">
+
     <!-- Permissions for google maps -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="com.google.android.providers.gsf.permisson.READ_GSERVICES" />
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- Code from https://github.com/ArthurHub/Android-Image-Cropper to crop images for profile pic -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Code from https://github.com/ArthurHub/Android-Image-Cropper to crop images for profile pic -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -17,15 +19,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BelfastInANutshell.NoActionBar">
+
         <activity android:name=".Admin.AdminDeletePost"></activity>
+
         <activity android:name=".Posts.PostReviewsActivity" />
+
         <activity android:name=".Posts.View_Post" />
+
         <activity
             android:name=".Businesses.All_Entertainment"
             android:label="Entertainment Businesses" />
+
         <activity
             android:name=".Posts.All_Posts"
             android:label="User Posts" />
+
         <activity android:name=".Posts.AddNewPost" />
 
         <meta-data
@@ -33,42 +41,57 @@
             android:value="@string/map_key" />
 
         <activity android:name=".Admin.AdminEditBusiness" />
+
         <activity android:name=".Businesses.SearchBusinessActivity" />
+
         <activity android:name=".Businesses.BusinessReviewsActivity" />
+
         <activity
             android:name=".Businesses.All_Restaurants"
             android:label="Restaurants" />
+
         <activity
             android:name=".Businesses.All_Bars"
             android:label="Belfast Bars" />
+
         <activity
             android:name=".Businesses.All_Businesses"
             android:label="All Businesses" />
+
         <activity android:name=".Profile.Profile" />
+
         <activity android:name=".Businesses.BusinessDetails" />
+
         <activity android:name=".Profile.Settings" />
+
         <activity
             android:name=".Home"
             android:label="@string/title_activity_home"
             android:theme="@style/Theme.BelfastInANutshell.NoActionBar" />
+
         <activity
             android:name=".Admin.AdminHome"
             android:label="Add a Business"
             android:theme="@style/Theme.BelfastInANutshell.NoActionBar" />
+
         <activity
             android:name=".Admin.AdminAddNewBusiness"
             android:theme="@style/Theme.BelfastInANutshell.NoActionBar" />
+
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
+
         <activity
             android:name=".Profile.Login"
             android:theme="@style/Theme.BelfastInANutshell.NoActionBar">
             >
         </activity>
+
         <activity
             android:name=".Profile.Register"
             android:theme="@style/Theme.BelfastInANutshell.NoActionBar" />
+
         <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.BelfastInANutshell.NoActionBar">
@@ -78,10 +101,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             >
-        </activity> <!-- Code from https://github.com/ArthurHub/Android-Image-Cropper to crop images for profile pic -->
+
+        </activity>
+
+        <!-- Code from https://github.com/ArthurHub/Android-Image-Cropper to crop images for profile pic -->
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
-    </application>
 
+    </application>
 </manifest>

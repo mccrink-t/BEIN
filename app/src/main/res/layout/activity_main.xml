@@ -1,129 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/home_theme"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/separator"
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
+            android:background="#D7D7D7" />
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/home_theme"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="75dp"
+            android:layout_marginBottom="75dp">
 
-            <View
-                android:id="@+id/separator"
-                android:layout_width="fill_parent"
-                android:layout_height="1dip"
-                android:layout_alignParentTop="true"
-                android:layout_centerVertical="true"
-                android:background="#D7D7D7" />
-
-            <RelativeLayout
+            <TextView
+                android:id="@+id/beinTitleTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="75dp"
-                android:layout_marginBottom="75dp">
+                android:gravity="center"
+                android:text="BEIN"
+                android:textColor="@color/white"
+                android:textSize="36dp"
+                android:textStyle="bold"></TextView>
 
-                <TextView
-                    android:id="@+id/beinTitleTxt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="BEIN"
-                    android:textColor="@color/white"
-                    android:textSize="36dp"
-                    android:textStyle="bold"></TextView>
+        </RelativeLayout>
 
-            </RelativeLayout>
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alignmentMode="alignMargins"
+            android:columnCount="2"
+            android:columnOrderPreserved="false"
+            android:rowCount="1">
 
-            <GridLayout
-                android:layout_width="match_parent"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_directLogin"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:alignmentMode="alignMargins"
-                android:columnCount="2"
-                android:columnOrderPreserved="false"
-                android:rowCount="1">
+                android:layout_columnWeight="1"
+                android:backgroundTint="@color/teal_200"
+                app:cardCornerRadius="0dp">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card_directLogin"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_columnWeight="1"
-                    android:backgroundTint="@color/teal_200"
-                    app:cardCornerRadius="0dp"
-                    >
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-                    <LinearLayout
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/ic_logout"
+                        app:tint="@color/black" />
 
+                    <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="16dp"
-                        >
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:gravity="center_horizontal"
+                        android:text="Already have an Account? Login"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="17dp"
+                        android:textStyle="bold" />
 
-                        <ImageView
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
-                            android:src="@drawable/ic_logout"
-                            app:tint="@color/black" />
+                </LinearLayout>
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:gravity="center_horizontal"
-                            android:text="Already have an Account? Login"
-                            android:textAlignment="center"
-                            android:textColor="@color/black"
-                            android:textSize="17dp"
-                            android:textStyle="bold" />
+            </androidx.cardview.widget.CardView>
 
-                    </LinearLayout>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_directRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_columnWeight="1"
+                android:backgroundTint="@color/purple_200"
+                app:cardCornerRadius="0dp">
 
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card_directRegister"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_columnWeight="1"
-                    android:backgroundTint="@color/purple_200"
-                    app:cardCornerRadius="0dp">
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-                    <LinearLayout
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/ic_person"
+                        app:tint="@color/black" />
+
+                    <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="16dp">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:gravity="center_horizontal"
+                        android:text="Not Registered? Create an Account"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="17dp"
+                        android:textStyle="bold" />
 
-                        <ImageView
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
-                            android:src="@drawable/ic_person"
-                            app:tint="@color/black" />
+                </LinearLayout>
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:gravity="center_horizontal"
-                            android:text="Not Registered? Create an Account"
-                            android:textAlignment="center"
-                            android:textColor="@color/black"
-                            android:textSize="17dp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-            </GridLayout>
+            </androidx.cardview.widget.CardView>
+        </GridLayout>
 
 
-        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

@@ -20,10 +20,9 @@
             android:gravity="center_horizontal"
             android:text="Business Name"
             android:textAlignment="center"
-            android:textSize="26dp"
-            android:textStyle="bold"
             android:textColor="@color/white"
-            />
+            android:textSize="26dp"
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/business_image"
@@ -34,29 +33,28 @@
             android:scaleType="centerCrop" />
 
         <TextView
-            android:layout_marginTop="2dp"
             android:id="@+id/textView_userRating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/business_image"
             android:layout_marginLeft="6dp"
+            android:layout_marginTop="2dp"
             android:layout_marginRight="2dp"
             android:text="User Rating: "
             android:textSize="16dp"
             android:textStyle="bold" />
 
         <TextView
-            android:layout_marginTop="2dp"
             android:id="@+id/business_userRating"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/business_image"
+            android:layout_marginTop="2dp"
             android:layout_toRightOf="@+id/textView_userRating"
             android:text="User Rating"
-            android:textStyle="bold"
-            android:textSize="16dp"
             android:textColor="@color/white"
-            />
+            android:textSize="16dp"
+            android:textStyle="bold" />
 
         <View
             android:id="@+id/separator1"
@@ -85,9 +83,8 @@
             android:layout_below="@id/textView_business_description"
             android:layout_marginHorizontal="6dp"
             android:text="Business Description"
-            android:textSize="16dp"
             android:textColor="@color/white"
-            />
+            android:textSize="16dp" />
 
         <View
             android:id="@+id/separator2"
@@ -117,9 +114,8 @@
             android:layout_marginHorizontal="6dp"
             android:layout_marginBottom="4dp"
             android:text="Business Location"
-            android:textSize="16dp"
             android:textColor="@color/white"
-            />
+            android:textSize="16dp" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

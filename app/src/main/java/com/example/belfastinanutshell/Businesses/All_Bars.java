@@ -23,6 +23,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.belfastinanutshell.Home;
 import com.example.belfastinanutshell.MainActivity;
 import com.example.belfastinanutshell.Model.Businesses;
+import com.example.belfastinanutshell.Posts.AddNewPost;
+import com.example.belfastinanutshell.Posts.All_Posts;
 import com.example.belfastinanutshell.Prevalent.Prevalent;
 import com.example.belfastinanutshell.Profile.Profile;
 import com.example.belfastinanutshell.R;
@@ -38,6 +40,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import io.paperdb.Paper;
 
 public class All_Bars extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
     private DatabaseReference BusinessesRef;
     private RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
@@ -82,6 +85,7 @@ public class All_Bars extends AppCompatActivity implements NavigationView.OnNavi
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
     }
+
 
     @Override
     protected void onStart() {
@@ -162,24 +166,40 @@ public class All_Bars extends AppCompatActivity implements NavigationView.OnNavi
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
+            //Intent to start Home Activity
             Intent intent = new Intent(All_Bars.this, Home.class);
             startActivity(intent);
         } else if (id == R.id.nav_profile) {
+            //Intent to start Profile Activity
             Intent intent = new Intent(All_Bars.this, Profile.class);
             startActivity(intent);
         } else if (id == R.id.nav_search) {
+            //Intent to start search business Activity
             Intent intent = new Intent(All_Bars.this, SearchBusinessActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_bars) {
+            //Start the same Activity - aka refreshing
             Intent refresh = new Intent(this, All_Bars.class);
-            //Start the same Activity
             startActivity(refresh);
             finish();
         } else if (id == R.id.nav_restaurants) {
-
+            //Intent to start restaurants Activity
+            Intent intent = new Intent(All_Bars.this, All_Restaurants.class);
+            startActivity(intent);
         } else if (id == R.id.nav_entertainment) {
-
+            //Intent to start all entertainment businesses Activity
+            Intent intent = new Intent(All_Bars.this, All_Entertainment.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_add_blog) {
+            //Intent to start add a blog Activity
+            Intent intent = new Intent(All_Bars.this, AddNewPost.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_all_blogs) {
+            //Intent to start blogs list activity
+            Intent intent = new Intent(All_Bars.this, All_Posts.class);
+            startActivity(intent);
         } else if (id == R.id.nav_logout) {
+            //Intent to logout and destroy book method storing the current logged users details
             Toast.makeText(this, "Logging out...", Toast.LENGTH_SHORT).show();
             Paper.book().destroy();
             Intent intent = new Intent(All_Bars.this, MainActivity.class);

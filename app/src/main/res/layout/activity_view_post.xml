@@ -49,14 +49,13 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <RelativeLayout
+            android:id="@+id/r1PostReviews"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_centerHorizontal="true"
             android:layout_below="@+id/app_bar_view_post"
-            android:id="@+id/r1PostReviews"
+            android:layout_centerHorizontal="true"
             android:layout_marginVertical="5dp"
-            >
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/textTotalPostReviewsTextView"
@@ -81,8 +80,8 @@
                 android:id="@+id/textTotalPostRatingTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/textTotalPostReviews"
                 android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@+id/textTotalPostReviews"
                 android:text="Rating: "
                 android:textColor="@android:color/white"
                 android:textSize="16dp"
@@ -104,8 +103,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/r1PostReviews"
-            android:layout_marginTop="2dp"
-            >
+            android:layout_marginTop="2dp">
 
             <ImageView
                 android:id="@+id/image_post_view"
@@ -117,12 +115,12 @@
                 android:id="@+id/postTitle_Post_View"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/image_post_view"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="Post Title"
                 android:textColor="@android:color/white"
                 android:textSize="24dp"
-                android:layout_below="@+id/image_post_view"
                 android:textStyle="bold" />
 
 
@@ -172,7 +170,7 @@
                 android:text="Post Text"
                 android:textColor="@android:color/white"
                 android:textSize="15dp"
-                android:textStyle="normal"/>
+                android:textStyle="normal" />
 
             <View
                 android:id="@+id/separator3"
@@ -185,9 +183,9 @@
 
             <TextView
                 android:id="@+id/Posted_On_Date_textview"
-                android:layout_below="@+id/separator3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/separator3"
                 android:text="Posted On: "
                 android:textColor="@android:color/darker_gray"
                 android:textSize="15dp"
@@ -197,8 +195,8 @@
                 android:id="@+id/date_Post_View"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/Posted_On_Date_textview"
                 android:layout_below="@+id/separator3"
+                android:layout_toRightOf="@+id/Posted_On_Date_textview"
                 android:text="Dec 1st 1999"
                 android:textColor="@color/light_grey"
                 android:textSize="15dp"
@@ -206,11 +204,11 @@
 
             <TextView
                 android:id="@+id/Posted_On_Time_textview"
-                android:layout_below="@+id/separator3"
-                android:layout_toRightOf="@+id/date_Post_View"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/separator3"
                 android:layout_marginLeft="3dp"
+                android:layout_toRightOf="@+id/date_Post_View"
                 android:text="at:  "
                 android:textColor="@android:color/darker_gray"
                 android:textSize="15dp"
@@ -220,8 +218,8 @@
                 android:id="@+id/time_Post_View"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/Posted_On_Time_textview"
                 android:layout_below="@+id/separator3"
+                android:layout_toRightOf="@+id/Posted_On_Time_textview"
                 android:text="9:15pm"
                 android:textColor="@color/light_grey"
                 android:textSize="15dp"
@@ -232,6 +230,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/time_Post_View"
+                android:layout_centerHorizontal="true"
+                android:layout_marginHorizontal="2dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="15dp"
                 android:gravity="center"
@@ -239,9 +239,7 @@
                 android:textColor="#FFFFFF"
                 android:textSize="11.5dp"
                 android:textStyle="bold"
-                android:layout_marginHorizontal="2dp"
-                app:backgroundTint="#016868"
-                android:layout_centerHorizontal="true" ></Button>
+                app:backgroundTint="#016868"></Button>
 
 
         </RelativeLayout>

@@ -30,7 +30,7 @@ public class Register extends AppCompatActivity {
     //Variables required for registration form.
 //    private FirebaseAuth fAuth;
     private EditText inputFullName, inputEmail, inputPhone, inputPassword, inputConfirmPassword;
-//    private ProgressBar inputProgressBar;
+    //    private ProgressBar inputProgressBar;
     private TextView redirectLogin;
     private Button createAccountButton;
     private ProgressDialog loadingBar;
@@ -40,16 +40,6 @@ public class Register extends AppCompatActivity {
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
     //password pattern gained from https://www.geeksforgeeks.org/how-to-validate-a-password-using-regular-expressions-in-android/
-//    private static final Pattern PASSWORD_PATTERN
-//            Pattern.c("^" +
-//            "(?=.*[0-9])" + //a digit must occur at least once
-//            "(?=.*[a-z])" + //lower case letter must occur at least once
-//            "(?=.*[A-Z])" + //an upper case letter must occur at least once
-//            "(?=.*[@#$%^&+=!])" + //a special character must occur at least once you can replace with your special characters
-//            "(?=\\S+$)" + // no whitespace allowed in the entire string
-//            ".{4,}" + //anything, at least six places though
-//            "$");
-
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^" +
                     "(?=.*[0-9])" +
@@ -74,18 +64,6 @@ public class Register extends AppCompatActivity {
         inputConfirmPassword = (EditText) findViewById(R.id.register_confirmPassword);
         loadingBar = new ProgressDialog(this, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
         redirectLogin = (TextView) findViewById(R.id.loginTxt);
-
-//        inputProgressBar = (ProgressBar) findViewById(R.id.register_progressBar);
-
-//        mLoginTxt = (TextView) findViewById(R.id.loginTxt);
-
-//        fAuth = FirebaseAuth.getInstance();
-
-//      Checks if user is already logged into the application, if they are it sends them to the MainActivity
-//        if (fAuth.getCurrentUser() != null) {
-//            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-//            finish();
-//        }
 
 //      When register button is clicked
         createAccountButton.setOnClickListener(new View.OnClickListener() {
@@ -120,32 +98,23 @@ public class Register extends AppCompatActivity {
             return;
         }
         //if the entered email address does not match the email pattern
-        else if (!email.matches(emailPattern))
-        {
+        else if (!email.matches(emailPattern)) {
             inputEmail.setError("Invalid email Address Layout");
-        }
-
-        else if (TextUtils.isEmpty(phone)) {
+        } else if (TextUtils.isEmpty(phone)) {
             inputPhone.setError("Please Enter Your Phone Number");
             return;
-        }
-
-        else if(phone.length() < 11 || phone.length()> 11){
+        } else if (phone.length() < 11 || phone.length() > 11) {
             inputPhone.setError("Please Enter a valid UK Mobile Number");
             return;
-        }
-
-        else if (TextUtils.isEmpty(fullName)) {
+        } else if (TextUtils.isEmpty(fullName)) {
             inputFullName.setError("Please Enter Your Full Name");
             return;
         }
-
         //if password field is empty, display error text
         else if (TextUtils.isEmpty(password)) {
             inputPassword.setError("Please enter a Password");
             return;
-        }
-        else if (!PASSWORD_PATTERN.matcher(password).matches()) {
+        } else if (!PASSWORD_PATTERN.matcher(password).matches()) {
             inputPassword.setError("Password is too weak! \nPassword Must contain: " +
                     "\nAt least 6 characters, " +
                     "\nAt least 1 Special Character, " +
@@ -227,66 +196,3 @@ public class Register extends AppCompatActivity {
         });
     }
 }
-
-//                checks if email address is valid -- aka .com .co.uk @ etc
-//                                                if (Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-//                                                    inputEmail.setError("Please provide a valid Email");
-//                                                    inputEmail.requestFocus();
-//                                                    return;
-//                                                }
-
-//Make the progress bar visible
-//                inputProgressBar.setVisibility(View.VISIBLE);
-
-//register the user into firebase
-//                fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                        if (task.isSuccessful()) {
-//                            User user = new User(fullName, email);
-//
-//                            FirebaseDatabase.getInstance().getReference("Users")
-//                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-//                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                @Override
-//                                public void onComplete(@NonNull Task<Void> task) {
-//                                    if (task.isSuccessful()) {
-//                                        Toast.makeText(Register.this, "User Created.", Toast.LENGTH_SHORT).show();
-//                                        inputProgressBar.setVisibility(View.GONE);
-//                                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-//
-//
-//                                    } else {
-//                                        Toast.makeText(Register.this, "Error!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-//                                        //Hide Progress bar if user fails login
-//                                        inputProgressBar.setVisibility(View.GONE);
-//                                    }
-//                                }
-//                            });
-//                        } else {
-//                            Toast.makeText(Register.this, "Error!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-//                            //Hide Progress bar if user fails login
-//                            inputProgressBar.setVisibility(View.GONE);
-//                        }
-//                    }
-//                });
-//
-//            }}
-//        });
-//        mLoginTxt.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(getApplicationContext(), Login.class));
-//            }
-//        });
-//    }
-//}
-
-
-//Redirect to login page
-//        mLoginTxt.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(getApplicationContext(),Login.class));
-//            }
-//        });

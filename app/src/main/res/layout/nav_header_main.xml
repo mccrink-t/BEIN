@@ -13,47 +13,46 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/user_profile_image"
         android:layout_width="96dp"
         android:layout_height="96dp"
-        android:src="@drawable/profile"
         android:layout_gravity="center"
-        app:civ_border_width="2dp"
-        app:civ_border_color="@android:color/white"/>
+        android:src="@drawable/profile"
+        app:civ_border_color="@android:color/white"
+        app:civ_border_width="2dp" />
 
 
     <TextView
         android:id="@+id/user_profile_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:text="user name"
-        android:gravity="center"
         android:layout_marginLeft="4dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:gravity="center"
+        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:text="user name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
-<!--&lt;!&ndash;    Icon image style recieved from https://github.com/hdodenhof/CircleImageView&ndash;&gt;-->
-<!--    <de.hdodenhof.circleimageview.CircleImageView-->
-<!--        xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--        android:id="@+id/userProfilePic"-->
-<!--        android:layout_width="96dp"-->
-<!--        android:layout_height="96dp"-->
-<!--        android:src="@drawable/profile"-->
-<!--        app:civ_border_width="2dp"-->
-<!--        app:civ_border_color="@color/white"/>-->
+    <!--&lt;!&ndash;    Icon image style recieved from https://github.com/hdodenhof/CircleImageView&ndash;&gt;-->
+    <!--    <de.hdodenhof.circleimageview.CircleImageView-->
+    <!--        xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--        android:id="@+id/userProfilePic"-->
+    <!--        android:layout_width="96dp"-->
+    <!--        android:layout_height="96dp"-->
+    <!--        android:src="@drawable/profile"-->
+    <!--        app:civ_border_width="2dp"-->
+    <!--        app:civ_border_color="@color/white"/>-->
 
-<!--    <TextView-->
-<!--        android:id="@+id/userProfileName"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:paddingTop="@dimen/nav_header_vertical_spacing"-->
-<!--        android:textSize="20sp"-->
-<!--        android:textStyle="bold"-->
-<!--        android:text="Username"-->
-<!--        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/userProfileName"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:paddingTop="@dimen/nav_header_vertical_spacing"-->
+    <!--        android:textSize="20sp"-->
+    <!--        android:textStyle="bold"-->
+    <!--        android:text="Username"-->
+    <!--        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />-->
 
 </LinearLayout>

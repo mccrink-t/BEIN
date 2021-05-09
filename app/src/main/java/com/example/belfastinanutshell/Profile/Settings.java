@@ -48,6 +48,7 @@ public class Settings extends AppCompatActivity {
     private StorageReference storageProfilePicRef;
     private String checker = "";
     private StorageTask uploadTask;
+    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
 
     @Override
@@ -86,21 +87,23 @@ public class Settings extends AppCompatActivity {
             public void onClick(View view) {
                 if (checker.equals("clicked")) {
 //                    call to update all of their new data - including new profile pic
-                    userInfoUpdated();
+                    userDataAndImageUpdated();
                 } else {
                     //call to update all of their new data - NOT including a profile pic
                     //checker used to check if users wants to update the profile pics as well as the data
-                    updateOnlyUserData();
+//                    updateOnlyUserData();
+                    userDataUpdated();
                 }
             }
         });
 
 
+        //On click of the profile start the Crop Image Activity
+        //Code gained from https://stackoverflow.com/questions/47532537/image-cropper-failed-to-start-a-new-activity-from-the-onactivityresult
         changeProfilePicBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 checker = "clicked";
-
                 CropImage.activity(imageUri)
                         .setAspectRatio(1, 1)
                         .start(Settings.this);
@@ -109,6 +112,7 @@ public class Settings extends AppCompatActivity {
     }
 
     private void userInfoDisplay(CircleImageView profilePicView, EditText fNameSettings, EditText institutionSettings, EditText emailSettings, EditText yosSettings) {
+        //A database reference to direct the system to the correct table on firebase
         DatabaseReference UsersRef = FirebaseDatabase.getInstance().getReference().child("Users").child(Prevalent.CurrentOnlineUser.getPhone());
 
         UsersRef.addValueEventListener(new ValueEventListener() {
@@ -131,11 +135,8 @@ public class Settings extends AppCompatActivity {
                         fNameSettings.setText(fullName);
                         emailSettings.setText(email);
                         degreeSettings.setText(degreeOfStudy);
-                        //may need to fix this
                         yosSettings.setText(yearOfStudy);
-                    }
-                    else
-                    {
+                    } else {
                         String institution = snapshot.child("institution").getValue().toString();
                         String fullName = snapshot.child("fullName").getValue().toString();
                         String email = snapshot.child("email").getValue().toString();
@@ -146,7 +147,6 @@ public class Settings extends AppCompatActivity {
                         fNameSettings.setText(fullName);
                         emailSettings.setText(email);
                         degreeSettings.setText(degreeOfStudy);
-                        //may need to fix this
                         yosSettings.setText(yearOfStudy);
 
                     }
@@ -161,9 +161,10 @@ public class Settings extends AppCompatActivity {
     }
 
 
+    //method to update the user data which is stored in the users table in the database under the users unique ID
     private void updateOnlyUserData() {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users");
-
+        //A hash function to map user entered values, to the database - thus over-writing any previously stored data
         HashMap<String, Object> userMap = new HashMap<>();
         userMap.put("fullName", fNameSettings.getText().toString());
         userMap.put("email", emailSettings.getText().toString());
@@ -171,8 +172,11 @@ public class Settings extends AppCompatActivity {
         userMap.put("degreeOfStudy", degreeSettings.getText().toString());
         userMap.put("yearOfStudy", yosSettings.getText().toString());
 
+        //getting the destination of the users data (as each users unique ID is their phone number)
+        //updating children aka pushing the changes to the table
         ref.child(Prevalent.CurrentOnlineUser.getPhone()).updateChildren(userMap);
 
+        //Intent to bring the user back to the mainActivity (thus restarting the application to apply these changes)
         startActivity(new Intent(Settings.this, MainActivity.class));
         Toast.makeText(Settings.this, "Profile Info update successfully.", Toast.LENGTH_SHORT).show();
         finish();
@@ -189,32 +193,59 @@ public class Settings extends AppCompatActivity {
 
             profilePicView.setImageURI(imageUri);
         } else {
-            Toast.makeText(this, "Error, Try Again.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error Adding Your Image, Try Again.", Toast.LENGTH_SHORT).show();
 
             startActivity(new Intent(Settings.this, Settings.class));
             finish();
         }
     }
 
+//    Method to check that all the text fields have been filled in by the end user
+//    Method also
+    private void userDataAndImageUpdated() {
+        if (TextUtils.isEmpty(fNameSettings.getText().toString())) {
+            fNameSettings.setError("Please Enter Your Name");
+        } else if (TextUtils.isEmpty(emailSettings.getText().toString())) {
+            emailSettings.setError("Please Enter Your Email Address");
+        }
+        //if the entered email address does not match the email pattern
+        else if (!emailSettings.getText().toString().matches(emailPattern)) {
+            emailSettings.setError("Invalid email Address Layout");
+        } else if (TextUtils.isEmpty(institutionSettings.getText().toString())) {
+            institutionSettings.setError("Please Enter Your Institution Name.");
+        } else if (TextUtils.isEmpty(degreeSettings.getText().toString())) {
+            degreeSettings.setError("Please Enter The Degree You Study.");
+        } else if (TextUtils.isEmpty(yosSettings.getText().toString())) {
+            yosSettings.setError("Please Enter Your Year of Study");
+        } else if (checker.equals("clicked")) {
+            //Calling the upload image method
+            uploadProfileImage();
+        }
+    }
 
-    private void userInfoUpdated() {
+    private void userDataUpdated() {
         if (TextUtils.isEmpty(fNameSettings.getText().toString())) {
             Toast.makeText(this, "Please Enter Your Name.", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(emailSettings.getText().toString())) {
             Toast.makeText(this, "Please Enter Your Email Address.", Toast.LENGTH_SHORT).show();
+        }
+        //if the entered email address does not match the email pattern
+        else if (!emailSettings.getText().toString().matches(emailPattern)) {
+            emailSettings.setError("Invalid email Address Layout");
         } else if (TextUtils.isEmpty(institutionSettings.getText().toString())) {
             Toast.makeText(this, "Please Enter Your Institution Name.", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(degreeSettings.getText().toString())) {
             Toast.makeText(this, "Please Enter The Degree You Study.", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(yosSettings.getText().toString())) {
             Toast.makeText(this, "Please Enter Your Year of Study.", Toast.LENGTH_SHORT).show();
-        } else if (checker.equals("clicked")) {
-            uploadImage();
+        }
+        else{
+            updateOnlyUserData();
         }
     }
 
 
-    private void uploadImage() {
+    private void uploadProfileImage() {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Update Profile");
         progressDialog.setMessage("Please wait, while we are updating your account information");
@@ -244,8 +275,10 @@ public class Settings extends AppCompatActivity {
                                 Uri downloadUrl = task.getResult();
                                 myUrl = downloadUrl.toString();
 
+                                //A database reference to direct the system to the correct table on firebase
                                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users");
 
+                                //A hash function to map user entered values, to the database - thus over-writing any previously stored data
                                 HashMap<String, Object> userMap = new HashMap<>();
                                 userMap.put("fullName", fNameSettings.getText().toString());
                                 userMap.put("email", emailSettings.getText().toString());
@@ -253,10 +286,13 @@ public class Settings extends AppCompatActivity {
                                 userMap.put("degreeOfStudy", degreeSettings.getText().toString());
                                 userMap.put("yearOfStudy", yosSettings.getText().toString());
                                 userMap.put("image", myUrl);
-                                ref.child(Prevalent.CurrentOnlineUser.getPhone()).updateChildren(userMap);
 
+                                //getting the destination of the users data (as each users unique ID is their phone number)
+                                //updating children aka pushing the changes to the table
+                                ref.child(Prevalent.CurrentOnlineUser.getPhone()).updateChildren(userMap);
                                 progressDialog.dismiss();
 
+                                //Intent to bring the user back to the mainActivity (thus restarting the application to apply these changes)
                                 startActivity(new Intent(Settings.this, MainActivity.class));
                                 Toast.makeText(Settings.this, "Profile Info update successfully.", Toast.LENGTH_SHORT).show();
                                 finish();

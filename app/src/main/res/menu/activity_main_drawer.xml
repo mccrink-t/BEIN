@@ -1,91 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single"
-        android:id="@+id/group1">
+    <group
+        android:id="@+id/group1"
+        android:checkableBehavior="single">
 
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
-            android:title="@string/menu_home"
-            android:iconTint="@android:color/white"/>
+            android:iconTint="@android:color/white"
+            android:title="@string/menu_home" />
 
 
         <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_profile_icon"
-            android:title="Profile"
-            android:iconTint="@android:color/white"/>
-
-<!--        <item-->
-<!--            android:id="@+id/nav_map"-->
-<!--            android:icon="@drawable/ic_map"-->
-<!--            android:title="Map"
-                android:iconTint="@android:color/white"/>-->
+            android:iconTint="@android:color/white"
+            android:title="Profile" />
 
     </group>
 
-    <group android:checkableBehavior="single"
+    <group
         android:id="@+id/adminNavGroup"
-        android:visible="false"
-        >
+        android:checkableBehavior="single"
+        android:visible="false">
 
         <item
             android:id="@+id/nav_add_business"
             android:icon="@drawable/ic_add_business"
-            android:title="Add a New Business"
-            android:iconTint="@android:color/white"/>
+            android:iconTint="@android:color/white"
+            android:title="Add a New Business" />
 
 
     </group>
 
-    <group android:checkableBehavior="single"
-        android:id="@+id/group2">
+    <group
+        android:id="@+id/group2"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_search"
             android:icon="@drawable/ic_search"
-            android:title="Search for a Business"
-            android:iconTint="@android:color/white"/>
+            android:iconTint="@android:color/white"
+            android:title="Search for a Business" />
         <item
             android:id="@+id/nav_bars"
             android:icon="@drawable/ic_bar"
-            android:title="Bars"
-            android:iconTint="@android:color/white"/>
+            android:iconTint="@android:color/white"
+            android:title="Bars" />
         <item
             android:id="@+id/nav_restaurants"
             android:icon="@drawable/ic_restaurant"
-            android:title="Restaurants"
-            android:iconTint="@android:color/white"/>
+            android:iconTint="@android:color/white"
+            android:title="Restaurants" />
         <item
             android:id="@+id/nav_entertainment"
             android:icon="@drawable/ic_entertainment"
-            android:title="Entertainment"
-            android:iconTint="@android:color/white"/>
+            android:iconTint="@android:color/white"
+            android:title="Entertainment" />
 
     </group>
 
-    <group android:checkableBehavior="single"
-        android:id="@+id/group3">
+    <group
+        android:id="@+id/group3"
+        android:checkableBehavior="single">
 
         <item
             android:id="@+id/nav_add_blog"
             android:icon="@drawable/ic_add_blog"
-            android:title="Post Blog"
-            android:iconTint="@android:color/white"/>
+            android:iconTint="@android:color/white"
+            android:title="Post Blog" />
         <item
             android:id="@+id/nav_all_blogs"
             android:icon="@drawable/ic_blog"
-            android:title="All Blogs"
-            android:iconTint="@android:color/white"/>
+            android:iconTint="@android:color/white"
+            android:title="All Blogs" />
 
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_logout"
-            android:title="Logout"
-            android:iconTint="@android:color/white"/>
+            android:iconTint="@android:color/white"
+            android:title="Logout" />
 
     </group>
 </menu>
