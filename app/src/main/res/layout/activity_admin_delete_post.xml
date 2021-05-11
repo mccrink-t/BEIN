@@ -132,7 +132,7 @@
             android:layout_height="match_parent"
             android:layout_below="@+id/admin_postDetailsRL1"
             android:layout_marginHorizontal="15dp"
-            android:layout_marginTop="2dp">
+            android:layout_marginTop="5dp">
 
             <TextView
                 android:id="@+id/admin_text_description_Post_View"
@@ -167,6 +167,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/admin_separator2"
+                android:layout_marginVertical="5dp"
                 android:text="Post Text"
                 android:textColor="@android:color/white"
                 android:textSize="15dp"
@@ -226,24 +227,35 @@
                 android:textStyle="normal" />
 
             <Button
-                android:id="@+id/admin_post_comment_btn"
-                android:layout_width="wrap_content"
+                android:id="@+id/admin_post_reviews_btn"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/admin_time_Post_View"
                 android:layout_centerHorizontal="true"
-                android:layout_marginHorizontal="2dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginHorizontal="50dp"
+                android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:text="Delete Post"
+                android:text="Post Reviews"
                 android:textColor="#FFFFFF"
-                android:textSize="11.5dp"
+                android:textSize="14dp"
                 android:textStyle="bold"
                 app:backgroundTint="#016868"></Button>
 
+            <Button
+                android:id="@+id/admin_delete_post_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/admin_post_reviews_btn"
+                android:layout_centerHorizontal="true"
+                android:layout_marginHorizontal="50dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:text="Delete Post"
+                android:textColor="#FFFFFF"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                app:backgroundTint="#016868"></Button>
 
         </RelativeLayout>
-
-
     </RelativeLayout>
 </ScrollView>

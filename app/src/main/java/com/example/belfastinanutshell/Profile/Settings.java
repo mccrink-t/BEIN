@@ -122,7 +122,7 @@ public class Settings extends AppCompatActivity {
                 if (snapshot.exists()) {
                     //if a child image exists
                     if (snapshot.child("image").exists()) {
-                        //if it exists - fetch and display on the profile
+                        //if the user exists and has an image on their profile - fetch and display on the profile
                         String image = snapshot.child("image").getValue().toString();
                         String institution = snapshot.child("institution").getValue().toString();
                         String fullName = snapshot.child("fullName").getValue().toString();
@@ -136,7 +136,10 @@ public class Settings extends AppCompatActivity {
                         emailSettings.setText(email);
                         degreeSettings.setText(degreeOfStudy);
                         yosSettings.setText(yearOfStudy);
-                    } else {
+
+                        //else if statement to check if the user has filled out the other fields and not included an image on their profile - fetch and display on the profile
+                    } else if (snapshot.child("degreeOfStudy").exists()) {
+                        //if it exists - fetch and display on the profile
                         String institution = snapshot.child("institution").getValue().toString();
                         String fullName = snapshot.child("fullName").getValue().toString();
                         String email = snapshot.child("email").getValue().toString();
@@ -148,6 +151,15 @@ public class Settings extends AppCompatActivity {
                         emailSettings.setText(email);
                         degreeSettings.setText(degreeOfStudy);
                         yosSettings.setText(yearOfStudy);
+
+                        //else statement to check if the user has filled out the other fields and not included an image on their profile nor have they added additional
+                        // information after registration - fetch and display on the profile
+                    } else {
+                        String fullName = snapshot.child("fullName").getValue().toString();
+                        String email = snapshot.child("email").getValue().toString();
+
+                        fNameSettings.setText(fullName);
+                        emailSettings.setText(email);
 
                     }
                 }
@@ -200,7 +212,7 @@ public class Settings extends AppCompatActivity {
         }
     }
 
-//    Method to check that all the text fields have been filled in by the end user
+    //    Method to check that all the text fields have been filled in by the end user
 //    Method also
     private void userDataAndImageUpdated() {
         if (TextUtils.isEmpty(fNameSettings.getText().toString())) {
@@ -238,8 +250,7 @@ public class Settings extends AppCompatActivity {
             Toast.makeText(this, "Please Enter The Degree You Study.", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(yosSettings.getText().toString())) {
             Toast.makeText(this, "Please Enter Your Year of Study.", Toast.LENGTH_SHORT).show();
-        }
-        else{
+        } else {
             updateOnlyUserData();
         }
     }

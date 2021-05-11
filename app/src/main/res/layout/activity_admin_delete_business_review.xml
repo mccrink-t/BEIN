@@ -10,14 +10,14 @@
         android:id="@+id/single_business_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/black"
+        android:background="@color/white"
         android:overScrollMode="ifContentScrolls"
         android:scrollbarStyle="insideOverlay"
         android:scrollbars="vertical"
-        tools:context=".Businesses.BusinessDetails">
+        tools:context=".Admin.Admin_Delete_Business_Review">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/app_bar_single_business_details"
+            android:id="@+id/app_bar_single_business_review_admin"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/nav_bar_header_theme">
@@ -32,7 +32,7 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/close_single_business_details_btn"
+                        android:id="@+id/close_single_business_review_admin_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
@@ -49,98 +49,59 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <RelativeLayout
-            android:id="@+id/businessDetailsRL1"
+            android:id="@+id/adminBusinessReviewRL1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/app_bar_single_business_details">
+            android:layout_below="@+id/app_bar_single_business_review_admin">
+
+            <ImageView
+                android:id="@+id/image_business_details_review"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                android:scaleType="centerCrop" />
 
             <TextView
-                android:id="@+id/name_business_details"
-                android:layout_width="match_parent"
+                android:id="@+id/name_business_details_review"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/image_business_details_review"
+                android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="10dp"
-                android:gravity="center"
+                android:layout_marginBottom="-5dp"
                 android:text="Business Name"
-                android:textColor="@android:color/white"
+                android:textColor="#009688"
                 android:textSize="28dp"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/image_business_details"
-                android:layout_width="match_parent"
-                android:layout_height="230dp"
-                android:layout_below="@+id/name_business_details"
-                android:scaleType="centerCrop" />
+            <TextView
+                android:id="@+id/text_name_business_details_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/name_business_details_review"
+                android:layout_marginHorizontal="15dp"
+                android:gravity="center"
+                android:text="Review Left By: "
+                android:textColor="#009688"
+                android:textSize="22dp"
+                android:textStyle="bold" />
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/businessDetailsRL2"
+            android:id="@+id/adminBusinessReviewRL2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/businessDetailsRL1"
-            android:layout_marginHorizontal="15dp">
-
-            <RelativeLayout
-                android:id="@+id/rlBDetails"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:gravity="center">
-
-                <TextView
-                    android:id="@+id/textTotalBusinessReviewsTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Reviews: "
-                    android:textColor="@android:color/white"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textTotalBusinessReviewsText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_toRightOf="@id/textTotalBusinessReviewsTextView"
-                    android:text="(0)"
-                    android:textColor="@android:color/white"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textTotalBusinessRatingTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_toRightOf="@+id/textTotalBusinessReviewsText"
-                    android:text="Rating: "
-                    android:textColor="@android:color/white"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textTotalBusinessRating"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_toRightOf="@id/textTotalBusinessRatingTextView"
-                    android:text="0"
-                    android:textColor="@android:color/white"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-            </RelativeLayout>
+            android:layout_below="@+id/adminBusinessReviewRL1"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="5dp">
 
             <TextView
-
-                android:id="@+id/text_description_business_details"
+                android:id="@+id/text_userName_business_review_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/rlBDetails"
-                android:text="About: "
-                android:textColor="@android:color/white"
+                android:text="User: "
+                android:textColor="#00695C"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -148,30 +109,30 @@
                 android:id="@+id/separator1"
                 android:layout_width="fill_parent"
                 android:layout_height="1dip"
-                android:layout_below="@+id/text_description_business_details"
+                android:layout_below="@+id/text_userName_business_review_details"
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="5dp"
                 android:background="#808080" />
 
             <TextView
-                android:id="@+id/description_business_details"
+                android:id="@+id/userName_business_review_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/separator1"
-                android:text="Business Description"
-                android:textColor="@android:color/white"
+                android:text="User's Name"
+                android:textColor="@android:color/black"
                 android:textSize="15dp"
                 android:textStyle="normal" />
 
 
             <TextView
-                android:id="@+id/text_location_business_details"
+                android:id="@+id/text_comment_business_review_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/description_business_details"
+                android:layout_below="@+id/userName_business_review_details"
                 android:layout_marginTop="10dp"
-                android:text="Location: "
-                android:textColor="@android:color/white"
+                android:text="Comment Made: "
+                android:textColor="#00695C"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -179,29 +140,29 @@
                 android:id="@+id/separator2"
                 android:layout_width="fill_parent"
                 android:layout_height="1dip"
-                android:layout_below="@+id/text_location_business_details"
+                android:layout_below="@+id/text_comment_business_review_details"
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="5dp"
                 android:background="#808080" />
 
             <TextView
-                android:id="@+id/location_business_details"
+                android:id="@+id/comment_business_review_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/separator2"
-                android:text="Business Location"
-                android:textColor="@android:color/white"
+                android:text="What the User wrote for a comment"
+                android:textColor="@android:color/black"
                 android:textSize="15dp"
                 android:textStyle="normal" />
 
             <TextView
-                android:id="@+id/text_opening_hours_business_details"
+                android:id="@+id/number_rating_business_review_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/location_business_details"
+                android:layout_below="@+id/comment_business_review_details"
                 android:layout_marginTop="10dp"
-                android:text="Opening Hours: "
-                android:textColor="@android:color/white"
+                android:text="Rating Made by User: "
+                android:textColor="#00695C"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -209,29 +170,29 @@
                 android:id="@+id/separator3"
                 android:layout_width="fill_parent"
                 android:layout_height="1dip"
-                android:layout_below="@+id/text_opening_hours_business_details"
+                android:layout_below="@+id/number_rating_business_review_details"
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="5dp"
                 android:background="#808080" />
 
             <TextView
-                android:id="@+id/opening_hours_business_details"
+                android:id="@+id/rating_business_review_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/separator3"
-                android:text="Business Opening Hours"
-                android:textColor="@android:color/white"
+                android:text="Number Here"
+                android:textColor="@android:color/black"
                 android:textSize="15dp"
                 android:textStyle="normal" />
 
             <TextView
-                android:id="@+id/text_contact_info_business_details"
+                android:id="@+id/text_date_business_review_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/opening_hours_business_details"
+                android:layout_below="@+id/rating_business_review_details"
                 android:layout_marginTop="10dp"
-                android:text="Contact Number: "
-                android:textColor="@android:color/white"
+                android:text="Date of Review: "
+                android:textColor="#00695C"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -239,29 +200,29 @@
                 android:id="@+id/separator4"
                 android:layout_width="fill_parent"
                 android:layout_height="1dip"
-                android:layout_below="@+id/text_contact_info_business_details"
+                android:layout_below="@+id/text_date_business_review_details"
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="5dp"
                 android:background="#808080" />
 
             <TextView
-                android:id="@+id/contact_info_business_details"
+                android:id="@+id/date_business_review_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/separator4"
-                android:text="Business Number"
-                android:textColor="@android:color/white"
+                android:text="Date Here"
+                android:textColor="@android:color/black"
                 android:textSize="15dp"
                 android:textStyle="normal" />
 
             <TextView
-                android:id="@+id/text_website_business_details"
+                android:id="@+id/text_time_business_review_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/contact_info_business_details"
+                android:layout_below="@+id/date_business_review_details"
                 android:layout_marginTop="10dp"
-                android:text="Website: "
-                android:textColor="@android:color/white"
+                android:text="Time of Review: "
+                android:textColor="#00695C"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -269,50 +230,55 @@
                 android:id="@+id/separator5"
                 android:layout_width="fill_parent"
                 android:layout_height="1dip"
-                android:layout_below="@+id/text_website_business_details"
+                android:layout_below="@+id/text_time_business_review_details"
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="5dp"
                 android:background="#808080" />
 
             <TextView
-                android:id="@+id/website_business_details"
+                android:id="@+id/time_business_review_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/separator5"
-                android:text="Business Website"
-                android:textColor="@android:color/white"
+                android:text="Time Here"
+                android:textColor="@android:color/black"
                 android:textSize="15dp"
                 android:textStyle="normal" />
 
+            <!--            <View-->
+            <!--                android:id="@+id/separator6"-->
+            <!--                android:layout_width="fill_parent"-->
+            <!--                android:layout_height="1dip"-->
+            <!--                android:layout_below="@+id/website_business_details"-->
+            <!--                android:layout_marginTop="2dp"-->
+            <!--                android:layout_marginBottom="5dp"-->
+            <!--                android:background="#808080" />-->
+
+
+            <!--    <RatingBar-->
+            <!--        android:id="@+id/businessRating"-->
+            <!--        android:layout_width="wrap_content"-->
+            <!--        android:layout_height="wrap_content"-->
+            <!--        android:numStars="5"-->
+            <!--        android:stepSize="1"-->
+            <!--        android:layout_below="@+id/website_business_details">-->
+            <!--    </RatingBar>-->
+
             <Button
-                android:id="@+id/business_review_btn"
-                android:layout_width="165dp"
-                android:layout_height="40dp"
-                android:layout_below="@id/website_business_details"
-                android:layout_marginHorizontal="2dp"
+                android:id="@+id/delete_business_review_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/time_business_review_details"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="15dp"
                 android:gravity="center"
-                android:text="Business Reviews"
+                android:text="Delete Review"
                 android:textColor="#FFFFFF"
-                android:textSize="11.5dp"
+                android:textSize="15dp"
                 android:textStyle="bold"
                 app:backgroundTint="#016868"></Button>
 
-            <Button
-                android:id="@+id/locate_business_btn"
-                android:layout_width="165dp"
-                android:layout_height="40dp"
-                android:layout_below="@id/website_business_details"
-                android:layout_marginHorizontal="2dp"
-                android:layout_marginTop="5dp"
-                android:layout_toRightOf="@+id/business_review_btn"
-                android:gravity="center"
-                android:text="Locate"
-                android:textColor="#FFFFFF"
-                android:textSize="11.5dp"
-                android:textStyle="bold"
-                app:backgroundTint="#016868"></Button>
 
         </RelativeLayout>
 

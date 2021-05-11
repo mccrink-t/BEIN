@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="vertical">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/single_post_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:overScrollMode="ifContentScrolls"
+        android:scrollbarStyle="insideOverlay"
+        android:scrollbars="vertical"
+        tools:context=".Admin_Delete_Post_Review">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_single_post_review_admin"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/nav_bar_header_theme">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_single_post_reviews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/close_single_post_review_admin_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:text="Close"
+                        android:textColor="@android:color/white"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <RelativeLayout
+            android:id="@+id/adminPostReviewRL1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/app_bar_single_post_review_admin">
+
+            <ImageView
+                android:id="@+id/image_post_details_review"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/title_post_details_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/image_post_details_review"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="-5dp"
+                android:text="Post Title"
+                android:textColor="#009688"
+                android:textSize="28dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_name_post_details_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title_post_details_review"
+                android:layout_marginHorizontal="15dp"
+                android:gravity="center"
+                android:text="Review Left By: "
+                android:textColor="#009688"
+                android:textSize="22dp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/adminPostReviewRL2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/adminPostReviewRL1"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/text_userName_post_review_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlBDetails"
+                android:text="User: "
+                android:textColor="#00695C"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/separator1"
+                android:layout_width="fill_parent"
+                android:layout_height="1dip"
+                android:layout_below="@+id/text_userName_post_review_details"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="5dp"
+                android:background="#808080" />
+
+            <TextView
+                android:id="@+id/userName_post_review_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/separator1"
+                android:text="User's Name"
+                android:textColor="@android:color/black"
+                android:textSize="15dp"
+                android:textStyle="normal" />
+
+
+            <TextView
+                android:id="@+id/text_comment_post_review_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/userName_post_review_details"
+                android:layout_marginTop="10dp"
+                android:text="Comment Made: "
+                android:textColor="#00695C"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/separator2"
+                android:layout_width="fill_parent"
+                android:layout_height="1dip"
+                android:layout_below="@+id/text_comment_post_review_details"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="5dp"
+                android:background="#808080" />
+
+            <TextView
+                android:id="@+id/comment_post_review_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/separator2"
+                android:text="What the User wrote for a comment"
+                android:textColor="@android:color/black"
+                android:textSize="15dp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/number_rating_post_review_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/comment_post_review_details"
+                android:layout_marginTop="10dp"
+                android:text="Rating Made by User: "
+                android:textColor="#00695C"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/separator3"
+                android:layout_width="fill_parent"
+                android:layout_height="1dip"
+                android:layout_below="@+id/number_rating_post_review_details"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="5dp"
+                android:background="#808080" />
+
+            <TextView
+                android:id="@+id/rating_post_review_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/separator3"
+                android:text="Number Here"
+                android:textColor="@android:color/black"
+                android:textSize="15dp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/text_date_post_review_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rating_post_review_details"
+                android:layout_marginTop="10dp"
+                android:text="Date of Review: "
+                android:textColor="#00695C"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/separator4"
+                android:layout_width="fill_parent"
+                android:layout_height="1dip"
+                android:layout_below="@+id/text_date_post_review_details"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="5dp"
+                android:background="#808080" />
+
+            <TextView
+                android:id="@+id/date_post_review_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/separator4"
+                android:text="Date Here"
+                android:textColor="@android:color/black"
+                android:textSize="15dp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/text_time_post_review_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/date_post_review_details"
+                android:layout_marginTop="10dp"
+                android:text="Time of Review: "
+                android:textColor="#00695C"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/separator5"
+                android:layout_width="fill_parent"
+                android:layout_height="1dip"
+                android:layout_below="@+id/text_time_post_review_details"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="5dp"
+                android:background="#808080" />
+
+            <TextView
+                android:id="@+id/time_post_review_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/separator5"
+                android:text="Time Here"
+                android:textColor="@android:color/black"
+                android:textSize="15dp"
+                android:textStyle="normal" />
+
+            <Button
+                android:id="@+id/delete_post_review_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/time_post_review_details"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="15dp"
+                android:gravity="center"
+                android:text="Delete Comment"
+                android:textColor="#FFFFFF"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                app:backgroundTint="#016868"></Button>
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+</ScrollView>

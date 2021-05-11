@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.belfastinanutshell.AdminPostReviews;
 import com.example.belfastinanutshell.Model.Posts;
 import com.example.belfastinanutshell.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -32,7 +33,8 @@ public class AdminDeletePost extends AppCompatActivity {
     private ImageView imagePost;
     private TextView closeBtn;
     private String postID = "";
-    private Button deletePostBtn;
+    private String post_Title = "";
+    private Button deletePostBtn, postReviewsBtn;
     private DatabaseReference postDetailsRef, postRatingRef, postsDeleteRef;
     private String Post_Key;
     private String Post_Title;
@@ -45,10 +47,12 @@ public class AdminDeletePost extends AppCompatActivity {
         //grab post ID from previous activity
         postID = getIntent().getStringExtra("postID");
 
+
         pTitleView = (TextView) findViewById(R.id.admin_postTitle_Post_View);
         pTextView = (TextView) findViewById(R.id.admin_text_Post_View);
         pUserNameTextView = (TextView) findViewById(R.id.admin_users_Name_Post_View);
-        deletePostBtn = (Button) findViewById(R.id.admin_post_comment_btn);
+        deletePostBtn = (Button) findViewById(R.id.admin_delete_post_btn);
+        postReviewsBtn = (Button) findViewById(R.id.admin_post_reviews_btn);
         totalPostRating = (TextView) findViewById(R.id.admin_textTotalPostRating);
         totalPostReviews = (TextView) findViewById(R.id.admin_textTotalPostReviews);
         closeBtn = (TextView) findViewById(R.id.admin_close_post_view_btn);
@@ -136,6 +140,16 @@ public class AdminDeletePost extends AppCompatActivity {
             }
         });
 
+        postReviewsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent postReviewIntent = new Intent(AdminDeletePost.this, AdminPostReviews.class);
+                postReviewIntent.putExtra("postID", Post_Key);
+                postReviewIntent.putExtra("postTitle", Post_Title);
+                startActivity(postReviewIntent);
+            }
+        });
+
         //open activity to view reviews and add review. Taking over the post name and post ID from the key fields
         deletePostBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,8 +172,6 @@ public class AdminDeletePost extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(AdminDeletePost.this);
                 builder.setMessage("Are you sure you want to delete this post?").setPositiveButton("Yes", dialogClickListener)
                         .setNegativeButton("No", dialogClickListener).show();
-
-
             }
         });
 

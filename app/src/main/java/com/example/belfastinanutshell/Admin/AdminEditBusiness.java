@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.belfastinanutshell.Businesses.BusinessReviewsActivity;
 import com.example.belfastinanutshell.Businesses.SearchBusinessActivity;
 import com.example.belfastinanutshell.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -108,10 +107,9 @@ public class AdminEditBusiness extends AppCompatActivity {
         adminReviewBusiness.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent businessReviewIntent = new Intent(AdminEditBusiness.this, BusinessReviewsActivity.class);
-                businessReviewIntent.putExtra("bID", Business_Key);
+                Intent businessReviewIntent = new Intent(AdminEditBusiness.this, AdminBusinessReviews.class);
+                businessReviewIntent.putExtra("bID", businessID);
                 businessReviewIntent.putExtra("bName", Business_Name);
-                businessReviewIntent.putExtra("Admin", "Admin");
                 startActivity(businessReviewIntent);
 
             }

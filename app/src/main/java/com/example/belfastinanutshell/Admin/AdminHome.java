@@ -3,38 +3,31 @@ package com.example.belfastinanutshell.Admin;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
-import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.example.belfastinanutshell.Posts.All_Posts;
 import com.example.belfastinanutshell.Businesses.SearchBusinessActivity;
 import com.example.belfastinanutshell.MainActivity;
+import com.example.belfastinanutshell.Posts.All_Posts;
 import com.example.belfastinanutshell.R;
 
 public class AdminHome extends AppCompatActivity{
 
-    private CardView addBar, addRestaurant, addEntertainment, manageBusiness;
-    private Button deletePost, logoutBtn;
-    private Toolbar toolBar;
-    private View rootView;
-    private DrawerLayout drawerLayout;
+    private CardView addBar, addRestaurant, addEntertainment, manageBusiness, managePost, logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home);
 
-        logoutBtn = (Button) findViewById(R.id.admin_logout_btn);
         addBar = (CardView) findViewById(R.id.add_bar_admin_card);
         addRestaurant = (CardView) findViewById(R.id.add_restaurant_admin_card);
         addEntertainment = (CardView) findViewById(R.id.add_entertainment_admin_card);
         manageBusiness = (CardView) findViewById(R.id.edit_delete_admin_card);
-        deletePost = (Button) findViewById(R.id.admin_delete_post_btn);
+        managePost = (CardView) findViewById(R.id.manage_post_admin_card);
+        logout = (CardView) findViewById(R.id.logout_admin_card);
 
         addBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,7 +66,7 @@ public class AdminHome extends AppCompatActivity{
             }
         });
 
-        deletePost.setOnClickListener(new View.OnClickListener() {
+        managePost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminHome.this, All_Posts.class);
@@ -83,7 +76,7 @@ public class AdminHome extends AppCompatActivity{
             }
         });
 
-        logoutBtn.setOnClickListener(new View.OnClickListener() {
+        logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(AdminHome.this, "Logging out...", Toast.LENGTH_SHORT).show();

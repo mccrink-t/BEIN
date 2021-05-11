@@ -46,9 +46,6 @@ public class BusinessReviewsActivity extends AppCompatActivity {
     private RatingBar singleUserBusinessRating;
     private TextView singleUserBusinessRatingTextView;
     private String uniqueBusinessReviewID = null;
-    private String userType = "";
-
-//    private Button deleteBusinessReview;
 
     private DatabaseReference usersRef, businessRef, businessRatingRef;
 
@@ -57,7 +54,6 @@ public class BusinessReviewsActivity extends AppCompatActivity {
 
     float ratingNumber = 0;
     int numberOfStars;
-    TextView delete;
     String currentUsersID = null;
 
     @Override
@@ -87,10 +83,6 @@ public class BusinessReviewsActivity extends AppCompatActivity {
         businessReviewName = (TextView) findViewById(R.id.review_Business_Name);
         singleUserBusinessRating = (RatingBar) findViewById(R.id.singleUserBusinessRating);
         singleUserBusinessRatingTextView = (TextView) findViewById(R.id.singleUserBusinessRatingText);
-
-//        deleteBusinessReview = (Button) findViewById(R.id.delete_business_review_btn);
-
-        delete = (TextView) findViewById(R.id.temporaryRatingHolder);
 
         businessReviewName.setText(Business_Name);
 
@@ -150,11 +142,24 @@ public class BusinessReviewsActivity extends AppCompatActivity {
                 new FirebaseRecyclerAdapter<BusinessReviewsModel, BusinessReviewsViewHolder>(options) {
                     @Override
                     protected void onBindViewHolder(@NonNull BusinessReviewsViewHolder holder, int position, @NonNull BusinessReviewsModel model) {
+
                         holder.usersReviewName.setText(model.getFullName());
                         holder.usersReviewText.setText(model.getReview());
                         holder.usersReviewDate.setText(model.getDate());
                         holder.usersReviewTime.setText(model.getTime());
                         holder.usersBusinessRating.setText(model.getRating());
+
+//                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v)
+//                            {
+//                                Intent intent = new Intent(BusinessReviewsActivity.this, Admin_Business_Reviews_Details.class);
+//                                intent.putExtra("reviewID", model.getReviewID());
+//                                intent.putExtra("bID", Business_Key);
+//                                intent.putExtra("bName", Business_Name);
+//                                startActivity(intent);
+//                            }
+//                        });
 
                         if (model.getUserID() != null) {
                             currentUsersID = model.getUserID();
@@ -176,23 +181,6 @@ public class BusinessReviewsActivity extends AppCompatActivity {
 
 
     }
-
-    //    private void deleteReview()
-//    {
-//
-//        businessRef.child(reviewID).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-//            @Override
-//            public void onComplete(@NonNull Task<Void> task) {
-//
-//                Intent intent = new Intent(BusinessReviewsActivity.this, AdminEditBusiness.class);
-//                intent.putExtra("bID", Business_Key);
-//                startActivity(intent);
-//                finish();
-//
-//                Toast.makeText(BusinessReviewsActivity.this, "Review Has Been Deleted Successfully", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
 
     private void ValidateBusinessReview(String fullName, String userID) {
         String businessReviewText = businessReviewInputText.getText().toString();
