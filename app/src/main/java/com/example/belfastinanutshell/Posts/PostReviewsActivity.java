@@ -56,7 +56,7 @@ public class PostReviewsActivity extends AppCompatActivity {
     float ratingNumber = 0;
     int numberOfStars;
     TextView delete;
-    String currentUsersID = null;
+    String uploadedUsersID = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,10 +116,10 @@ public class PostReviewsActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists()) {
-                            String fullName = snapshot.child("fullName").getValue().toString();
-                            String userID = snapshot.child("phone").getValue().toString();
+                            String currentUsersFullName = snapshot.child("fullName").getValue().toString();
+                            String currentUsersID = snapshot.child("phone").getValue().toString();
 
-                            ValidatePostReview(fullName, userID);
+                            ValidatePostReview(currentUsersFullName, currentUsersID);
                             postReviewInputText.setText("");
                         }
                     }
@@ -155,7 +155,7 @@ public class PostReviewsActivity extends AppCompatActivity {
                         holder.usersPostRating.setText(model.getRating());
 
                         if (model.getUserID() != null) {
-                            currentUsersID = model.getUserID();
+                            uploadedUsersID = model.getUserID();
                         }
                     }
 
@@ -172,7 +172,7 @@ public class PostReviewsActivity extends AppCompatActivity {
         adapter.startListening();
     }
 
-    private void ValidatePostReview(String fullName, String userID) {
+    private void ValidatePostReview(String currentUsersFullName, String currentUsersID) {
         String postReviewText = postReviewInputText.getText().toString();
         String saveCurrentDate, saveCurrentTime;
 
@@ -181,7 +181,7 @@ public class PostReviewsActivity extends AppCompatActivity {
 //        if statement to check if the current users ID is equal to null
 //        if it is, then a check to see if the current logged in users ID is the same as the stored user ID in one of the reviews.
 //        Thus limiting each user to one review per post
-        if (currentUsersID != null && currentUsersID.equals(userID)) {
+        if (uploadedUsersID != null && uploadedUsersID.equals(currentUsersID)) {
             Toast.makeText(this, "Post Unsuccessful, You have already Reviewed this Post.", Toast.LENGTH_SHORT).show();
         } else if (singleUserPostRatingTextView.getText().toString().isEmpty()) {
             Toast.makeText(this, "Review Unsuccessful : Please Leave a Star Rating", Toast.LENGTH_SHORT).show();
@@ -214,11 +214,11 @@ public class PostReviewsActivity extends AppCompatActivity {
             HashMap postReviewsMap = new HashMap();
             //mapping the values inside the variables to go into the fields on the post review table
             postReviewsMap.put("reviewID", uniquePostReviewID);
-            postReviewsMap.put("userID", userID);
+            postReviewsMap.put("userID", currentUsersID);
             postReviewsMap.put("review", postReviewText);
             postReviewsMap.put("date", saveCurrentDate);
             postReviewsMap.put("time", saveCurrentTime);
-            postReviewsMap.put("fullName", fullName);
+            postReviewsMap.put("fullName", currentUsersFullName);
             postReviewsMap.put("rating", rating);
 
             //update the database table posts, and the selected post, to add the new data into it via the hashmap

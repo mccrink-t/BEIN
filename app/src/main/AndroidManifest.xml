@@ -37,11 +37,12 @@
             android:value="@string/map_key" />
 
         <activity android:name=".Admin.AdminEditBusiness" />
-        <activity android:name=".Businesses.SearchBusinessActivity" />
+        <activity android:name=".Businesses.SearchBusinessActivity"
+            android:label="Search for a Business"/>
         <activity android:name=".Businesses.BusinessReviewsActivity" />
         <activity
             android:name=".Businesses.All_Restaurants"
-            android:label="Restaurants" />
+            android:label="Belfast Restaurants" />
         <activity
             android:name=".Businesses.All_Bars"
             android:label="Belfast Bars" />

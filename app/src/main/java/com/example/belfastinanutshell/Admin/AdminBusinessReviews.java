@@ -88,7 +88,6 @@ public class AdminBusinessReviews extends AppCompatActivity {
                 new FirebaseRecyclerAdapter<BusinessReviewsModel, BusinessReviewsViewHolder>(options) {
                     @Override
                     protected void onBindViewHolder(@NonNull BusinessReviewsViewHolder holder, int position, @NonNull BusinessReviewsModel model) {
-
                         holder.usersReviewName.setText(model.getFullName());
                         holder.usersReviewText.setText(model.getReview());
                         holder.usersReviewDate.setText(model.getDate());

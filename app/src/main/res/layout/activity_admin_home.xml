@@ -28,7 +28,7 @@
                     android:layout_marginTop="40dp"
                     android:fontFamily="@font/alef_bold"
                     android:gravity="center"
-                    android:text="Add New Business"
+                    android:text="Admin Home"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textColor="#009688"
                     android:textSize="36sp"

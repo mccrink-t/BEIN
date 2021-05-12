@@ -122,7 +122,7 @@ public class AdminEditBusiness extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
 
-                Intent intent = new Intent(AdminEditBusiness.this, SearchBusinessActivity.class);
+                Intent intent = new Intent(AdminEditBusiness.this, AdminHome.class);
                 startActivity(intent);
                 finish();
 

@@ -54,7 +54,8 @@ public class BusinessReviewsActivity extends AppCompatActivity {
 
     float ratingNumber = 0;
     int numberOfStars;
-    String currentUsersID = null;
+    String uploadedUsersID = null;
+    String uploadedUsersName = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,10 +111,10 @@ public class BusinessReviewsActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists()) {
-                            String fullName = snapshot.child("fullName").getValue().toString();
-                            String userID = snapshot.child("phone").getValue().toString();
+                            String currentUsersFullName = snapshot.child("fullName").getValue().toString();
+                            String currentUsersID = snapshot.child("phone").getValue().toString();
 
-                            ValidateBusinessReview(fullName, userID);
+                            ValidateBusinessReview(currentUsersFullName, currentUsersID);
                             businessReviewInputText.setText("");
                         }
                     }
@@ -149,22 +150,9 @@ public class BusinessReviewsActivity extends AppCompatActivity {
                         holder.usersReviewTime.setText(model.getTime());
                         holder.usersBusinessRating.setText(model.getRating());
 
-//                        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View v)
-//                            {
-//                                Intent intent = new Intent(BusinessReviewsActivity.this, Admin_Business_Reviews_Details.class);
-//                                intent.putExtra("reviewID", model.getReviewID());
-//                                intent.putExtra("bID", Business_Key);
-//                                intent.putExtra("bName", Business_Name);
-//                                startActivity(intent);
-//                            }
-//                        });
-
                         if (model.getUserID() != null) {
-                            currentUsersID = model.getUserID();
+                            uploadedUsersID = model.getUserID();
                         }
-
                     }
 
                     @NonNull
@@ -182,7 +170,7 @@ public class BusinessReviewsActivity extends AppCompatActivity {
 
     }
 
-    private void ValidateBusinessReview(String fullName, String userID) {
+    private void ValidateBusinessReview(String currentUsersFullName, String currentUsersID) {
         String businessReviewText = businessReviewInputText.getText().toString();
         String saveCurrentDate, saveCurrentTime;
 
@@ -191,7 +179,7 @@ public class BusinessReviewsActivity extends AppCompatActivity {
 //        int ratingInt = Math.round(Integer.valueOf(singleUserBusinessRatingTextView.getText().toString()));
 //        convert back to string
 
-        if(currentUsersID != null && currentUsersID.equals(userID)){
+        if(uploadedUsersID != null && uploadedUsersID.equals(currentUsersID)){
             Toast.makeText(this, "Post Unsuccessful, You have already Reviewed this Post.", Toast.LENGTH_SHORT).show();
         }
         else if (singleUserBusinessRatingTextView.getText().toString().isEmpty()) {
@@ -220,11 +208,11 @@ public class BusinessReviewsActivity extends AppCompatActivity {
             HashMap businessReviewsMap = new HashMap();
             //mapping the values inside the variables to go into the fields on the business review table
             businessReviewsMap.put("reviewID", uniqueBusinessReviewID);
-            businessReviewsMap.put("userID", userID);
+            businessReviewsMap.put("userID", currentUsersID);
             businessReviewsMap.put("review", businessReviewText);
             businessReviewsMap.put("date", saveCurrentDate);
             businessReviewsMap.put("time", saveCurrentTime);
-            businessReviewsMap.put("fullName", fullName);
+            businessReviewsMap.put("fullName", currentUsersFullName);
             businessReviewsMap.put("rating", rating);
 
             //update the database table businesses, and the selected business, to add the new data into it via the hashmap
