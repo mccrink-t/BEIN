@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.belfastinanutshell.Businesses.SearchBusinessActivity;
+import com.example.belfastinanutshell.Home;
 import com.example.belfastinanutshell.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -33,7 +33,7 @@ public class AdminEditBusiness extends AppCompatActivity {
             businessContactInfo, businessWebsite;
     private Button updateBusinessBtn, deleteBusinessBtn, adminReviewBusiness;
     private ImageView businessImageView;
-    private TextView closeBtn;
+    private TextView closeBtn, adminHomeBtn;
     private String Business_Key;
     private String Business_Name;
 
@@ -55,6 +55,7 @@ public class AdminEditBusiness extends AppCompatActivity {
         updateBusinessBtn = (Button) findViewById(R.id.update_business_btn);
         deleteBusinessBtn = (Button) findViewById(R.id.delete_business_btn);
         closeBtn = (TextView) findViewById(R.id.close_edit_business_btn);
+        adminHomeBtn = (TextView) findViewById(R.id.adminHome_edit_business_btn);
         businessImageView = (ImageView) findViewById(R.id.business_image);
         adminReviewBusiness = (Button) findViewById(R.id.business_admin_reviews_btn);
 
@@ -71,6 +72,14 @@ public class AdminEditBusiness extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        adminHomeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminEditBusiness.this, AdminHome.class);
+                startActivity(intent);
             }
         });
 
@@ -107,7 +116,7 @@ public class AdminEditBusiness extends AppCompatActivity {
         adminReviewBusiness.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent businessReviewIntent = new Intent(AdminEditBusiness.this, AdminBusinessReviews.class);
+                Intent businessReviewIntent = new Intent(AdminEditBusiness.this, AdminViewBusinessReviews.class);
                 businessReviewIntent.putExtra("bID", businessID);
                 businessReviewIntent.putExtra("bName", Business_Name);
                 startActivity(businessReviewIntent);

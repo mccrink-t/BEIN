@@ -37,7 +37,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     private DrawerLayout drawerLayout;
     private TextView username;
     private CircleImageView profilePic;
-    private CardView searchBusinessesHome, barsHome, profileHome, restaurantHome, entertainmentHome, blogsHome, addBlogHome;
+    private CardView searchBusinessesHome, barsHome, profileHome, restaurantHome, entertainmentHome, blogsHome, addBlogHome, wellBeingHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +53,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         entertainmentHome = (CardView) findViewById(R.id.entertainment_home_card);
         blogsHome = (CardView) findViewById(R.id.blogs_home_card);
         addBlogHome = (CardView) findViewById(R.id.post_blog_home_card);
+        wellBeingHome = (CardView) findViewById(R.id.wellBeing_home_card);
 
         //Toolbar (at top of each page)
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -144,6 +145,14 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Home.this, AddNewPost.class);
+                startActivity(intent);
+            }
+        });
+
+        wellBeingHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home.this, StudentWellbeing.class);
                 startActivity(intent);
             }
         });

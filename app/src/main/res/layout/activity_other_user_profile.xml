@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".Profile.OtherUserProfile">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbarOtherRL">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_other_profile"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/nav_bar_header_theme">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/other_profile_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/nav_bar_header_theme"
+            android:minHeight="?attr/actionBarSize"
+            app:titleTextColor="@android:color/white">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/close_other_profile_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:text="Close"
+                    android:textColor="@android:color/white"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/otherRLProfile"
+        android:layout_below="@+id/toolbarOtherRL"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/other_profile_fName_TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="User's Name"
+            android:textColor="@color/black"
+            android:textSize="22dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/fillertext_other_profile_fName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@+id/other_profile_fName_TV"
+            android:gravity="center"
+            android:text="'s"
+            android:textColor="@color/black"
+            android:textSize="22dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/text_other_profile_fName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="7dp"
+            android:layout_toRightOf="@+id/fillertext_other_profile_fName"
+            android:gravity="center"
+            android:text="Profile"
+            android:textColor="@color/black"
+            android:textSize="22dp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/otherRLProfile">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/other_profile_profile_image"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/profile"
+            app:civ_border_color="@android:color/black"
+            app:civ_border_width="2dp" />
+
+        <TextView
+            android:id="@+id/other_textview_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@+id/other_profile_profile_image"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+
+            android:layout_marginTop="15dp"
+            android:padding="10dp"
+            android:text="Email Address: "
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/other_profile_email_TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@+id/other_profile_profile_image"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@+id/other_textview_email"
+
+            android:padding="10dp"
+            android:text="Email"
+            android:textColor="#8c8c8c"
+            android:textSize="16dp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/other_textview_institution"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@+id/other_profile_email_TextView"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="15dp"
+
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:padding="10dp"
+            android:text="Currently Attending: "
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/other_profile_institution_TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@+id/other_profile_email_TextView"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@+id/other_textview_institution"
+
+            android:padding="10dp"
+            android:text="University Name"
+            android:textColor="#8c8c8c"
+            android:textSize="16dp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/other_textview_degree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@+id/other_profile_institution_TextView"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="15dp"
+
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:padding="10dp"
+            android:text="Currently Studying: "
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/other_profile_degree_TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@+id/other_profile_institution_TextView"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@+id/other_textview_degree"
+
+            android:padding="10dp"
+            android:text="Degree Name"
+            android:textColor="#8c8c8c"
+            android:textSize="16dp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/other_textview_YOS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/other_profile_degree_TextView"
+            android:layout_alignParentStart="true"
+
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+
+            android:layout_marginTop="15dp"
+            android:padding="10dp"
+            android:text="Year of Study: "
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/other_profile_year_of_study_TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/other_profile_degree_TextView"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@+id/other_textview_YOS"
+            android:padding="10dp"
+            android:text="Current Year"
+            android:textColor="#8c8c8c"
+            android:textSize="16dp"
+            android:textStyle="normal" />
+
+    </RelativeLayout>
+</RelativeLayout>

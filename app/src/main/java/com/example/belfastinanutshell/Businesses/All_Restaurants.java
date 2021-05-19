@@ -101,6 +101,7 @@ public class All_Restaurants extends AppCompatActivity implements NavigationView
                         holder.txtBusinessName.setText(model.getbName());
                         holder.txtBusinessDescription.setText(model.getDescription());
                         holder.txtBusinessLocation.setText(model.getLocation());
+                        holder.txtBusinessRating.setText(model.getRating());
                         Picasso.get().load(model.getImage()).into(holder.imageView);
 
                         holder.itemView.setOnClickListener(new View.OnClickListener() {

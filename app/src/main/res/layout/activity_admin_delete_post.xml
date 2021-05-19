@@ -42,6 +42,19 @@
                         android:textSize="17sp"
                         android:textStyle="bold" />
 
+                    <TextView
+                        android:id="@+id/adminHome_edit_business_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:text="AdminHome"
+                        android:textColor="@android:color/white"
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        android:layout_marginRight="20dp"/>
+
+
                 </RelativeLayout>
 
             </androidx.appcompat.widget.Toolbar>

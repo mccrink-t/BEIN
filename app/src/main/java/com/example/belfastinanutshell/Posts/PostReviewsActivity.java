@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.belfastinanutshell.Home;
 import com.example.belfastinanutshell.Model.PostReviewsModel;
 import com.example.belfastinanutshell.Prevalent.Prevalent;
+import com.example.belfastinanutshell.Profile.OtherUserProfile;
 import com.example.belfastinanutshell.R;
 import com.example.belfastinanutshell.ViewHolder.PostReviewsViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -157,6 +158,15 @@ public class PostReviewsActivity extends AppCompatActivity {
                         if (model.getUserID() != null) {
                             uploadedUsersID = model.getUserID();
                         }
+
+                        holder.usersPostReviewName.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent otherUserProfileIntent = new Intent(PostReviewsActivity.this, OtherUserProfile.class);
+                                otherUserProfileIntent.putExtra("userID", uploadedUsersID);
+                                startActivity(otherUserProfileIntent);
+                            }
+                        });
                     }
 
                     @NonNull
@@ -182,7 +192,7 @@ public class PostReviewsActivity extends AppCompatActivity {
 //        if it is, then a check to see if the current logged in users ID is the same as the stored user ID in one of the reviews.
 //        Thus limiting each user to one review per post
         if (uploadedUsersID != null && uploadedUsersID.equals(currentUsersID)) {
-            Toast.makeText(this, "Post Unsuccessful, You have already Reviewed this Post.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Review Unsuccessful, You have already Reviewed this Post.", Toast.LENGTH_SHORT).show();
         } else if (singleUserPostRatingTextView.getText().toString().isEmpty()) {
             Toast.makeText(this, "Review Unsuccessful : Please Leave a Star Rating", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(postReviewText)) {

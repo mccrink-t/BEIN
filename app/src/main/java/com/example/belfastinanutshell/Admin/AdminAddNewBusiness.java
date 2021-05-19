@@ -120,34 +120,42 @@ public class AdminAddNewBusiness extends AppCompatActivity {
         contactInfo = inputBusinessContactInfo.getText().toString();
         website = inputBusinessWebsite.getText().toString();
 
+        //if the admin forgets to attach an image, display an toast error message telling them that the image is required
         if(imageURI == null)
         {
             Toast.makeText(this, "Business Image required...", Toast.LENGTH_SHORT).show();
         }
+        //if the admin forgets to enter the business name, display an toast error message telling them that the business name is required
         else if(TextUtils.isEmpty(bName))
         {
             Toast.makeText(this, "Please add Business Name...", Toast.LENGTH_SHORT).show();
         }
+        //if the admin forgets to enter the business description, display an toast error message telling them that the business description is required
         else if(TextUtils.isEmpty(description))
         {
             Toast.makeText(this, "Please add Business Description...", Toast.LENGTH_SHORT).show();
         }
+        //if the admin forgets to enter the business opening hours, display an toast error message telling them that the business opening hours are required
         else if(TextUtils.isEmpty(openingHours))
         {
             Toast.makeText(this, "Please add Business Opening Hours...", Toast.LENGTH_SHORT).show();
         }
+        //if the admin forgets to enter the business location, display an toast error message telling them that the business location is required
         else if(TextUtils.isEmpty(location))
         {
             Toast.makeText(this, "Please add Business Location...", Toast.LENGTH_SHORT).show();
         }
+        //if the admin forgets to enter the business contact information, display an toast error message telling them that the business contact information is required
         else if(TextUtils.isEmpty(contactInfo))
         {
             Toast.makeText(this, "Please add Business Contact Information...", Toast.LENGTH_SHORT).show();
         }
+        //if the admin forgets to enter the business website, display an toast error message telling them that the business website is required
         else if(TextUtils.isEmpty(website))
         {
             Toast.makeText(this, "Please add Business Website...", Toast.LENGTH_SHORT).show();
         }
+        //else if all of the fields have been filled in, run the store business information method.
         else
         {
             storeBusinessInformation();
@@ -221,8 +229,7 @@ public class AdminAddNewBusiness extends AppCompatActivity {
 
     private void saveBusinessInfoToDatabase()
     {
-        int number = 0;
-        String rating = String.valueOf(number);
+        String rating = "Not yet rated";
 
         HashMap<String, Object> businessMap = new HashMap<>();
         businessMap.put("bID", businessRandomKey);

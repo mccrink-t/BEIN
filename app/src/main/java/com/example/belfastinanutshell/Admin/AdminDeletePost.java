@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.belfastinanutshell.AdminPostReviews;
+import com.example.belfastinanutshell.Home;
 import com.example.belfastinanutshell.Model.Posts;
 import com.example.belfastinanutshell.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,7 +31,7 @@ import java.util.Map;
 public class AdminDeletePost extends AppCompatActivity {
     private TextView pTitleView, pTextView, pUserNameTextView, totalPostRating, totalPostReviews;
     private ImageView imagePost;
-    private TextView closeBtn;
+    private TextView closeBtn, adminHomeBtn;
     private String postID = "";
     private String post_Title = "";
     private Button deletePostBtn, postReviewsBtn;
@@ -56,6 +56,7 @@ public class AdminDeletePost extends AppCompatActivity {
         totalPostRating = (TextView) findViewById(R.id.admin_textTotalPostRating);
         totalPostReviews = (TextView) findViewById(R.id.admin_textTotalPostReviews);
         closeBtn = (TextView) findViewById(R.id.admin_close_post_view_btn);
+        adminHomeBtn = (TextView) findViewById(R.id.adminHome_edit_business_btn);
         imagePost = (ImageView) findViewById(R.id.admin_image_post_view);
 
         //call information from post database firebase
@@ -140,10 +141,18 @@ public class AdminDeletePost extends AppCompatActivity {
             }
         });
 
+        adminHomeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminDeletePost.this, AdminHome.class);
+                startActivity(intent);
+            }
+        });
+
         postReviewsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent postReviewIntent = new Intent(AdminDeletePost.this, AdminPostReviews.class);
+                Intent postReviewIntent = new Intent(AdminDeletePost.this, AdminViewPostReviews.class);
                 postReviewIntent.putExtra("postID", Post_Key);
                 postReviewIntent.putExtra("postTitle", Post_Title);
                 startActivity(postReviewIntent);

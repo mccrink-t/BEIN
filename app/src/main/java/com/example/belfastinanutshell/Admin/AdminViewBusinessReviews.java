@@ -21,7 +21,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class AdminBusinessReviews extends AppCompatActivity {
+public class AdminViewBusinessReviews extends AppCompatActivity {
 
     private RecyclerView businessReviewList;
     private TextView closeBtn, businessReviewName;
@@ -98,7 +98,7 @@ public class AdminBusinessReviews extends AppCompatActivity {
                             @Override
                             public void onClick(View v)
                             {
-                                Intent intent = new Intent(AdminBusinessReviews.this, Admin_Delete_Business_Review.class);
+                                Intent intent = new Intent(AdminViewBusinessReviews.this, Admin_Delete_Business_Review.class);
                                 intent.putExtra("reviewID", model.getReviewID());
                                 intent.putExtra("bID", Business_Key);
                                 intent.putExtra("bName", Business_Name);

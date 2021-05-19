@@ -14,7 +14,7 @@
         android:overScrollMode="ifContentScrolls"
         android:scrollbarStyle="insideOverlay"
         android:scrollbars="vertical"
-        tools:context=".Admin_Delete_Post_Review">
+        tools:context=".Admin.Admin_Delete_Post_Review">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar_single_post_review_admin"

@@ -19,7 +19,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.belfastinanutshell.Home;
 import com.example.belfastinanutshell.Model.BusinessReviewsModel;
+import com.example.belfastinanutshell.Posts.PostReviewsActivity;
 import com.example.belfastinanutshell.Prevalent.Prevalent;
+import com.example.belfastinanutshell.Profile.OtherUserProfile;
 import com.example.belfastinanutshell.R;
 import com.example.belfastinanutshell.ViewHolder.BusinessReviewsViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -153,6 +155,15 @@ public class BusinessReviewsActivity extends AppCompatActivity {
                         if (model.getUserID() != null) {
                             uploadedUsersID = model.getUserID();
                         }
+
+                        holder.usersReviewName.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent otherUserProfileIntent = new Intent(BusinessReviewsActivity.this, OtherUserProfile.class);
+                                otherUserProfileIntent.putExtra("userID", uploadedUsersID);
+                                startActivity(otherUserProfileIntent);
+                            }
+                        });
                     }
 
                     @NonNull
@@ -180,7 +191,7 @@ public class BusinessReviewsActivity extends AppCompatActivity {
 //        convert back to string
 
         if(uploadedUsersID != null && uploadedUsersID.equals(currentUsersID)){
-            Toast.makeText(this, "Post Unsuccessful, You have already Reviewed this Post.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Review Unsuccessful, You have already Reviewed " + Business_Name + ".", Toast.LENGTH_SHORT).show();
         }
         else if (singleUserBusinessRatingTextView.getText().toString().isEmpty()) {
             Toast.makeText(this, "Review Unsuccessful : Please Leave a Star Rating", Toast.LENGTH_SHORT).show();

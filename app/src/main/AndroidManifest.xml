@@ -17,9 +17,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BelfastInANutshell.NoActionBar">
-        <activity android:name=".Admin_Delete_Post_Review"></activity>
-        <activity android:name=".AdminPostReviews"></activity>
-        <activity android:name=".Admin.AdminBusinessReviews" />
+        <activity android:name=".StudentWellbeing"></activity>
+        <activity android:name=".Profile.OtherUserProfile" />
+        <activity android:name=".Admin.Admin_Delete_Post_Review" />
+        <activity android:name=".Admin.AdminViewPostReviews" />
+        <activity android:name=".Admin.AdminViewBusinessReviews" />
         <activity android:name=".Admin.Admin_Delete_Business_Review" />
         <activity android:name=".Admin.AdminDeletePost" />
         <activity android:name=".Posts.PostReviewsActivity" />
@@ -30,15 +32,18 @@
         <activity
             android:name=".Posts.All_Posts"
             android:label="User Posts" />
-        <activity android:name=".Posts.AddNewPost" />
+        <activity
+            android:name=".Posts.AddNewPost"
+            android:label="Submit a Post" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map_key" />
 
         <activity android:name=".Admin.AdminEditBusiness" />
-        <activity android:name=".Businesses.SearchBusinessActivity"
-            android:label="Search for a Business"/>
+        <activity
+            android:name=".Businesses.SearchBusinessActivity"
+            android:label="Search for a Business" />
         <activity android:name=".Businesses.BusinessReviewsActivity" />
         <activity
             android:name=".Businesses.All_Restaurants"

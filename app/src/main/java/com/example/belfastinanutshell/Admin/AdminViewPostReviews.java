@@ -1,4 +1,4 @@
-package com.example.belfastinanutshell;
+package com.example.belfastinanutshell.Admin;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,13 +14,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.belfastinanutshell.Model.PostReviewsModel;
+import com.example.belfastinanutshell.R;
 import com.example.belfastinanutshell.ViewHolder.PostReviewsViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class AdminPostReviews extends AppCompatActivity {
+public class AdminViewPostReviews extends AppCompatActivity {
 
     private RecyclerView postReviewList;
     private TextView closeBtn, postReviewTitle;
@@ -97,7 +98,7 @@ public class AdminPostReviews extends AppCompatActivity {
                             @Override
                             public void onClick(View v)
                             {
-                                Intent intent = new Intent(AdminPostReviews.this, Admin_Delete_Post_Review.class);
+                                Intent intent = new Intent(AdminViewPostReviews.this, Admin_Delete_Post_Review.class);
                                 intent.putExtra("reviewID", model.getReviewID());
                                 intent.putExtra("postID", Post_Key);
                                 intent.putExtra("postTitle", Post_Title);

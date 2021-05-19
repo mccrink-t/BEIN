@@ -205,8 +205,7 @@ public class AddNewPost extends AppCompatActivity {
 
     private void savePostToDatabase(String fullName, String userID)
     {
-        int number = 0;
-        String rating = String.valueOf(number);
+        String rating = "Not yet rated";
 
         HashMap<String, Object> postMap = new HashMap<>();
         postMap.put("postID", postRandomKey);
